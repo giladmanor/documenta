@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" version="3">
+  <includeClasses>
+    <classEntry path="wonderland.flow.view.STDDashboard"/>
+    <classEntry path="wonderland.flow.view.STDLogin"/>
+    <classEntry path="wonderland.flow.controller.LoginControllerClient"/>
+    <classEntry path="wonderland.flow.module.STDModule"/>
+    <classEntry path="wonderland.flow.module.RoleConfiguration"/>
+    <classEntry path="wonderland.flow.module.TableEditor"/>
+    <classEntry path="wonderland.flow.view.DynamicForm"/>
+    <classEntry path="wonderland.flow.view.RowEditBox"/>
+    <classEntry path="wonderland.flow.controller.UserManagementControllerClient"/>
+    <classEntry path="wonderland.flow.view.SaveErrorAlert"/>
+    <classEntry path="wonderland.flow.controller.FileUploader"/>
+    <classEntry path="wonderland.flow.view.SearchUserBox"/>
+    <classEntry path="wonderland.flow.view.GenericStringSearch"/>
+    <classEntry path="wonderland.flow.view.GroupSelector"/>
+    <classEntry path="wonderland.flow.view.TagSelector"/>
+    <classEntry path="wonderland.application.IWonderlandApplication"/>
+    <classEntry path="wonderland.flow.view.UserSelector"/>
+    <classEntry path="wonderland.flow.view.SearchUser"/>
+    <classEntry path="wonderland.flow.view.ISTDSingleSelector"/>
+    <classEntry path="wonderland.flow.view.EasyDateField"/>
+    <classEntry path="wonderland.flow.view.RestrictedTitileWindow"/>
+    <classEntry path="wonderland.flow.view.EasyDateLabel"/>
+    <classEntry path="wonderland.flow.view.BunchList"/>
+    <classEntry path="wonderland.flow.view.BunchingTree"/>
+    <classEntry path="wonderland.flow.controller.GenericListControllerClient"/>
+    <classEntry path="wonderland.flow.view.EasyDateTimeField"/>
+    <classEntry path="wonderland.flow.view.NumericTextInput"/>
+    <classEntry path="wonderland.flow.view.ServerErrorAlert"/>
+  </includeClasses>
+  <includeResources>
+    <resourceEntry destPath="assets/images/png/app folder_128x128.png" sourcePath="assets/images/png/app folder_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/pause_16x16.png" sourcePath="assets/images/png/pause_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/chat_128x128.png" sourcePath="assets/images/png/chat_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/burn_256x256.png" sourcePath="assets/images/png/burn_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/export_128x128.png" sourcePath="assets/images/png/export_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/phone_48x48.png" sourcePath="assets/images/png/phone_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/print_32x32.png" sourcePath="assets/images/png/print_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/zoom+_64x64.png" sourcePath="assets/images/png/zoom+_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/delete user_256x256.png" sourcePath="assets/images/png/delete user_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/export_256x256.png" sourcePath="assets/images/png/export_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/skip forward_24x24.png" sourcePath="assets/images/png/skip forward_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/skip backward_16x16.png" sourcePath="assets/images/png/skip backward_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/print_256x256.png" sourcePath="assets/images/png/print_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/rewind_256x256.png" sourcePath="assets/images/png/rewind_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/shield3_16x16.png" sourcePath="assets/images/png/shield3_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/button green_32x32.png" sourcePath="assets/images/png/button green_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/move 2_256x256.png" sourcePath="assets/images/png/move 2_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/cut_256x256.png" sourcePath="assets/images/png/cut_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/shield1_24x24.png" sourcePath="assets/images/png/shield1_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/phone_64x64.png" sourcePath="assets/images/png/phone_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/wizard_256x256.png" sourcePath="assets/images/png/wizard_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/phone_256x256.png" sourcePath="assets/images/png/phone_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/save_16x16.png" sourcePath="assets/images/png/save_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/copy_48x48.png" sourcePath="assets/images/png/copy_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/go2_24x24.png" sourcePath="assets/images/png/go2_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/backup_48x48.png" sourcePath="assets/images/png/backup_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/delete user_48x48.png" sourcePath="assets/images/png/delete user_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/delete_256x256.png" sourcePath="assets/images/png/delete_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/back_48x48.png" sourcePath="assets/images/png/back_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/web_128x128.png" sourcePath="assets/images/png/web_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/folder_32x32.png" sourcePath="assets/images/png/folder_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/app folder_24x24.png" sourcePath="assets/images/png/app folder_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/flag yellow_256x256.png" sourcePath="assets/images/png/flag yellow_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/block_48x48.png" sourcePath="assets/images/png/block_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/copy_64x64.png" sourcePath="assets/images/png/copy_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/officer_128x128.png" sourcePath="assets/images/png/officer_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/delete_16x16.png" sourcePath="assets/images/png/delete_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/time_32x32.png" sourcePath="assets/images/png/time_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/shield2_48x48.png" sourcePath="assets/images/png/shield2_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/users group_24x24.png" sourcePath="assets/images/png/users group_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/backup_128x128.png" sourcePath="assets/images/png/backup_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/down_16x16.png" sourcePath="assets/images/png/down_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/configure_48x48.png" sourcePath="assets/images/png/configure_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/new_16x16.png" sourcePath="assets/images/png/new_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/padlock closed_16x16.png" sourcePath="assets/images/png/padlock closed_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/padlock open_16x16.png" sourcePath="assets/images/png/padlock open_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/tools_16x16.png" sourcePath="assets/images/png/tools_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/folder_256x256.png" sourcePath="assets/images/png/folder_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/forward_64x64.png" sourcePath="assets/images/png/forward_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/add box_16x16.png" sourcePath="assets/images/png/add box_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/trash full_24x24.png" sourcePath="assets/images/png/trash full_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/label_48x48.png" sourcePath="assets/images/png/label_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/shield1_64x64.png" sourcePath="assets/images/png/shield1_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/windows folder_32x32.png" sourcePath="assets/images/png/windows folder_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/rewind_128x128.png" sourcePath="assets/images/png/rewind_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/options_32x32.png" sourcePath="assets/images/png/options_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/directories_128x128.png" sourcePath="assets/images/png/directories_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/home_48x48.png" sourcePath="assets/images/png/home_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/preferences_64x64.png" sourcePath="assets/images/png/preferences_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/import_64x64.png" sourcePath="assets/images/png/import_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/computer_32x32.png" sourcePath="assets/images/png/computer_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/journal_16x16.png" sourcePath="assets/images/png/journal_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/save as 2_256x256.png" sourcePath="assets/images/png/save as 2_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/refresh_24x24.png" sourcePath="assets/images/png/refresh_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/box_32x32.png" sourcePath="assets/images/png/box_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/home_16x16.png" sourcePath="assets/images/png/home_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/move_32x32.png" sourcePath="assets/images/png/move_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/flag yellow_16x16.png" sourcePath="assets/images/png/flag yellow_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/users group_256x256.png" sourcePath="assets/images/png/users group_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/flag red_64x64.png" sourcePath="assets/images/png/flag red_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/shield1_32x32.png" sourcePath="assets/images/png/shield1_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/stop sign_48x48.png" sourcePath="assets/images/png/stop sign_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/applications_24x24.png" sourcePath="assets/images/png/applications_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/clock_128x128.png" sourcePath="assets/images/png/clock_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/button blue_64x64.png" sourcePath="assets/images/png/button blue_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/pirate_128x128.png" sourcePath="assets/images/png/pirate_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/help_128x128.png" sourcePath="assets/images/png/help_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/pictures_48x48.png" sourcePath="assets/images/png/pictures_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/windows folder_48x48.png" sourcePath="assets/images/png/windows folder_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/pictures_128x128.png" sourcePath="assets/images/png/pictures_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/my documents_24x24.png" sourcePath="assets/images/png/my documents_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/clock_64x64.png" sourcePath="assets/images/png/clock_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/basket_16x16.png" sourcePath="assets/images/png/basket_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/calendar_256x256.png" sourcePath="assets/images/png/calendar_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/applications_256x256.png" sourcePath="assets/images/png/applications_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/shield1_48x48.png" sourcePath="assets/images/png/shield1_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/skip forward_48x48.png" sourcePath="assets/images/png/skip forward_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/alert_48x48.png" sourcePath="assets/images/png/alert_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/redo_128x128.png" sourcePath="assets/images/png/redo_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/help_256x256.png" sourcePath="assets/images/png/help_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/options_16x16.png" sourcePath="assets/images/png/options_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/padlock open_32x32.png" sourcePath="assets/images/png/padlock open_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/cut file_128x128.png" sourcePath="assets/images/png/cut file_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/edit file_24x24.png" sourcePath="assets/images/png/edit file_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/windows folder_16x16.png" sourcePath="assets/images/png/windows folder_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/configure_16x16.png" sourcePath="assets/images/png/configure_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/button yellow_48x48.png" sourcePath="assets/images/png/button yellow_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/open in browser_32x32.png" sourcePath="assets/images/png/open in browser_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/find_16x16.png" sourcePath="assets/images/png/find_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/calendar_48x48.png" sourcePath="assets/images/png/calendar_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/toast_32x32.png" sourcePath="assets/images/png/toast_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/paste_64x64.png" sourcePath="assets/images/png/paste_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/add_128x128.png" sourcePath="assets/images/png/add_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/edit_48x48.png" sourcePath="assets/images/png/edit_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/time_16x16.png" sourcePath="assets/images/png/time_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/save as_16x16.png" sourcePath="assets/images/png/save as_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/user office_256x256.png" sourcePath="assets/images/png/user office_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/save 2_256x256.png" sourcePath="assets/images/png/save 2_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/zoom-_32x32.png" sourcePath="assets/images/png/zoom-_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/documents_16x16.png" sourcePath="assets/images/png/documents_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/refresh_64x64.png" sourcePath="assets/images/png/refresh_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/options_48x48.png" sourcePath="assets/images/png/options_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/rewind_16x16.png" sourcePath="assets/images/png/rewind_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/burn_16x16.png" sourcePath="assets/images/png/burn_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/unknown_48x48.png" sourcePath="assets/images/png/unknown_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/flag green_48x48.png" sourcePath="assets/images/png/flag green_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/edit file_48x48.png" sourcePath="assets/images/png/edit file_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/small icons_256x256.png" sourcePath="assets/images/png/small icons_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/documents_48x48.png" sourcePath="assets/images/png/documents_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/my documents_128x128.png" sourcePath="assets/images/png/my documents_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/video_24x24.png" sourcePath="assets/images/png/video_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/directories_256x256.png" sourcePath="assets/images/png/directories_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/find_64x64.png" sourcePath="assets/images/png/find_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/move_16x16.png" sourcePath="assets/images/png/move_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/padlock closed_32x32.png" sourcePath="assets/images/png/padlock closed_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/hd_16x16.png" sourcePath="assets/images/png/hd_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/alert 2_16x16.png" sourcePath="assets/images/png/alert 2_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/down_256x256.png" sourcePath="assets/images/png/down_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/shield4_24x24.png" sourcePath="assets/images/png/shield4_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/zoom-_256x256.png" sourcePath="assets/images/png/zoom-_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/move_64x64.png" sourcePath="assets/images/png/move_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/help_16x16.png" sourcePath="assets/images/png/help_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/clock_16x16.png" sourcePath="assets/images/png/clock_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/basket_64x64.png" sourcePath="assets/images/png/basket_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/calendar_24x24.png" sourcePath="assets/images/png/calendar_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/search2_16x16.png" sourcePath="assets/images/png/search2_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/small icons_128x128.png" sourcePath="assets/images/png/small icons_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/mac user_64x64.png" sourcePath="assets/images/png/mac user_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/close_64x64.png" sourcePath="assets/images/png/close_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/toast_128x128.png" sourcePath="assets/images/png/toast_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/move_24x24.png" sourcePath="assets/images/png/move_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/stop sign_128x128.png" sourcePath="assets/images/png/stop sign_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/shield1_128x128.png" sourcePath="assets/images/png/shield1_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/delete_128x128.png" sourcePath="assets/images/png/delete_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/spy_32x32.png" sourcePath="assets/images/png/spy_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/edit user_16x16.png" sourcePath="assets/images/png/edit user_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/fast forward_48x48.png" sourcePath="assets/images/png/fast forward_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/block email_32x32.png" sourcePath="assets/images/png/block email_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/games_48x48.png" sourcePath="assets/images/png/games_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/padlock closed_256x256.png" sourcePath="assets/images/png/padlock closed_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/flag blue_48x48.png" sourcePath="assets/images/png/flag blue_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/block email_24x24.png" sourcePath="assets/images/png/block email_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/flag yellow_24x24.png" sourcePath="assets/images/png/flag yellow_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/chat_16x16.png" sourcePath="assets/images/png/chat_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/camera_128x128.png" sourcePath="assets/images/png/camera_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/flag green_16x16.png" sourcePath="assets/images/png/flag green_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/padlock open_64x64.png" sourcePath="assets/images/png/padlock open_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/stop sign_16x16.png" sourcePath="assets/images/png/stop sign_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/user_48x48.png" sourcePath="assets/images/png/user_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/rec_16x16.png" sourcePath="assets/images/png/rec_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/calculator_16x16.png" sourcePath="assets/images/png/calculator_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/edit_256x256.png" sourcePath="assets/images/png/edit_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/calculator_64x64.png" sourcePath="assets/images/png/calculator_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/play_256x256.png" sourcePath="assets/images/png/play_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/cut file_64x64.png" sourcePath="assets/images/png/cut file_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/journal_48x48.png" sourcePath="assets/images/png/journal_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/open_64x64.png" sourcePath="assets/images/png/open_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/print_48x48.png" sourcePath="assets/images/png/print_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/email_48x48.png" sourcePath="assets/images/png/email_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/search_64x64.png" sourcePath="assets/images/png/search_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/computer off_16x16.png" sourcePath="assets/images/png/computer off_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/edit_16x16.png" sourcePath="assets/images/png/edit_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/open_128x128.png" sourcePath="assets/images/png/open_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/tools_64x64.png" sourcePath="assets/images/png/tools_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/block email_48x48.png" sourcePath="assets/images/png/block email_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/time_128x128.png" sourcePath="assets/images/png/time_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/pirate_64x64.png" sourcePath="assets/images/png/pirate_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/stop_24x24.png" sourcePath="assets/images/png/stop_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/pause_64x64.png" sourcePath="assets/images/png/pause_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/refresh_48x48.png" sourcePath="assets/images/png/refresh_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/new_32x32.png" sourcePath="assets/images/png/new_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/button blue_128x128.png" sourcePath="assets/images/png/button blue_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/flag red_256x256.png" sourcePath="assets/images/png/flag red_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/email_256x256.png" sourcePath="assets/images/png/email_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/my documents_256x256.png" sourcePath="assets/images/png/my documents_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/find2_48x48.png" sourcePath="assets/images/png/find2_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/gift_24x24.png" sourcePath="assets/images/png/gift_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/computer_64x64.png" sourcePath="assets/images/png/computer_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/open in browser_24x24.png" sourcePath="assets/images/png/open in browser_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/print preview_64x64.png" sourcePath="assets/images/png/print preview_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/edit file_64x64.png" sourcePath="assets/images/png/edit file_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/go2_48x48.png" sourcePath="assets/images/png/go2_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/home_24x24.png" sourcePath="assets/images/png/home_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/cut_32x32.png" sourcePath="assets/images/png/cut_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/music_128x128.png" sourcePath="assets/images/png/music_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/down_48x48.png" sourcePath="assets/images/png/down_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/hd_128x128.png" sourcePath="assets/images/png/hd_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/user_128x128.png" sourcePath="assets/images/png/user_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/video_32x32.png" sourcePath="assets/images/png/video_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/options_256x256.png" sourcePath="assets/images/png/options_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/save as 2_128x128.png" sourcePath="assets/images/png/save as 2_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/directories_32x32.png" sourcePath="assets/images/png/directories_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/mac user_16x16.png" sourcePath="assets/images/png/mac user_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/paint_256x256.png" sourcePath="assets/images/png/paint_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/shield4_16x16.png" sourcePath="assets/images/png/shield4_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/network_24x24.png" sourcePath="assets/images/png/network_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/search_24x24.png" sourcePath="assets/images/png/search_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/alert_24x24.png" sourcePath="assets/images/png/alert_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/computer_48x48.png" sourcePath="assets/images/png/computer_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/button yellow_64x64.png" sourcePath="assets/images/png/button yellow_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/alert 2_256x256.png" sourcePath="assets/images/png/alert 2_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/games_24x24.png" sourcePath="assets/images/png/games_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/show info_256x256.png" sourcePath="assets/images/png/show info_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/video_128x128.png" sourcePath="assets/images/png/video_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/small icons_64x64.png" sourcePath="assets/images/png/small icons_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/calculator_256x256.png" sourcePath="assets/images/png/calculator_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/favorites_256x256.png" sourcePath="assets/images/png/favorites_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/print_16x16.png" sourcePath="assets/images/png/print_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/camera_24x24.png" sourcePath="assets/images/png/camera_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/copy_16x16.png" sourcePath="assets/images/png/copy_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/tools_24x24.png" sourcePath="assets/images/png/tools_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/fast forward_32x32.png" sourcePath="assets/images/png/fast forward_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/options_128x128.png" sourcePath="assets/images/png/options_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/find2_64x64.png" sourcePath="assets/images/png/find2_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/favorites_32x32.png" sourcePath="assets/images/png/favorites_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/windows folder_128x128.png" sourcePath="assets/images/png/windows folder_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/cut_16x16.png" sourcePath="assets/images/png/cut_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/add user_32x32.png" sourcePath="assets/images/png/add user_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/burn_128x128.png" sourcePath="assets/images/png/burn_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/move_48x48.png" sourcePath="assets/images/png/move_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/padlock closed_128x128.png" sourcePath="assets/images/png/padlock closed_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/chat_256x256.png" sourcePath="assets/images/png/chat_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/padlock open_256x256.png" sourcePath="assets/images/png/padlock open_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/edit user_64x64.png" sourcePath="assets/images/png/edit user_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/alarm_24x24.png" sourcePath="assets/images/png/alarm_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/windows folder_256x256.png" sourcePath="assets/images/png/windows folder_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/toast_16x16.png" sourcePath="assets/images/png/toast_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/applications_64x64.png" sourcePath="assets/images/png/applications_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/flag blue_128x128.png" sourcePath="assets/images/png/flag blue_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/email_64x64.png" sourcePath="assets/images/png/email_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/my documents_64x64.png" sourcePath="assets/images/png/my documents_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/cut_48x48.png" sourcePath="assets/images/png/cut_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/forward_32x32.png" sourcePath="assets/images/png/forward_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/forward_128x128.png" sourcePath="assets/images/png/forward_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/delete box_64x64.png" sourcePath="assets/images/png/delete box_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/shield3_256x256.png" sourcePath="assets/images/png/shield3_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/shield4_48x48.png" sourcePath="assets/images/png/shield4_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/search2_64x64.png" sourcePath="assets/images/png/search2_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/add box_128x128.png" sourcePath="assets/images/png/add box_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/stop sign_32x32.png" sourcePath="assets/images/png/stop sign_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/network_256x256.png" sourcePath="assets/images/png/network_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/import_48x48.png" sourcePath="assets/images/png/import_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/users group_128x128.png" sourcePath="assets/images/png/users group_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/down_32x32.png" sourcePath="assets/images/png/down_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/add to basket_64x64.png" sourcePath="assets/images/png/add to basket_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/phone_24x24.png" sourcePath="assets/images/png/phone_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/save 2_64x64.png" sourcePath="assets/images/png/save 2_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/pictures_64x64.png" sourcePath="assets/images/png/pictures_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/add_24x24.png" sourcePath="assets/images/png/add_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/user_64x64.png" sourcePath="assets/images/png/user_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/window_64x64.png" sourcePath="assets/images/png/window_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/go_48x48.png" sourcePath="assets/images/png/go_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/computer_128x128.png" sourcePath="assets/images/png/computer_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/shield2_64x64.png" sourcePath="assets/images/png/shield2_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/alert_32x32.png" sourcePath="assets/images/png/alert_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/box_16x16.png" sourcePath="assets/images/png/box_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/block_256x256.png" sourcePath="assets/images/png/block_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/computer off_48x48.png" sourcePath="assets/images/png/computer off_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/large icons_256x256.png" sourcePath="assets/images/png/large icons_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/spy_24x24.png" sourcePath="assets/images/png/spy_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/button blue_48x48.png" sourcePath="assets/images/png/button blue_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/copy_24x24.png" sourcePath="assets/images/png/copy_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/stop sign_64x64.png" sourcePath="assets/images/png/stop sign_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/add user_24x24.png" sourcePath="assets/images/png/add user_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/trash_48x48.png" sourcePath="assets/images/png/trash_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/alert 2_64x64.png" sourcePath="assets/images/png/alert 2_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/clock_24x24.png" sourcePath="assets/images/png/clock_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/network_32x32.png" sourcePath="assets/images/png/network_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/save_48x48.png" sourcePath="assets/images/png/save_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/cut_128x128.png" sourcePath="assets/images/png/cut_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/calendar_128x128.png" sourcePath="assets/images/png/calendar_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/trash full_128x128.png" sourcePath="assets/images/png/trash full_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/move 2_16x16.png" sourcePath="assets/images/png/move 2_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/shield4_32x32.png" sourcePath="assets/images/png/shield4_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/tools_128x128.png" sourcePath="assets/images/png/tools_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/applications_48x48.png" sourcePath="assets/images/png/applications_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/go2_32x32.png" sourcePath="assets/images/png/go2_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/sound_256x256.png" sourcePath="assets/images/png/sound_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/zoom+_16x16.png" sourcePath="assets/images/png/zoom+_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/alert_64x64.png" sourcePath="assets/images/png/alert_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/images_24x24.png" sourcePath="assets/images/png/images_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/directories_16x16.png" sourcePath="assets/images/png/directories_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/zoom-_64x64.png" sourcePath="assets/images/png/zoom-_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/toast_256x256.png" sourcePath="assets/images/png/toast_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/go2_16x16.png" sourcePath="assets/images/png/go2_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/shield3_32x32.png" sourcePath="assets/images/png/shield3_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/find_128x128.png" sourcePath="assets/images/png/find_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/print preview_256x256.png" sourcePath="assets/images/png/print preview_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/add box_24x24.png" sourcePath="assets/images/png/add box_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/flag yellow_128x128.png" sourcePath="assets/images/png/flag yellow_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/wizard_24x24.png" sourcePath="assets/images/png/wizard_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/app folder_32x32.png" sourcePath="assets/images/png/app folder_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/button blue_24x24.png" sourcePath="assets/images/png/button blue_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/journal_256x256.png" sourcePath="assets/images/png/journal_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/favorites_24x24.png" sourcePath="assets/images/png/favorites_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/find2_32x32.png" sourcePath="assets/images/png/find2_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/edit file_16x16.png" sourcePath="assets/images/png/edit file_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/save as_64x64.png" sourcePath="assets/images/png/save as_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/delete user_128x128.png" sourcePath="assets/images/png/delete user_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/music_24x24.png" sourcePath="assets/images/png/music_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/open document_16x16.png" sourcePath="assets/images/png/open document_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/journal_32x32.png" sourcePath="assets/images/png/journal_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/journal_24x24.png" sourcePath="assets/images/png/journal_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/add user_64x64.png" sourcePath="assets/images/png/add user_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/notepad_16x16.png" sourcePath="assets/images/png/notepad_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/calculator_32x32.png" sourcePath="assets/images/png/calculator_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/trash_64x64.png" sourcePath="assets/images/png/trash_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/officer_256x256.png" sourcePath="assets/images/png/officer_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/stuff_16x16.png" sourcePath="assets/images/png/stuff_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/remove from basket_128x128.png" sourcePath="assets/images/png/remove from basket_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/button yellow_24x24.png" sourcePath="assets/images/png/button yellow_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/label_128x128.png" sourcePath="assets/images/png/label_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/computer trouble_16x16.png" sourcePath="assets/images/png/computer trouble_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/padlock open_24x24.png" sourcePath="assets/images/png/padlock open_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/box_24x24.png" sourcePath="assets/images/png/box_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/help_24x24.png" sourcePath="assets/images/png/help_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/label_64x64.png" sourcePath="assets/images/png/label_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/move 2_128x128.png" sourcePath="assets/images/png/move 2_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/mac users group_32x32.png" sourcePath="assets/images/png/mac users group_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/button blue_32x32.png" sourcePath="assets/images/png/button blue_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/computer off_64x64.png" sourcePath="assets/images/png/computer off_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/add user_48x48.png" sourcePath="assets/images/png/add user_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/copy_256x256.png" sourcePath="assets/images/png/copy_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/stuff_256x256.png" sourcePath="assets/images/png/stuff_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/save as 2_64x64.png" sourcePath="assets/images/png/save as 2_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/export_32x32.png" sourcePath="assets/images/png/export_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/my documents_48x48.png" sourcePath="assets/images/png/my documents_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/folder_128x128.png" sourcePath="assets/images/png/folder_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/label_32x32.png" sourcePath="assets/images/png/label_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/calculator_24x24.png" sourcePath="assets/images/png/calculator_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/computer trouble_24x24.png" sourcePath="assets/images/png/computer trouble_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/fax_24x24.png" sourcePath="assets/images/png/fax_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/home_256x256.png" sourcePath="assets/images/png/home_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/network_64x64.png" sourcePath="assets/images/png/network_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/trash full_32x32.png" sourcePath="assets/images/png/trash full_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/go_64x64.png" sourcePath="assets/images/png/go_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/redo_24x24.png" sourcePath="assets/images/png/redo_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/trash full_16x16.png" sourcePath="assets/images/png/trash full_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/cut file_48x48.png" sourcePath="assets/images/png/cut file_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/skip backward_32x32.png" sourcePath="assets/images/png/skip backward_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/app folder_16x16.png" sourcePath="assets/images/png/app folder_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/trash full_64x64.png" sourcePath="assets/images/png/trash full_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/cut file_32x32.png" sourcePath="assets/images/png/cut file_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/fast forward_128x128.png" sourcePath="assets/images/png/fast forward_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/gift_48x48.png" sourcePath="assets/images/png/gift_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/zoom+_128x128.png" sourcePath="assets/images/png/zoom+_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/play_128x128.png" sourcePath="assets/images/png/play_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/mac user_48x48.png" sourcePath="assets/images/png/mac user_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/save_32x32.png" sourcePath="assets/images/png/save_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/up_256x256.png" sourcePath="assets/images/png/up_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/flag red_24x24.png" sourcePath="assets/images/png/flag red_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/add to basket_256x256.png" sourcePath="assets/images/png/add to basket_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/backup_64x64.png" sourcePath="assets/images/png/backup_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/redo_64x64.png" sourcePath="assets/images/png/redo_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/save_128x128.png" sourcePath="assets/images/png/save_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/play_24x24.png" sourcePath="assets/images/png/play_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/edit user_256x256.png" sourcePath="assets/images/png/edit user_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/antispam_256x256.png" sourcePath="assets/images/png/antispam_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/hd_256x256.png" sourcePath="assets/images/png/hd_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/folder_24x24.png" sourcePath="assets/images/png/folder_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/search2_32x32.png" sourcePath="assets/images/png/search2_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/toast_48x48.png" sourcePath="assets/images/png/toast_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/options_64x64.png" sourcePath="assets/images/png/options_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/cd_16x16.png" sourcePath="assets/images/png/cd_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/delete box_48x48.png" sourcePath="assets/images/png/delete box_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/edit_64x64.png" sourcePath="assets/images/png/edit_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/open_256x256.png" sourcePath="assets/images/png/open_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/configure_32x32.png" sourcePath="assets/images/png/configure_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/show info_16x16.png" sourcePath="assets/images/png/show info_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/games_64x64.png" sourcePath="assets/images/png/games_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/mac users group_64x64.png" sourcePath="assets/images/png/mac users group_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/cut_24x24.png" sourcePath="assets/images/png/cut_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/shield2_256x256.png" sourcePath="assets/images/png/shield2_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/pause_256x256.png" sourcePath="assets/images/png/pause_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/pictures_256x256.png" sourcePath="assets/images/png/pictures_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/officer_32x32.png" sourcePath="assets/images/png/officer_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/paste_32x32.png" sourcePath="assets/images/png/paste_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/credit card_48x48.png" sourcePath="assets/images/png/credit card_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/paint_48x48.png" sourcePath="assets/images/png/paint_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/address book_128x128.png" sourcePath="assets/images/png/address book_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/go2_256x256.png" sourcePath="assets/images/png/go2_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/box_64x64.png" sourcePath="assets/images/png/box_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/skip backward_64x64.png" sourcePath="assets/images/png/skip backward_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/notepad_256x256.png" sourcePath="assets/images/png/notepad_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/music_32x32.png" sourcePath="assets/images/png/music_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/trash_32x32.png" sourcePath="assets/images/png/trash_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/find_24x24.png" sourcePath="assets/images/png/find_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/sound_128x128.png" sourcePath="assets/images/png/sound_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/address book_16x16.png" sourcePath="assets/images/png/address book_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/alert_128x128.png" sourcePath="assets/images/png/alert_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/delete user_16x16.png" sourcePath="assets/images/png/delete user_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/time_24x24.png" sourcePath="assets/images/png/time_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/add_256x256.png" sourcePath="assets/images/png/add_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/skip forward_128x128.png" sourcePath="assets/images/png/skip forward_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/close_128x128.png" sourcePath="assets/images/png/close_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/print_24x24.png" sourcePath="assets/images/png/print_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/show info_32x32.png" sourcePath="assets/images/png/show info_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/save as_48x48.png" sourcePath="assets/images/png/save as_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/spy_48x48.png" sourcePath="assets/images/png/spy_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/favorites_16x16.png" sourcePath="assets/images/png/favorites_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/move 2_32x32.png" sourcePath="assets/images/png/move 2_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/web_48x48.png" sourcePath="assets/images/png/web_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/web_32x32.png" sourcePath="assets/images/png/web_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/pirate_32x32.png" sourcePath="assets/images/png/pirate_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/delete box_32x32.png" sourcePath="assets/images/png/delete box_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/save 2_24x24.png" sourcePath="assets/images/png/save 2_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/delete box_24x24.png" sourcePath="assets/images/png/delete box_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/network_128x128.png" sourcePath="assets/images/png/network_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/help_48x48.png" sourcePath="assets/images/png/help_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/users group_64x64.png" sourcePath="assets/images/png/users group_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/find_256x256.png" sourcePath="assets/images/png/find_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/block_24x24.png" sourcePath="assets/images/png/block_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/checkmark_16x16.png" sourcePath="assets/images/png/checkmark_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/window_48x48.png" sourcePath="assets/images/png/window_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/show info_128x128.png" sourcePath="assets/images/png/show info_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/gift_64x64.png" sourcePath="assets/images/png/gift_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/wizard_128x128.png" sourcePath="assets/images/png/wizard_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/time_64x64.png" sourcePath="assets/images/png/time_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/backup_24x24.png" sourcePath="assets/images/png/backup_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/antispam_128x128.png" sourcePath="assets/images/png/antispam_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/games_256x256.png" sourcePath="assets/images/png/games_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/padlock open_48x48.png" sourcePath="assets/images/png/padlock open_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/shield2_32x32.png" sourcePath="assets/images/png/shield2_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/block email_128x128.png" sourcePath="assets/images/png/block email_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/stop_64x64.png" sourcePath="assets/images/png/stop_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/stuff_64x64.png" sourcePath="assets/images/png/stuff_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/app folder_64x64.png" sourcePath="assets/images/png/app folder_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/redo_256x256.png" sourcePath="assets/images/png/redo_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/shield4_128x128.png" sourcePath="assets/images/png/shield4_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/delete box_16x16.png" sourcePath="assets/images/png/delete box_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/games_16x16.png" sourcePath="assets/images/png/games_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/basket_32x32.png" sourcePath="assets/images/png/basket_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/add user_128x128.png" sourcePath="assets/images/png/add user_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/address book_32x32.png" sourcePath="assets/images/png/address book_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/new_128x128.png" sourcePath="assets/images/png/new_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/paste_128x128.png" sourcePath="assets/images/png/paste_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/add to basket_48x48.png" sourcePath="assets/images/png/add to basket_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/button blue_256x256.png" sourcePath="assets/images/png/button blue_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/phone_32x32.png" sourcePath="assets/images/png/phone_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/gift_256x256.png" sourcePath="assets/images/png/gift_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/pirate_24x24.png" sourcePath="assets/images/png/pirate_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/flag blue_256x256.png" sourcePath="assets/images/png/flag blue_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/refresh_16x16.png" sourcePath="assets/images/png/refresh_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/clock_48x48.png" sourcePath="assets/images/png/clock_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/antispam_16x16.png" sourcePath="assets/images/png/antispam_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/credit card_64x64.png" sourcePath="assets/images/png/credit card_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/open document_48x48.png" sourcePath="assets/images/png/open document_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/block_32x32.png" sourcePath="assets/images/png/block_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/computer off_128x128.png" sourcePath="assets/images/png/computer off_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/pause_48x48.png" sourcePath="assets/images/png/pause_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/spy_128x128.png" sourcePath="assets/images/png/spy_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/add to basket_24x24.png" sourcePath="assets/images/png/add to basket_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/windows folder_64x64.png" sourcePath="assets/images/png/windows folder_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/box_48x48.png" sourcePath="assets/images/png/box_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/delete_24x24.png" sourcePath="assets/images/png/delete_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/export_64x64.png" sourcePath="assets/images/png/export_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/window_256x256.png" sourcePath="assets/images/png/window_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/button green_48x48.png" sourcePath="assets/images/png/button green_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/images_128x128.png" sourcePath="assets/images/png/images_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/label_16x16.png" sourcePath="assets/images/png/label_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/officer_16x16.png" sourcePath="assets/images/png/officer_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/computer trouble_256x256.png" sourcePath="assets/images/png/computer trouble_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/home_64x64.png" sourcePath="assets/images/png/home_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/images_256x256.png" sourcePath="assets/images/png/images_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/wizard_32x32.png" sourcePath="assets/images/png/wizard_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/alert 2_48x48.png" sourcePath="assets/images/png/alert 2_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/search2_256x256.png" sourcePath="assets/images/png/search2_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/move_256x256.png" sourcePath="assets/images/png/move_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/rewind_64x64.png" sourcePath="assets/images/png/rewind_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/games_128x128.png" sourcePath="assets/images/png/games_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/zoom+_48x48.png" sourcePath="assets/images/png/zoom+_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/configure_24x24.png" sourcePath="assets/images/png/configure_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/delete_32x32.png" sourcePath="assets/images/png/delete_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/pictures_32x32.png" sourcePath="assets/images/png/pictures_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/forward_256x256.png" sourcePath="assets/images/png/forward_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/save as 2_24x24.png" sourcePath="assets/images/png/save as 2_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/large icons_16x16.png" sourcePath="assets/images/png/large icons_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/preferences_256x256.png" sourcePath="assets/images/png/preferences_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/cut file_256x256.png" sourcePath="assets/images/png/cut file_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/remove from basket_24x24.png" sourcePath="assets/images/png/remove from basket_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/camera_256x256.png" sourcePath="assets/images/png/camera_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/back_32x32.png" sourcePath="assets/images/png/back_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/box_128x128.png" sourcePath="assets/images/png/box_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/close_256x256.png" sourcePath="assets/images/png/close_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/flag green_32x32.png" sourcePath="assets/images/png/flag green_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/toast_64x64.png" sourcePath="assets/images/png/toast_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/shield2_16x16.png" sourcePath="assets/images/png/shield2_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/sound_24x24.png" sourcePath="assets/images/png/sound_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/video_16x16.png" sourcePath="assets/images/png/video_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/button yellow_128x128.png" sourcePath="assets/images/png/button yellow_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/small icons_24x24.png" sourcePath="assets/images/png/small icons_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/find2_16x16.png" sourcePath="assets/images/png/find2_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/open_16x16.png" sourcePath="assets/images/png/open_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/alert_256x256.png" sourcePath="assets/images/png/alert_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/flag red_16x16.png" sourcePath="assets/images/png/flag red_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/print preview_24x24.png" sourcePath="assets/images/png/print preview_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/computer trouble_48x48.png" sourcePath="assets/images/png/computer trouble_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/info_32x32.png" sourcePath="assets/images/png/info_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/forward_16x16.png" sourcePath="assets/images/png/forward_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/undo_16x16.png" sourcePath="assets/images/png/undo_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/email_16x16.png" sourcePath="assets/images/png/email_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/search_128x128.png" sourcePath="assets/images/png/search_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/block email_256x256.png" sourcePath="assets/images/png/block email_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/delete_48x48.png" sourcePath="assets/images/png/delete_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/zoom-_24x24.png" sourcePath="assets/images/png/zoom-_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/computer trouble_32x32.png" sourcePath="assets/images/png/computer trouble_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/move 2_48x48.png" sourcePath="assets/images/png/move 2_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/move 2_64x64.png" sourcePath="assets/images/png/move 2_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/flag blue_32x32.png" sourcePath="assets/images/png/flag blue_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/go2_128x128.png" sourcePath="assets/images/png/go2_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/add user_16x16.png" sourcePath="assets/images/png/add user_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/button yellow_16x16.png" sourcePath="assets/images/png/button yellow_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/alert 2_128x128.png" sourcePath="assets/images/png/alert 2_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/address book_24x24.png" sourcePath="assets/images/png/address book_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/down_24x24.png" sourcePath="assets/images/png/down_24x24.png"/>
+    <resourceEntry destPath="assets/images/AAdmin.png" sourcePath="assets/images/AAdmin.png"/>
+    <resourceEntry destPath="assets/images/png/import_32x32.png" sourcePath="assets/images/png/import_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/hd_64x64.png" sourcePath="assets/images/png/hd_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/skip backward_128x128.png" sourcePath="assets/images/png/skip backward_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/address book_48x48.png" sourcePath="assets/images/png/address book_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/go2_64x64.png" sourcePath="assets/images/png/go2_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/save as_128x128.png" sourcePath="assets/images/png/save as_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/computer trouble_64x64.png" sourcePath="assets/images/png/computer trouble_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/email_128x128.png" sourcePath="assets/images/png/email_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/info_16x16.png" sourcePath="assets/images/png/info_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/save_64x64.png" sourcePath="assets/images/png/save_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/find_48x48.png" sourcePath="assets/images/png/find_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/flag blue_16x16.png" sourcePath="assets/images/png/flag blue_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/info_128x128.png" sourcePath="assets/images/png/info_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/copy_128x128.png" sourcePath="assets/images/png/copy_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/paint_16x16.png" sourcePath="assets/images/png/paint_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/officer_48x48.png" sourcePath="assets/images/png/officer_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/music_256x256.png" sourcePath="assets/images/png/music_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/button yellow_256x256.png" sourcePath="assets/images/png/button yellow_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/move 2_24x24.png" sourcePath="assets/images/png/move 2_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/open in browser_16x16.png" sourcePath="assets/images/png/open in browser_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/trash_16x16.png" sourcePath="assets/images/png/trash_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/stop_48x48.png" sourcePath="assets/images/png/stop_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/music_16x16.png" sourcePath="assets/images/png/music_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/find_32x32.png" sourcePath="assets/images/png/find_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/camera_16x16.png" sourcePath="assets/images/png/camera_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/fast forward_16x16.png" sourcePath="assets/images/png/fast forward_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/documents_128x128.png" sourcePath="assets/images/png/documents_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/windows folder_24x24.png" sourcePath="assets/images/png/windows folder_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/play_48x48.png" sourcePath="assets/images/png/play_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/applications_16x16.png" sourcePath="assets/images/png/applications_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/edit user_48x48.png" sourcePath="assets/images/png/edit user_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/alarm_256x256.png" sourcePath="assets/images/png/alarm_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/play_16x16.png" sourcePath="assets/images/png/play_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/print preview_48x48.png" sourcePath="assets/images/png/print preview_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/padlock closed_48x48.png" sourcePath="assets/images/png/padlock closed_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/zoom-_48x48.png" sourcePath="assets/images/png/zoom-_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/shield3_24x24.png" sourcePath="assets/images/png/shield3_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/calendar_32x32.png" sourcePath="assets/images/png/calendar_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/cd_64x64.png" sourcePath="assets/images/png/cd_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/edit file_128x128.png" sourcePath="assets/images/png/edit file_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/pause_32x32.png" sourcePath="assets/images/png/pause_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/folder_48x48.png" sourcePath="assets/images/png/folder_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/copy_32x32.png" sourcePath="assets/images/png/copy_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/stop sign_24x24.png" sourcePath="assets/images/png/stop sign_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/cut file_16x16.png" sourcePath="assets/images/png/cut file_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/trash full_256x256.png" sourcePath="assets/images/png/trash full_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/mac users group_24x24.png" sourcePath="assets/images/png/mac users group_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/users group_48x48.png" sourcePath="assets/images/png/users group_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/mac users group_16x16.png" sourcePath="assets/images/png/mac users group_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/help_32x32.png" sourcePath="assets/images/png/help_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/stop_16x16.png" sourcePath="assets/images/png/stop_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/backup_32x32.png" sourcePath="assets/images/png/backup_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/preferences_128x128.png" sourcePath="assets/images/png/preferences_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/redo_16x16.png" sourcePath="assets/images/png/redo_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/camera_48x48.png" sourcePath="assets/images/png/camera_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/padlock open_128x128.png" sourcePath="assets/images/png/padlock open_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/remove from basket_256x256.png" sourcePath="assets/images/png/remove from basket_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/cut file_24x24.png" sourcePath="assets/images/png/cut file_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/gift_32x32.png" sourcePath="assets/images/png/gift_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/print preview_128x128.png" sourcePath="assets/images/png/print preview_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/stop_128x128.png" sourcePath="assets/images/png/stop_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/calendar_64x64.png" sourcePath="assets/images/png/calendar_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/mac user_128x128.png" sourcePath="assets/images/png/mac user_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/save as_32x32.png" sourcePath="assets/images/png/save as_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/video_256x256.png" sourcePath="assets/images/png/video_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/add to basket_128x128.png" sourcePath="assets/images/png/add to basket_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/notepad_128x128.png" sourcePath="assets/images/png/notepad_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/rec_48x48.png" sourcePath="assets/images/png/rec_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/window_24x24.png" sourcePath="assets/images/png/window_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/block email_64x64.png" sourcePath="assets/images/png/block email_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/unknown_24x24.png" sourcePath="assets/images/png/unknown_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/burn_32x32.png" sourcePath="assets/images/png/burn_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/configure_256x256.png" sourcePath="assets/images/png/configure_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/paste_24x24.png" sourcePath="assets/images/png/paste_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/alarm_16x16.png" sourcePath="assets/images/png/alarm_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/applications_32x32.png" sourcePath="assets/images/png/applications_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/button green_24x24.png" sourcePath="assets/images/png/button green_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/web_24x24.png" sourcePath="assets/images/png/web_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/rewind_32x32.png" sourcePath="assets/images/png/rewind_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/alarm_32x32.png" sourcePath="assets/images/png/alarm_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/basket_24x24.png" sourcePath="assets/images/png/basket_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/pirate_256x256.png" sourcePath="assets/images/png/pirate_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/remove from basket_32x32.png" sourcePath="assets/images/png/remove from basket_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/large icons_32x32.png" sourcePath="assets/images/png/large icons_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/window_16x16.png" sourcePath="assets/images/png/window_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/edit user_24x24.png" sourcePath="assets/images/png/edit user_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/flag blue_24x24.png" sourcePath="assets/images/png/flag blue_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/network_48x48.png" sourcePath="assets/images/png/network_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/stuff_48x48.png" sourcePath="assets/images/png/stuff_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/computer_24x24.png" sourcePath="assets/images/png/computer_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/fax_32x32.png" sourcePath="assets/images/png/fax_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/shield4_64x64.png" sourcePath="assets/images/png/shield4_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/paint_24x24.png" sourcePath="assets/images/png/paint_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/add box_32x32.png" sourcePath="assets/images/png/add box_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/wizard_48x48.png" sourcePath="assets/images/png/wizard_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/app folder_48x48.png" sourcePath="assets/images/png/app folder_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/user office_64x64.png" sourcePath="assets/images/png/user office_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/stop sign_256x256.png" sourcePath="assets/images/png/stop sign_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/flag green_128x128.png" sourcePath="assets/images/png/flag green_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/save as_256x256.png" sourcePath="assets/images/png/save as_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/antispam_24x24.png" sourcePath="assets/images/png/antispam_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/undo_64x64.png" sourcePath="assets/images/png/undo_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/officer_64x64.png" sourcePath="assets/images/png/officer_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/calculator_128x128.png" sourcePath="assets/images/png/calculator_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/notepad_48x48.png" sourcePath="assets/images/png/notepad_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/documents_24x24.png" sourcePath="assets/images/png/documents_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/open in browser_64x64.png" sourcePath="assets/images/png/open in browser_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/zoom-_128x128.png" sourcePath="assets/images/png/zoom-_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/fax_48x48.png" sourcePath="assets/images/png/fax_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/shield1_256x256.png" sourcePath="assets/images/png/shield1_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/forward_24x24.png" sourcePath="assets/images/png/forward_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/images_64x64.png" sourcePath="assets/images/png/images_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/add box_256x256.png" sourcePath="assets/images/png/add box_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/flag blue_64x64.png" sourcePath="assets/images/png/flag blue_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/close_48x48.png" sourcePath="assets/images/png/close_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/computer off_256x256.png" sourcePath="assets/images/png/computer off_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/user office_16x16.png" sourcePath="assets/images/png/user office_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/large icons_64x64.png" sourcePath="assets/images/png/large icons_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/stuff_24x24.png" sourcePath="assets/images/png/stuff_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/save as 2_32x32.png" sourcePath="assets/images/png/save as 2_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/add to basket_32x32.png" sourcePath="assets/images/png/add to basket_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/computer trouble_128x128.png" sourcePath="assets/images/png/computer trouble_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/open document_128x128.png" sourcePath="assets/images/png/open document_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/checkmark_256x256.png" sourcePath="assets/images/png/checkmark_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/journal_64x64.png" sourcePath="assets/images/png/journal_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/basket_128x128.png" sourcePath="assets/images/png/basket_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/remove from basket_64x64.png" sourcePath="assets/images/png/remove from basket_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/phone_128x128.png" sourcePath="assets/images/png/phone_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/down_128x128.png" sourcePath="assets/images/png/down_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/spy_256x256.png" sourcePath="assets/images/png/spy_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/shield2_128x128.png" sourcePath="assets/images/png/shield2_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/sound_64x64.png" sourcePath="assets/images/png/sound_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/trash_128x128.png" sourcePath="assets/images/png/trash_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/import_128x128.png" sourcePath="assets/images/png/import_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/shield3_48x48.png" sourcePath="assets/images/png/shield3_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/large icons_24x24.png" sourcePath="assets/images/png/large icons_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/delete user_24x24.png" sourcePath="assets/images/png/delete user_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/info_64x64.png" sourcePath="assets/images/png/info_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/applications_128x128.png" sourcePath="assets/images/png/applications_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/rewind_24x24.png" sourcePath="assets/images/png/rewind_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/edit file_256x256.png" sourcePath="assets/images/png/edit file_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/chat_24x24.png" sourcePath="assets/images/png/chat_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/address book_256x256.png" sourcePath="assets/images/png/address book_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/small icons_48x48.png" sourcePath="assets/images/png/small icons_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/music_64x64.png" sourcePath="assets/images/png/music_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/play_64x64.png" sourcePath="assets/images/png/play_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/paste_48x48.png" sourcePath="assets/images/png/paste_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/alarm_128x128.png" sourcePath="assets/images/png/alarm_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/window_128x128.png" sourcePath="assets/images/png/window_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/trash_256x256.png" sourcePath="assets/images/png/trash_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/edit_24x24.png" sourcePath="assets/images/png/edit_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/search2_48x48.png" sourcePath="assets/images/png/search2_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/show info_48x48.png" sourcePath="assets/images/png/show info_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/small icons_16x16.png" sourcePath="assets/images/png/small icons_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/user office_48x48.png" sourcePath="assets/images/png/user office_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/favorites_64x64.png" sourcePath="assets/images/png/favorites_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/small icons_32x32.png" sourcePath="assets/images/png/small icons_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/shield2_24x24.png" sourcePath="assets/images/png/shield2_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/new_64x64.png" sourcePath="assets/images/png/new_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/delete_64x64.png" sourcePath="assets/images/png/delete_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/padlock closed_64x64.png" sourcePath="assets/images/png/padlock closed_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/phone_16x16.png" sourcePath="assets/images/png/phone_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/flag red_32x32.png" sourcePath="assets/images/png/flag red_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/save as 2_48x48.png" sourcePath="assets/images/png/save as 2_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/web_256x256.png" sourcePath="assets/images/png/web_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/cut_64x64.png" sourcePath="assets/images/png/cut_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/edit_128x128.png" sourcePath="assets/images/png/edit_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/cd_32x32.png" sourcePath="assets/images/png/cd_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/burn_64x64.png" sourcePath="assets/images/png/burn_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/network_16x16.png" sourcePath="assets/images/png/network_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/chat_32x32.png" sourcePath="assets/images/png/chat_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/preferences_24x24.png" sourcePath="assets/images/png/preferences_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/rec_32x32.png" sourcePath="assets/images/png/rec_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/help_64x64.png" sourcePath="assets/images/png/help_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/folder_16x16.png" sourcePath="assets/images/png/folder_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/alert 2_24x24.png" sourcePath="assets/images/png/alert 2_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/back_64x64.png" sourcePath="assets/images/png/back_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/up_16x16.png" sourcePath="assets/images/png/up_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/pictures_24x24.png" sourcePath="assets/images/png/pictures_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/info_24x24.png" sourcePath="assets/images/png/info_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/paint_32x32.png" sourcePath="assets/images/png/paint_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/cd_256x256.png" sourcePath="assets/images/png/cd_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/officer_24x24.png" sourcePath="assets/images/png/officer_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/button green_256x256.png" sourcePath="assets/images/png/button green_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/paste_16x16.png" sourcePath="assets/images/png/paste_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/undo_128x128.png" sourcePath="assets/images/png/undo_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/backup_256x256.png" sourcePath="assets/images/png/backup_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/open document_64x64.png" sourcePath="assets/images/png/open document_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/computer_16x16.png" sourcePath="assets/images/png/computer_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/preferences_32x32.png" sourcePath="assets/images/png/preferences_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/refresh_128x128.png" sourcePath="assets/images/png/refresh_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/edit file_32x32.png" sourcePath="assets/images/png/edit file_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/mac users group_48x48.png" sourcePath="assets/images/png/mac users group_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/preferences_48x48.png" sourcePath="assets/images/png/preferences_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/fax_128x128.png" sourcePath="assets/images/png/fax_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/button yellow_32x32.png" sourcePath="assets/images/png/button yellow_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/home_32x32.png" sourcePath="assets/images/png/home_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/fax_256x256.png" sourcePath="assets/images/png/fax_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/unknown_64x64.png" sourcePath="assets/images/png/unknown_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/fast forward_256x256.png" sourcePath="assets/images/png/fast forward_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/label_256x256.png" sourcePath="assets/images/png/label_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/video_48x48.png" sourcePath="assets/images/png/video_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/wizard_64x64.png" sourcePath="assets/images/png/wizard_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/save 2_32x32.png" sourcePath="assets/images/png/save 2_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/save 2_48x48.png" sourcePath="assets/images/png/save 2_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/notepad_24x24.png" sourcePath="assets/images/png/notepad_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/user office_128x128.png" sourcePath="assets/images/png/user office_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/checkmark_128x128.png" sourcePath="assets/images/png/checkmark_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/info_256x256.png" sourcePath="assets/images/png/info_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/remove from basket_48x48.png" sourcePath="assets/images/png/remove from basket_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/zoom-_16x16.png" sourcePath="assets/images/png/zoom-_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/flag green_256x256.png" sourcePath="assets/images/png/flag green_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/play_32x32.png" sourcePath="assets/images/png/play_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/search_256x256.png" sourcePath="assets/images/png/search_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/flag yellow_32x32.png" sourcePath="assets/images/png/flag yellow_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/sound_32x32.png" sourcePath="assets/images/png/sound_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/mac user_24x24.png" sourcePath="assets/images/png/mac user_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/fax_64x64.png" sourcePath="assets/images/png/fax_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/padlock closed_24x24.png" sourcePath="assets/images/png/padlock closed_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/edit_32x32.png" sourcePath="assets/images/png/edit_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/show info_24x24.png" sourcePath="assets/images/png/show info_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/unknown_32x32.png" sourcePath="assets/images/png/unknown_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/configure_64x64.png" sourcePath="assets/images/png/configure_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/chat_48x48.png" sourcePath="assets/images/png/chat_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/skip forward_256x256.png" sourcePath="assets/images/png/skip forward_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/new_256x256.png" sourcePath="assets/images/png/new_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/rec_24x24.png" sourcePath="assets/images/png/rec_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/time_48x48.png" sourcePath="assets/images/png/time_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/export_24x24.png" sourcePath="assets/images/png/export_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/credit card_24x24.png" sourcePath="assets/images/png/credit card_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/mac users group_128x128.png" sourcePath="assets/images/png/mac users group_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/close_24x24.png" sourcePath="assets/images/png/close_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/save as 2_16x16.png" sourcePath="assets/images/png/save as 2_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/documents_256x256.png" sourcePath="assets/images/png/documents_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/find2_24x24.png" sourcePath="assets/images/png/find2_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/trash_24x24.png" sourcePath="assets/images/png/trash_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/import_24x24.png" sourcePath="assets/images/png/import_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/rewind_48x48.png" sourcePath="assets/images/png/rewind_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/import_16x16.png" sourcePath="assets/images/png/import_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/notepad_32x32.png" sourcePath="assets/images/png/notepad_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/window_32x32.png" sourcePath="assets/images/png/window_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/home_128x128.png" sourcePath="assets/images/png/home_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/fast forward_24x24.png" sourcePath="assets/images/png/fast forward_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/zoom+_24x24.png" sourcePath="assets/images/png/zoom+_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/print preview_16x16.png" sourcePath="assets/images/png/print preview_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/up_64x64.png" sourcePath="assets/images/png/up_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/web_64x64.png" sourcePath="assets/images/png/web_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/documents_32x32.png" sourcePath="assets/images/png/documents_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/email_24x24.png" sourcePath="assets/images/png/email_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/skip forward_64x64.png" sourcePath="assets/images/png/skip forward_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/search_16x16.png" sourcePath="assets/images/png/search_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/shield4_256x256.png" sourcePath="assets/images/png/shield4_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/skip backward_256x256.png" sourcePath="assets/images/png/skip backward_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/large icons_128x128.png" sourcePath="assets/images/png/large icons_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/add box_48x48.png" sourcePath="assets/images/png/add box_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/time_256x256.png" sourcePath="assets/images/png/time_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/add to basket_16x16.png" sourcePath="assets/images/png/add to basket_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/credit card_128x128.png" sourcePath="assets/images/png/credit card_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/cd_24x24.png" sourcePath="assets/images/png/cd_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/flag yellow_48x48.png" sourcePath="assets/images/png/flag yellow_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/button green_16x16.png" sourcePath="assets/images/png/button green_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/clock_256x256.png" sourcePath="assets/images/png/clock_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/backup_16x16.png" sourcePath="assets/images/png/backup_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/checkmark_64x64.png" sourcePath="assets/images/png/checkmark_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/folder_64x64.png" sourcePath="assets/images/png/folder_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/mac users group_256x256.png" sourcePath="assets/images/png/mac users group_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/unknown_128x128.png" sourcePath="assets/images/png/unknown_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/new_24x24.png" sourcePath="assets/images/png/new_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/music_48x48.png" sourcePath="assets/images/png/music_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/redo_48x48.png" sourcePath="assets/images/png/redo_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/credit card_256x256.png" sourcePath="assets/images/png/credit card_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/save 2_128x128.png" sourcePath="assets/images/png/save 2_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/up_48x48.png" sourcePath="assets/images/png/up_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/credit card_32x32.png" sourcePath="assets/images/png/credit card_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/user office_32x32.png" sourcePath="assets/images/png/user office_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/user_32x32.png" sourcePath="assets/images/png/user_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/print preview_32x32.png" sourcePath="assets/images/png/print preview_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/save 2_16x16.png" sourcePath="assets/images/png/save 2_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/spy_64x64.png" sourcePath="assets/images/png/spy_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/burn_48x48.png" sourcePath="assets/images/png/burn_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/go_256x256.png" sourcePath="assets/images/png/go_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/open document_32x32.png" sourcePath="assets/images/png/open document_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/add_32x32.png" sourcePath="assets/images/png/add_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/pirate_16x16.png" sourcePath="assets/images/png/pirate_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/trash full_48x48.png" sourcePath="assets/images/png/trash full_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/export_16x16.png" sourcePath="assets/images/png/export_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/stuff_32x32.png" sourcePath="assets/images/png/stuff_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/rec_256x256.png" sourcePath="assets/images/png/rec_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/button green_64x64.png" sourcePath="assets/images/png/button green_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/export_48x48.png" sourcePath="assets/images/png/export_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/my documents_32x32.png" sourcePath="assets/images/png/my documents_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/favorites_128x128.png" sourcePath="assets/images/png/favorites_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/images_32x32.png" sourcePath="assets/images/png/images_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/print_64x64.png" sourcePath="assets/images/png/print_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/flag green_24x24.png" sourcePath="assets/images/png/flag green_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/user_256x256.png" sourcePath="assets/images/png/user_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/show info_64x64.png" sourcePath="assets/images/png/show info_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/stop_32x32.png" sourcePath="assets/images/png/stop_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/back_128x128.png" sourcePath="assets/images/png/back_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/sound_16x16.png" sourcePath="assets/images/png/sound_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/images_16x16.png" sourcePath="assets/images/png/images_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/app folder_256x256.png" sourcePath="assets/images/png/app folder_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/stuff_128x128.png" sourcePath="assets/images/png/stuff_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/delete user_32x32.png" sourcePath="assets/images/png/delete user_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/undo_32x32.png" sourcePath="assets/images/png/undo_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/back_256x256.png" sourcePath="assets/images/png/back_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/move_128x128.png" sourcePath="assets/images/png/move_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/undo_256x256.png" sourcePath="assets/images/png/undo_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/label_24x24.png" sourcePath="assets/images/png/label_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/close_16x16.png" sourcePath="assets/images/png/close_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/address book_64x64.png" sourcePath="assets/images/png/address book_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/antispam_64x64.png" sourcePath="assets/images/png/antispam_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/mac user_256x256.png" sourcePath="assets/images/png/mac user_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/favorites_48x48.png" sourcePath="assets/images/png/favorites_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/burn_24x24.png" sourcePath="assets/images/png/burn_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/find2_256x256.png" sourcePath="assets/images/png/find2_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/add_48x48.png" sourcePath="assets/images/png/add_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/checkmark_32x32.png" sourcePath="assets/images/png/checkmark_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/open in browser_256x256.png" sourcePath="assets/images/png/open in browser_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/camera_32x32.png" sourcePath="assets/images/png/camera_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/block_64x64.png" sourcePath="assets/images/png/block_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/delete box_128x128.png" sourcePath="assets/images/png/delete box_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/directories_48x48.png" sourcePath="assets/images/png/directories_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/credit card_16x16.png" sourcePath="assets/images/png/credit card_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/go_24x24.png" sourcePath="assets/images/png/go_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/fax_16x16.png" sourcePath="assets/images/png/fax_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/calculator_48x48.png" sourcePath="assets/images/png/calculator_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/users group_32x32.png" sourcePath="assets/images/png/users group_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/open_32x32.png" sourcePath="assets/images/png/open_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/delete box_256x256.png" sourcePath="assets/images/png/delete box_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/flag green_64x64.png" sourcePath="assets/images/png/flag green_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/find2_128x128.png" sourcePath="assets/images/png/find2_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/go_128x128.png" sourcePath="assets/images/png/go_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/checkmark_24x24.png" sourcePath="assets/images/png/checkmark_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/calendar_16x16.png" sourcePath="assets/images/png/calendar_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/add user_256x256.png" sourcePath="assets/images/png/add user_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/tools_256x256.png" sourcePath="assets/images/png/tools_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/up_32x32.png" sourcePath="assets/images/png/up_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/basket_256x256.png" sourcePath="assets/images/png/basket_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/search_32x32.png" sourcePath="assets/images/png/search_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/sound_48x48.png" sourcePath="assets/images/png/sound_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/video_64x64.png" sourcePath="assets/images/png/video_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/pause_128x128.png" sourcePath="assets/images/png/pause_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/user office_24x24.png" sourcePath="assets/images/png/user office_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/add box_64x64.png" sourcePath="assets/images/png/add box_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/antispam_48x48.png" sourcePath="assets/images/png/antispam_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/edit user_128x128.png" sourcePath="assets/images/png/edit user_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/journal_128x128.png" sourcePath="assets/images/png/journal_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/zoom+_256x256.png" sourcePath="assets/images/png/zoom+_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/close_32x32.png" sourcePath="assets/images/png/close_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/rec_64x64.png" sourcePath="assets/images/png/rec_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/fast forward_64x64.png" sourcePath="assets/images/png/fast forward_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/paste_256x256.png" sourcePath="assets/images/png/paste_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/documents_64x64.png" sourcePath="assets/images/png/documents_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/redo_32x32.png" sourcePath="assets/images/png/redo_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/games_32x32.png" sourcePath="assets/images/png/games_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/paint_64x64.png" sourcePath="assets/images/png/paint_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/save_24x24.png" sourcePath="assets/images/png/save_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/checkmark_48x48.png" sourcePath="assets/images/png/checkmark_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/mac user_32x32.png" sourcePath="assets/images/png/mac user_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/hd_32x32.png" sourcePath="assets/images/png/hd_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/paint_128x128.png" sourcePath="assets/images/png/paint_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/computer off_32x32.png" sourcePath="assets/images/png/computer off_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/skip backward_24x24.png" sourcePath="assets/images/png/skip backward_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/tools_48x48.png" sourcePath="assets/images/png/tools_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/rec_128x128.png" sourcePath="assets/images/png/rec_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/new_48x48.png" sourcePath="assets/images/png/new_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/back_16x16.png" sourcePath="assets/images/png/back_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/cd_48x48.png" sourcePath="assets/images/png/cd_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/spy_16x16.png" sourcePath="assets/images/png/spy_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/user_16x16.png" sourcePath="assets/images/png/user_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/undo_24x24.png" sourcePath="assets/images/png/undo_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/pictures_16x16.png" sourcePath="assets/images/png/pictures_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/up_24x24.png" sourcePath="assets/images/png/up_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/alarm_48x48.png" sourcePath="assets/images/png/alarm_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/basket_48x48.png" sourcePath="assets/images/png/basket_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/search_48x48.png" sourcePath="assets/images/png/search_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/button green_128x128.png" sourcePath="assets/images/png/button green_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/shield3_64x64.png" sourcePath="assets/images/png/shield3_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/skip backward_48x48.png" sourcePath="assets/images/png/skip backward_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/tools_32x32.png" sourcePath="assets/images/png/tools_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/button blue_16x16.png" sourcePath="assets/images/png/button blue_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/save as_24x24.png" sourcePath="assets/images/png/save as_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/add_64x64.png" sourcePath="assets/images/png/add_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/antispam_32x32.png" sourcePath="assets/images/png/antispam_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/open in browser_48x48.png" sourcePath="assets/images/png/open in browser_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/Thumbs.db" sourcePath="assets/images/png/Thumbs.db"/>
+    <resourceEntry destPath="assets/images/png/my documents_16x16.png" sourcePath="assets/images/png/my documents_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/toast_24x24.png" sourcePath="assets/images/png/toast_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/gift_128x128.png" sourcePath="assets/images/png/gift_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/hd_48x48.png" sourcePath="assets/images/png/hd_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/user_24x24.png" sourcePath="assets/images/png/user_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/shield1_16x16.png" sourcePath="assets/images/png/shield1_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/open_48x48.png" sourcePath="assets/images/png/open_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/wizard_16x16.png" sourcePath="assets/images/png/wizard_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/go_32x32.png" sourcePath="assets/images/png/go_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/box_256x256.png" sourcePath="assets/images/png/box_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/alarm_64x64.png" sourcePath="assets/images/png/alarm_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/cd_128x128.png" sourcePath="assets/images/png/cd_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/email_32x32.png" sourcePath="assets/images/png/email_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/back_24x24.png" sourcePath="assets/images/png/back_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/refresh_256x256.png" sourcePath="assets/images/png/refresh_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/up_128x128.png" sourcePath="assets/images/png/up_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/users group_16x16.png" sourcePath="assets/images/png/users group_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/alert_16x16.png" sourcePath="assets/images/png/alert_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/clock_32x32.png" sourcePath="assets/images/png/clock_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/unknown_16x16.png" sourcePath="assets/images/png/unknown_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/skip forward_32x32.png" sourcePath="assets/images/png/skip forward_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/import_256x256.png" sourcePath="assets/images/png/import_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/info_48x48.png" sourcePath="assets/images/png/info_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/search2_128x128.png" sourcePath="assets/images/png/search2_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/search2_24x24.png" sourcePath="assets/images/png/search2_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/go_16x16.png" sourcePath="assets/images/png/go_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/images_48x48.png" sourcePath="assets/images/png/images_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/undo_48x48.png" sourcePath="assets/images/png/undo_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/unknown_256x256.png" sourcePath="assets/images/png/unknown_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/shield3_128x128.png" sourcePath="assets/images/png/shield3_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/block email_16x16.png" sourcePath="assets/images/png/block email_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/open document_256x256.png" sourcePath="assets/images/png/open document_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/gift_16x16.png" sourcePath="assets/images/png/gift_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/large icons_48x48.png" sourcePath="assets/images/png/large icons_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/flag red_48x48.png" sourcePath="assets/images/png/flag red_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/flag yellow_64x64.png" sourcePath="assets/images/png/flag yellow_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/add_16x16.png" sourcePath="assets/images/png/add_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/delete user_64x64.png" sourcePath="assets/images/png/delete user_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/edit user_32x32.png" sourcePath="assets/images/png/edit user_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/open document_24x24.png" sourcePath="assets/images/png/open document_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/block_128x128.png" sourcePath="assets/images/png/block_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/camera_64x64.png" sourcePath="assets/images/png/camera_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/skip forward_16x16.png" sourcePath="assets/images/png/skip forward_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/chat_64x64.png" sourcePath="assets/images/png/chat_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/down_64x64.png" sourcePath="assets/images/png/down_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/forward_48x48.png" sourcePath="assets/images/png/forward_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/stop_256x256.png" sourcePath="assets/images/png/stop_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/directories_64x64.png" sourcePath="assets/images/png/directories_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/block_16x16.png" sourcePath="assets/images/png/block_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/preferences_16x16.png" sourcePath="assets/images/png/preferences_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/directories_24x24.png" sourcePath="assets/images/png/directories_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/notepad_64x64.png" sourcePath="assets/images/png/notepad_64x64.png"/>
+    <resourceEntry destPath="assets/images/png/web_16x16.png" sourcePath="assets/images/png/web_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/open in browser_128x128.png" sourcePath="assets/images/png/open in browser_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/open_24x24.png" sourcePath="assets/images/png/open_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/configure_128x128.png" sourcePath="assets/images/png/configure_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/zoom+_32x32.png" sourcePath="assets/images/png/zoom+_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/alert 2_32x32.png" sourcePath="assets/images/png/alert 2_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/remove from basket_16x16.png" sourcePath="assets/images/png/remove from basket_16x16.png"/>
+    <resourceEntry destPath="assets/images/png/computer_256x256.png" sourcePath="assets/images/png/computer_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/computer off_24x24.png" sourcePath="assets/images/png/computer off_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/print_128x128.png" sourcePath="assets/images/png/print_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/flag red_128x128.png" sourcePath="assets/images/png/flag red_128x128.png"/>
+    <resourceEntry destPath="assets/images/png/hd_24x24.png" sourcePath="assets/images/png/hd_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/save_256x256.png" sourcePath="assets/images/png/save_256x256.png"/>
+    <resourceEntry destPath="assets/images/png/refresh_32x32.png" sourcePath="assets/images/png/refresh_32x32.png"/>
+    <resourceEntry destPath="assets/images/png/pirate_48x48.png" sourcePath="assets/images/png/pirate_48x48.png"/>
+    <resourceEntry destPath="assets/images/png/options_24x24.png" sourcePath="assets/images/png/options_24x24.png"/>
+    <resourceEntry destPath="assets/images/png/pause_24x24.png" sourcePath="assets/images/png/pause_24x24.png"/>
+  </includeResources>
+  <namespaceManifests/>
+</flexLibProperties>

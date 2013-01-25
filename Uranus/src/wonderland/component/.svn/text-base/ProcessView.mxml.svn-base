@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%" xmlns:view="wonderland.flow.view.*" xmlns:component="wonderland.component.*"
+		 creationComplete="init()">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.core.UIComponent;
+			import mx.managers.PopUpManager;
+			
+			import wonderland.controller.DocumentListControllerClient;
+			
+			[Bindable] public var server:String;
+			[Bindable] private var _changeProcess:Object = new Object();
+			[Bindable] private var _stat:Object = "";
+			[Bindable] private var _documentInfo:Object = new Object();
+			
+			[Bindable]public var popupParent:DisplayObject;
+			
+			[Bindable]private var _enabled:Boolean = false;
+			
+			private var cntList:DocumentListControllerClient;
+			
+			private function init():void{
+				popupParent ||= this;
+				cntList  = new DocumentListControllerClient(server);
+				cntList.loadList(cntList.DOC_TYPES);
+			}
+			
+			
+			
+			public function set changeProcess(o:Object):void{
+				_enabled = true;
+				viewTitle.text = o["name"];
+				_changeProcess = o["info"];
+				_stat = o["change_stat"];
+				_documentInfo = o["info"]["document_info"];
+			}
+			
+			protected function reject(event:MouseEvent):void
+			{
+				var win:RejectChangeProcessBox = RejectChangeProcessBox(PopUpManager.createPopUp(popupParent,RejectChangeProcessBox,true));
+				win.server = server;
+				win.changeProcessId = _changeProcess["id"];
+				PopUpManager.centerPopUp(win);
+			}
+
+			protected function delegate(event:MouseEvent):void
+			{
+				var win:DelegateChangeProcessBox = DelegateChangeProcessBox(PopUpManager.createPopUp(popupParent,DelegateChangeProcessBox,true));
+				win.server = server;
+				win.changeProcessId = _changeProcess["id"];
+				PopUpManager.centerPopUp(win);
+			}
+
+
+			protected function approve(event:MouseEvent):void
+			{
+				var win:ApproveChangeProcessBox = ApproveChangeProcessBox(PopUpManager.createPopUp(popupParent,ApproveChangeProcessBox,true));
+				win.documentTitle = _changeProcess["title"];
+				win.server = server;
+				win.changeProcessId = _changeProcess["id"];
+				PopUpManager.centerPopUp(win);
+			}
+
+
+			protected function print(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+			}
+
+
+			protected function pop(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+			}
+
+
+			protected function viewChangeLog(event:MouseEvent):void
+			{
+				var win:ChangeLogViewBox = ChangeLogViewBox(PopUpManager.createPopUp(popupParent,ChangeLogViewBox,true));
+				var o:Object = _changeProcess["change_logs"];
+				win.changeLogsDP= _changeProcess["change_logs"];
+				win.width = 0.9 * popupParent.width;
+				win.height = 0.9 * popupParent.height;
+				PopUpManager.centerPopUp(win);
+			}
+
+
+			protected function viewDocument(event:MouseEvent):void
+			{
+				var win:DocumentViewerBox = DocumentViewerBox(PopUpManager.createPopUp(popupParent,DocumentViewerBox,true));
+				win.serverURL = server;
+				win.docTypesDP = cntList.doc_typesDP;
+				win.documentVersionData=_documentInfo['document_version'];
+				win.documentData = _documentInfo['document'];
+				win.readOnly = false;
+				//win.width = 0.9 * popupParent.width;
+				win.height = 0.9 * popupParent.height;
+				win.title = _documentInfo['name'];
+				PopUpManager.centerPopUp(win);
+			}
+
+
+			protected function hold(event:MouseEvent):void
+			{
+				Alert.show("NOT YET IMPLEMENTED","Info");
+			}
+
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:VGroup width="100%" height="100%">
+		<mx:ApplicationControlBar width="100%">
+			<mx:Label id="viewTitle" width="100%"/>
+			<mx:Button icon="@Embed(source='../../assets/images/png/alert_24x24.png')" height="28"
+					   enabled="{_enabled}" toolTip="Reject" label="Hold" click="hold(event)"/>
+			<mx:Button icon="@Embed(source='../../assets/images/png/stop sign_24x24.png')" height="28"
+					   click="reject(event)" enabled="{_enabled}" toolTip="Reject" label="Reject"/>
+			<mx:Spacer/>
+			<mx:Button icon="@Embed(source='../../assets/images/png/add user_24x24.png')" height="28"
+					   click="delegate(event)" enabled="{_enabled}" toolTip="Delegate" label="Delegate"/>
+			<mx:Button icon="@Embed(source='../../assets/images/png/checkmark_24x24.png')" height="28"
+					   click="approve(event)" enabled="{_enabled}" toolTip="Approve" label="Approve"/>
+			<mx:Spacer/>
+			<mx:VRule height="20" y="65"/>
+			<mx:Spacer/>
+			<mx:Button icon="@Embed(source='../../assets/images/png/print_24x24.png')" width="28" height="28"
+					   click="print(event)" enabled="{_enabled}"  toolTip="Print"/>
+			<mx:Button icon="@Embed(source='../../assets/images/png/toast_24x24.png')" width="28" height="28"
+					   click="pop(event)" enabled="{_enabled}" toolTip="Pop in New Window"/>
+			
+		</mx:ApplicationControlBar>
+		
+		<mx:Form width="100%" height="100%">
+			<mx:FormItem label="Title" width="100%">
+				<mx:Label text="{_changeProcess['title']}" width="100%"/>
+			</mx:FormItem>
+			<mx:FormItem label="Initiator" width="100%">
+				<mx:Label text="{_changeProcess['initiator']['name'] + ' ' + _changeProcess['initiator']['l_name']}" width="100%"/>
+			</mx:FormItem>
+			<mx:FormItem label="Date" width="100%">
+				<view:EasyDateLabel selectedDateString="{_changeProcess['stat']['created_at']}" width="100%" />
+			</mx:FormItem>
+			<mx:FormItem label="Status" width="100%">
+				<mx:LinkButton icon="@Embed(source='../../assets/images/png/info_24x24.png')" width="100%" height="28"
+							   click="viewChangeLog(event)" enabled="{_enabled}" toolTip="View Process History"
+							   label="{_stat}" textAlign="left"/>
+			</mx:FormItem>
+			<mx:FormItem label="Document" width="100%" horizontalAlign="left">
+				<mx:LinkButton icon="@Embed(source='../../assets/images/png/documents_24x24.png')" width="100%" height="28"
+							   click="viewDocument(event)" enabled="{_enabled}" toolTip="View Document"
+							   label="{_documentInfo['name']}" textAlign="left"/>
+			</mx:FormItem>
+			<mx:FormItem label="Message" width="100%" height="100%">
+				<s:TextArea width="100%" height="100%" editable="false" text="{_changeProcess['desc']}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Documents" width="100%" height="100%">
+				<component:DocumentAttachements width="100%" height="100%" serverURL="{server}" popupParent="{popupParent}"  enabledButtons="{_enabled}"
+												documents="{_changeProcess['attachements']}">
+				</component:DocumentAttachements>
+			</mx:FormItem>
+		</mx:Form>
+			
+		
+	</s:VGroup>
+	
+</s:Group>

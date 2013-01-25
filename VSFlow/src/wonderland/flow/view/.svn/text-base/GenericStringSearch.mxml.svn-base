@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300"
+		 creationComplete="init()">
+	<fx:Metadata>
+		[Event(name="select", type="flash.events.Event")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+			import mx.controls.dataGridClasses.DataGridColumn;
+			import mx.controls.listClasses.ListRowInfo;
+			import mx.managers.PopUpManager;
+			import mx.rpc.Fault;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.comm.ControllerClient;
+			import wonderland.view.ReloadingList;
+			
+			private var cnt:ControllerClient;
+			private var setAction:String;
+			private var listAction:String;
+			private var deleteAction:String;
+			
+			[Bindable]public var paramData:Object;
+			[Bindable]public var readOnly:Boolean;
+			public var server:String;
+			
+			[Bindable] private var dataProvider:ArrayCollection = new ArrayCollection();
+			
+			private function init():void{
+				createColumns(paramData["columns"]);
+				listAction = paramData["list"];
+				initController(paramData["controller"]);
+				
+				loadList();
+			}
+			
+			private function initController(controllerName:String):void{
+				cnt = new ControllerClient(server+controllerName);
+			}
+			
+			private function loadList():void{
+				var d:Object = new Object();
+				d["data"] = new Object();
+				d["search"] = _search.text;
+				cnt.call(listAction,d,loadListResult,fault);				
+			}
+			
+			private function loadListResult(e:ResultEvent):void{
+				dataProvider.source = JSON.decode(String(e.result));
+			}
+			
+			private function fault(e:FaultEvent):void{
+				Alert.show(e.fault.message,"Server Error");
+			}
+			
+			public function setItem(o:Object):void{
+				var d:Object = new Object();
+				d["data"] = o;
+				cnt.call(setAction,d,setItemResult,fault);
+			}
+			
+			private function setItemResult(e:ResultEvent):void{
+				var res:Object = JSON.decode(String(e.result));
+				if (res.hasOwnProperty("ok")){
+					loadList();
+				}else{
+					Alert.show(JSON.encode(res["error"]),"Server Error while SET:");
+				}
+			}
+			
+			private function deleteItem(o:Object):void{
+				if(o==null){
+					return;
+				}
+				
+				var d:Object = new Object();
+				d["data"] = o;
+				cnt.call(deleteAction,d,deleteItemResult,fault);
+			}
+			
+			private function deleteItemResult(e:ResultEvent):void{
+				var res:Object = JSON.decode(String(e.result));
+				if (res.hasOwnProperty("ok")){
+					loadList();
+				}else{
+					Alert.show(JSON.encode(res["error"]),"Server Error while DELETE");
+				}
+			}
+			
+			private function createColumns(columns:Array):void{
+				var tmp:Array = new Array();
+				
+				for each(var column:Object in columns){
+					var dColumn:AdvancedDataGridColumn = new AdvancedDataGridColumn(column["name"]);
+					dColumn.dataField = column["field"];
+					tmp.push(dColumn);
+					
+				}
+				dataGrid.columns = tmp;
+				invalidateDisplayList();
+			}
+			
+			
+			protected function edit(event:MouseEvent):void
+			{
+				dataGrid.selectedItem;
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:VGroup width="100%" height="100%">
+		<mx:ApplicationControlBar width="100%">
+			<s:TextInput width="100%" id="_search"/>
+			<mx:Button icon="@Embed(source='/assets/images/png/search_24x24.png')" width="28" height="28"/>
+			
+			
+		</mx:ApplicationControlBar>
+		
+		<mx:AdvancedDataGrid id="dataGrid" width="100%" height="100%" doubleClickEnabled="{!readOnly}" doubleClick="edit(event)" dataProvider="{dataProvider}">
+			
+		</mx:AdvancedDataGrid>
+		
+	</s:VGroup>
+</s:Group>

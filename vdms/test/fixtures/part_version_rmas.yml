@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  part_version: 
+  nomenclature: MyString
+  uid_desc: MyString
+  source_of_repair: MyString
+  repair_ship_to: MyString
+  configuration_note: MyText
+
+two:
+  part_version: 
+  nomenclature: MyString
+  uid_desc: MyString
+  source_of_repair: MyString
+  repair_ship_to: MyString
+  configuration_note: MyText

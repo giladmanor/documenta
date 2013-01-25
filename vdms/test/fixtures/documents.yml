@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  parent_id: 1
+  change_permission_level_id: 1
+  read_permission_level_id: 1
+  doc_type: 
+  doc_stat: 
+
+two:
+  name: MyString
+  parent_id: 1
+  change_permission_level_id: 1
+  read_permission_level_id: 1
+  doc_type: 
+  doc_stat: 

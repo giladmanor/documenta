@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<documents:URANUSDocument xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx"  xmlns:view="wonderland.documents.view.*"
+				 xmlns:std="wonderland.documents.module.*"  width="100%" height="100%" xmlns:documents="wonderland.component.documents.*"
+				 implements="wonderland.documents.module.ISTDDocument" xmlns:component="wonderland.component.*" xmlns:view1="wonderland.flow.view.*" xmlns:view2="wonderland.view.*" >
+	<fx:Script>
+		<![CDATA[
+			import mx.events.Request;
+			
+			import wonderland.controller.DocumentListControllerClient;
+			
+			override public function init():void{
+				childNameMin = 1;
+				childNameMax = 9;
+				listCnt = new DocumentListControllerClient(server);
+				loadData(listCnt.D_CLASSES,listCnt.DOC_STATS);
+			}
+			
+			override public function get doc_stat_id():Number{
+				return _docStatCBX.selectedItem ? _docStatCBX.selectedItem["id"] : -1;
+			}
+			
+			
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<mx:Form x="0" y="0" width="100%" height="100%" enabled="{!isReadOnly}" >
+		
+		<mx:FormItem label="Status [0]" width="100%" >
+			<view2:AdvancedComboBox id="_docStatCBX" dataProvider="{listCnt.docStatsDP}" editable="false" labelField="name" selectedID="{selectedDocStatID}"/>
+		</mx:FormItem>
+		
+		<mx:FormItem label="Requester [1]" width="100%" >
+			<view1:UserSelector name="1" server="{server}" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="ENG COG [2]" width="100%">
+			<view1:UserSelector name="2" server="{server}" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="PM [3]" width="100%">
+			<view1:UserSelector name="3" server="{server}" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="Next Higher Assy [4]" width="100%">
+			<component:PartSelector name="4" width="100%" server="{server}" parentContainer="{this}"/>
+			
+		</mx:FormItem>
+		<mx:FormItem label="Affected Config [5]" width="100%">
+			<component:PartSelector name="5" width="100%" server="{server}" parentContainer="{this}"/>
+		</mx:FormItem>
+		<mx:FormItem label="Drawings and Attachements [6]" width="100%" height="150">
+			<component:DocumentAttachements name="6" width="100%" height="100%" serverURL="{server}" popupParent="{this}" enabledButtons="{!isReadOnly}"/>
+		</mx:FormItem>
+		<mx:FormItem label="Web Published [7]">
+			<mx:CheckBox name="7" width="18" height="21"/>
+		</mx:FormItem>
+		<mx:FormItem label="Class [8]">
+			<mx:ComboBox name="8" editable="false" dataProvider="{listCnt.dClassesDP}" labelField="name"></mx:ComboBox>
+		</mx:FormItem>
+	</mx:Form>
+	<mx:Form x="0" y="393" width="100%" height="100%" enabled="{!isReadOnly}" >
+		<mx:FormItem label="Description of change [9]" width="100%" height="136">
+			<mx:TextArea name="9" width="100%" height="100%"/>
+		</mx:FormItem>
+	</mx:Form>
+	
+</documents:URANUSDocument>

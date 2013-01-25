@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties analytics="false" mainApplicationPath="VSFlow.as" projectUUID="e4ddc306-c3e2-44e0-b696-6a586e33bc7c" version="10">
+  <compiler additionalCompilerArguments="-locale en_US" autoRSLOrdering="true" copyDependentFiles="false" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="0">
+      <libraryPathEntry kind="4" path="">
+        <excludedEntries>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/core.swc" useDefaultLinkType="false"/>
+        </excludedEntries>
+      </libraryPathEntry>
+      <libraryPathEntry kind="3" linkType="1" path="C:/mother/DevEnv/library/as3corelib-.92.1/as3corelib-.92.1/lib/as3corelib.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="C:/mother/DevEnv/library/flexlib-2.5/flexlib.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/VSLib/bin/VSLib.swc" useDefaultLinkType="false"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="VSFlow.as"/>
+  </applications>
+  <modules>
+    <module application="src/VSFlow.as" destPath="wonderland/flow/module/Splash.swf" optimize="true" sourcePath="src/wonderland/flow/module/Splash.mxml"/>
+    <module application="src/VSFlow.as" destPath="wonderland/flow/module/UserManagement.swf" optimize="true" sourcePath="src/wonderland/flow/module/UserManagement.mxml"/>
+    <module application="src/VSFlow.as" destPath="wonderland/flow/module/RoleConfiguration.swf" optimize="true" sourcePath="src/wonderland/flow/module/RoleConfiguration.mxml"/>
+    <module application="src/VSFlow.as" destPath="wonderland/flow/module/TableEditor.swf" optimize="true" sourcePath="src/wonderland/flow/module/TableEditor.mxml"/>
+  </modules>
+  <buildCSSFiles/>
+  <flashCatalyst validateFlashCatalystCompatibility="false"/>
+</actionScriptProperties>
+

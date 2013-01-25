@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Accordion xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 openEasingFunction="{Exponential.easeOut}"
+		 openDuration="600" backgroundAlpha="0">
+	<fx:Metadata>
+		[Event(name="select", type="flash.events.Event")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.effects.easing.Exponential;
+			public var uniqueEntries:Boolean = true;
+			public var bunchLabelField:String = "bunch";
+			public var defaultBunchName:String = "Bunch";
+			
+			[Bindable] public var orderDragging:Boolean = false;
+			
+			public var selected:Object = null;
+			
+			public function get dataList():Array{
+				var res:Array = new Array();
+				for each (var l:BunchList in this.getChildren()){
+					for each (var i:Object in l.dataList){
+						res.push(i);	
+					}
+					res.push("");
+				}
+				return res;
+			}
+			
+			public function clearDataList():void{
+				this.removeAllChildren();
+				
+			}
+			
+			public function doSelect(e:Event):void{
+				var bl:BunchList = e.currentTarget as BunchList;
+				if(bl.selected!=null){
+					selected = bl.selected;
+					this.dispatchEvent(new Event(Event.SELECT));
+				}else{
+					selected = null;
+				}
+			}
+			
+			public function addItem(o:Object):void{
+				if(this.selectedChild==null){
+					this.selectedChild = getMenuForName("1");
+				}
+				
+				(this.selectedChild as BunchList).addItem(o);
+			}
+			
+			public function set populate(population:Array):void{
+				clearDataList();
+				for each (var item:Object in population){
+					if(item!=null && item!=""){
+						getMenuForName(item[bunchLabelField] || defaultBunchName).addItem(item);
+					}
+					
+				}
+				
+			}
+			
+			private function getMenuForName(s:String):BunchList{
+				if(this.getChildByName(s)!=null){
+					return this.getChildByName(s) as BunchList;
+					
+				}else{
+					
+					return addBunch(s);
+				}
+			}
+			
+			public function addBunch(s:String):BunchList{
+				var nc:BunchList = new BunchList();
+				nc.name = s;
+				nc.label = s
+				nc.addEventListener("select",doSelect);
+				nc.orderDragging = this.orderDragging;
+				
+				this.addChild(nc);
+				this.selectedChild = nc;
+				return nc;
+			}
+			
+			public function get bunchCounter():Number{
+				return this.getChildren().length;
+			}
+			
+			public function removeSelected():void{
+				if (this.selectedChild!=null){
+					(this.selectedChild as BunchList).removeSelected();	
+				}
+				
+			}
+			
+		]]>
+	</fx:Script>
+</mx:Accordion>

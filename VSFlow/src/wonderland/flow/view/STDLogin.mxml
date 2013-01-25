@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="142" xmlns:view="wonderland.view.*"
+		 creationComplete="init()">
+	<fx:Declarations>
+		<mx:Sequence id="shake" duration="2000" target="{this}">
+			<mx:Move xBy="50" duration="100" easingFunction="{Sine.easeInOut}"/>
+			<mx:Move xBy="-50" duration="900" easingFunction="{Elastic.easeOut}"/>
+		</mx:Sequence>
+		<mx:Move id="wadle" duration="800" yFrom="-85" yTo="0" easingFunction="{Elastic.easeOut}"/>
+		
+		<mx:EmailValidator id="emailValidator"
+						   valid="requestPassword(null);"
+						   invalid="emailValidator_invalid(event);" />
+	</fx:Declarations>
+	<fx:Metadata>
+		[Event(name="complete", type="flash.events.Event")]
+		
+		
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			
+			import mx.controls.Alert;
+			import mx.effects.easing.Elastic;
+			import mx.effects.easing.Sine;
+			import mx.events.ValidationResultEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.flow.controller.LoginControllerClient;
+			
+			public var serverURL:String;
+			private var conf:Object;
+			
+			private var cnt:LoginControllerClient;
+			
+			private function init():void{
+				cnt = new LoginControllerClient(serverURL);
+				focusManager.setFocus(userNameTXT);
+			}
+			
+			public function get configuration():Object{
+				return conf;
+			}
+			
+			
+
+			protected function login(event:MouseEvent):void
+			{
+				gear.start();
+				cnt.login(userNameTXT.text,passwordTXT.text,loginResult,fault);
+			}
+			
+			private function loginResult(e:ResultEvent):void{
+				var o:Object = JSON.decode(String(e.result));
+				if(o.hasOwnProperty("error")){
+					
+					shake.play();
+				}else{
+					conf = o;
+					this.dispatchEvent(new Event(Event.COMPLETE));
+					
+				}
+				gear.stop();
+				
+			}
+			
+			private function fault(e:FaultEvent):void{
+				gear.stop();
+				Alert.show(e.fault.message,"Server Error");
+			}
+			
+			private function emailValidator_invalid(evt:ValidationResultEvent):void {
+				emailReminderTXT.errorString = evt.message;
+				
+			}
+
+
+			protected function requestPassword(event:MouseEvent):void
+			{
+				cnt.requestPassword(emailReminderTXT.text,requestPasswordResult,fault);
+				gear.start();
+			}
+			
+			private function requestPasswordResult(e:ResultEvent):void{
+				gear.stop();
+				Alert.show(String(e.result),"Info");
+				viewStack.selectedChild = loginView;
+			}
+
+		]]>
+	</fx:Script>
+	
+	<s:HGroup height="100%" width="100%" verticalAlign="bottom" horizontalAlign="right">
+		<view:Gear id="gear" width="250" height="250" x="-4" y="-4" alpha="0.25" hasShadow="true"/>	
+	</s:HGroup>
+	<s:Rect id="backgroundRect" left="0" right="0" top="0" bottom="0"  >
+		<s:fill>
+			<s:LinearGradient rotation="70">
+				<s:GradientEntry color="white" />
+				<s:GradientEntry color="gray" />
+				
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<mx:ViewStack height="100%" width="100%" id="viewStack">
+		<s:NavigatorContent height="100%" width="100%" id="loginView" showEffect="{wadle}">
+			
+			<mx:VBox x="0" y="0" height="100%" width="100%">
+				
+				<mx:Form width="100%" height="100%" dropShadowVisible="true">
+					<mx:FormItem label="EMail" width="100%">
+						<mx:TextInput width="100%" id="userNameTXT"/>
+					</mx:FormItem>
+					<mx:FormItem label="Password" width="100%">
+						<mx:TextInput width="100%" id="passwordTXT"  displayAsPassword="true" enter="login(null)"/>
+					</mx:FormItem>
+					<mx:FormItem width="100%" textAlign="left" dropShadowVisible="false" horizontalAlign="right">
+						<mx:Button label="Login" click="login(event)"/>
+					</mx:FormItem>
+					<mx:FormItem width="100%" horizontalAlign="left">
+						<mx:LinkButton label="I Forgot My Password" click="viewStack.selectedChild=requestPasswordView" fontSize="10"/>
+					</mx:FormItem>
+					
+				</mx:Form>
+			</mx:VBox>
+		</s:NavigatorContent>
+		<s:NavigatorContent height="100%" width="100%" id="requestPasswordView" showEffect="{wadle}">
+			
+			<mx:Form width="100%" height="100%" dropShadowVisible="true">
+				<mx:Spacer height="20%"/>
+				<mx:FormItem label="Enter Your Mail Address" width="100%">
+					<mx:TextInput width="100%" id="emailReminderTXT" text="{userNameTXT.text}"/>
+				</mx:FormItem>
+				<mx:FormItem width="100%" textAlign="left" horizontalAlign="right">
+					<mx:Button label="Send" click="emailValidator.validate(emailReminderTXT.text)"/>
+				</mx:FormItem>
+				
+			</mx:Form>
+		</s:NavigatorContent>
+		<s:NavigatorContent height="100%" width="100%" id="requestPasswordResultView" showEffect="{wadle}">
+			
+			<s:VGroup height="100%" width="100%" horizontalAlign="center" verticalAlign="middle" >
+				<s:Label text="Please Check your Mail..." fontSize="18"/>
+				<mx:Button  icon="@Embed(source='../../../assets/images/png/refresh_32x32.png')" width="32" height="32" click="viewStack.selectedChild=loginView"/>
+				
+			</s:VGroup>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+	
+	
+	
+	
+</s:Group>

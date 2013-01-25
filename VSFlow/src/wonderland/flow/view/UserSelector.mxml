@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" verticalAlign="middle"
+		 implements="wonderland.flow.view.ISTDSingleSelector">
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			
+			import mx.controls.Alert;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.flow.controller.UserManagementControllerClient;
+			
+			public var server:String;
+			
+			[Bindable] private var currentUser:Object;
+			private var cnt:UserManagementControllerClient;
+			
+			protected function findUser(event:MouseEvent):void{
+				var win:SearchUserBox = SearchUserBox(PopUpManager.createPopUp(this,SearchUserBox,true));
+				win.server = server;
+				win.addEventListener(Event.SELECT,setSurrogate);
+				PopUpManager.centerPopUp(win);
+			}
+			
+			private function setSurrogate(e:Event):void{
+				var win:SearchUserBox = e.target as SearchUserBox;
+				currentUser = win.selected;
+				
+				selector.label = currentUser["name"] + " " + currentUser["l_name"];
+			}
+			
+			public function get selected():Object{
+				if(currentUser!=null && currentUser.hasOwnProperty("id")){
+					return currentUser["id"];
+				}else{
+					return null;
+				}
+			}
+			
+			public function set selected(id:Object):void{
+				if(id!=null && id!=""){
+					cnt = new UserManagementControllerClient(server);
+					cnt.getUserName(id,userNameResult,fault);
+				}else{
+					selector.label = "None Selected";
+				}
+			}
+			
+			private function userNameResult(e:ResultEvent):void{
+				var o:Object = JSON.decode(String(e.result));
+				currentUser = o;
+				selector.label = o["name"];
+			}
+			
+			private function fault(e:FaultEvent):void{
+				Alert.show(e.fault.message,"Server Error");
+			}
+			
+
+			protected function clearUser(event:MouseEvent):void
+			{
+				currentUser = null;
+				selector.label = "None Selected";
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<mx:LinkButton id="selector" label="None Selected" width="100%" click="findUser(event)" textAlign="left"/>
+	<mx:Button icon="@Embed(source='../../../assets/images/png/close_16x16.png')" width="16" height="16" click="clearUser(event)"/>
+	
+</mx:HBox>

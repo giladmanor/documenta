@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view:RestrictedTitileWindow xmlns:view="wonderland.flow.view.*"  xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="518" height="162" title="Create New Part">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.CloseEvent;
+			
+			public var data:Object = null;
+			
+			
+			
+			
+
+			protected function create(event:MouseEvent):void
+			{
+				if(partName.text.length==0){
+					partName.errorString = "Please enter Part Name";
+					return;
+				}
+				
+				if(partNumber.text.length==0){
+					partNumber.errorString = "Please enter Part Number";
+					return;
+				}
+				
+				data = new Object();
+				data["name"] = partName.text;
+				data["number"] = partNumber.text;
+				
+				this.dispatchEvent(new CloseEvent(CloseEvent.CLOSE));
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<mx:Form x="0" y="0" width="100%" height="100%">
+		<mx:FormItem label="Part Name" width="100%">
+			<mx:TextInput id="partName" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="Part Number" width="100%">
+			<mx:TextInput id="partNumber" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="Label" width="100%">
+			<mx:HBox width="100%" horizontalAlign="right">
+				<mx:Button label="Create" click="create(event)"/>
+			</mx:HBox>
+		</mx:FormItem>
+	</mx:Form>
+</view:RestrictedTitileWindow >

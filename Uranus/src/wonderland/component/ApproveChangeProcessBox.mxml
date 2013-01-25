@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view1:RestrictedTitileWindow xmlns:view1="wonderland.flow.view.*"  xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="482" height="196"
+			   close="PopUpManager.removePopUp(this)" title="Approve" creationComplete="init()" xmlns:view="wonderland.view.*">
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.controller.ChangeProcessControllerClient;
+			public var server:String;
+			public var changeProcessId:Number;
+			[Bindable] public var documentTitle:String;
+			
+			private var cnt:ChangeProcessControllerClient;
+			
+			protected function init():void
+			{
+				gear.doRunRun = true;
+				cnt = new ChangeProcessControllerClient(server);
+				cnt.approveChangeProcesses(changeProcessId,"",approveResult,fault);
+			}
+			
+			private function approveResult(e:ResultEvent):void{
+				vs.selectedIndex=1;
+				
+			}
+			
+			private function fault(e:FaultEvent):void{
+				vs.selectedIndex=0;
+				Alert.show(e.fault.message,"Server Error");
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<mx:ViewStack id="vs" width="100%" height="100%">
+		<s:NavigatorContent label="" width="100%" height="100%">
+			<s:HGroup  width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+				<view:Gear id="gear" height="120" width="120" hasShadow="true" alpha="0.6"/>
+			</s:HGroup>
+		</s:NavigatorContent>
+		<s:NavigatorContent label="" width="100%" height="100%">
+			<s:HGroup width="100%" height="100%">
+				<mx:Image source="assets/images/png/checkmark_128x128.png"/>
+				<mx:Form x="0" y="0" width="100%" height="100%">
+					<mx:FormHeading label="You are Done!" width="100%"/>
+					<mx:Text width="100%" height="100%" text="You have successfully e-Signed {documentTitle}."  />
+						
+					
+					<mx:FormItem width="100%" horizontalAlign="right">
+						<mx:Button label="Close" height="37" width="96" click="PopUpManager.removePopUp(this)"/>
+					</mx:FormItem>
+				</mx:Form>
+			</s:HGroup>
+		</s:NavigatorContent>
+		
+	</mx:ViewStack>
+	
+	
+	
+	
+</view1:RestrictedTitileWindow >

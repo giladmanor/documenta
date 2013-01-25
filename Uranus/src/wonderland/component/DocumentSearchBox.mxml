@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view:RestrictedTitileWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="882" height="528" 
+			   xmlns:component="wonderland.component.*"
+			   xmlns:view="wonderland.flow.view.*"
+			   title="{documentSearch.selectable}"
+			   close="PopUpManager.removePopUp(this)" 
+			   >
+
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			import wonderland.controller.DocumentListControllerClient;
+			
+			[Bindable]private var listCnt:DocumentListControllerClient;
+			[Bindable]private var _serverURL:String;
+			
+			public function set serverURL(s:String):void{
+				_serverURL = s;
+				listCnt = new DocumentListControllerClient(_serverURL);
+				listCnt.loadList(listCnt.DOC_TYPES, listCnt.DOC_STATS,listCnt.GROUPS);
+			}
+			
+			protected function selectDocument(event:Event):void
+			{
+				if(documentSearch.selectedDocument!=null){
+					this.dispatchEvent(event);
+					PopUpManager.removePopUp(this);	
+				}else{
+					vs.selectedIndex = 1;
+				}
+				
+			}
+			
+			public function get selected():Object{
+				return documentSearch.selectedDocument;
+			}
+		]]>
+	</fx:Script>
+	<fx:Metadata>
+		[Event(name="select", type="flash.events.Event")]
+		
+	</fx:Metadata>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<mx:ViewStack id="vs" width="100%" height="100%">
+		<s:NavigatorContent width="100%" height="100%">
+			<component:DocumentSearch id="documentSearch" 
+									  doc_statusDP="{listCnt.docStatsDP}" 
+									  doc_typeDP="{listCnt.doc_typesDP}" 
+									  groupDP="{listCnt.groupDP}"
+									  serverURL="{_serverURL}"
+									  select="selectDocument(event)"
+									  selectable="{documentSearch.DOCUMENT_VERSION}" width="100%" height="100%"/>
+		</s:NavigatorContent>
+		<s:NavigatorContent label="" width="100%" height="100%">
+			<component:DocumentViewer width="100%" height="100%"
+									  id="documentView" 
+									  serverURL="{_serverURL}" readOnly="{false}" 
+									  availableTagsDP="{listCnt.tagsDP}" 
+									  availableGroupsDP="{listCnt.groupDP}"
+									  permissionLevelsDP="{listCnt.permission_levelsDP}"
+									  docTypesDP="{listCnt.doc_typesDP}"
+									  documentData="{null}"
+									  documentVersionData="{null}"
+									  enableChangeProcessInitiation="false"
+									  />
+		</s:NavigatorContent>
+	</mx:ViewStack>
+	
+</view:RestrictedTitileWindow>

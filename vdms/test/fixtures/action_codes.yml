@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  permission_level: 
+  announce_template: 
+
+two:
+  name: MyString
+  permission_level: 
+  announce_template: 

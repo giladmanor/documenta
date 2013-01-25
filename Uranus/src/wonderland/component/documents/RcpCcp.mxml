@@ -1,0 +1,143 @@
+<documents:URANUSDocument xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:view="wonderland.documents.view.*"
+				 xmlns:std="wonderland.documents.module.*"  width="100%" xmlns:documents="wonderland.component.documents.*"
+				 implements="wonderland.documents.module.ISTDDocument" xmlns:component="wonderland.component.*" xmlns:view1="wonderland.view.*" xmlns:view2="wonderland.flow.view.*">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.Request;
+			
+			import wonderland.controller.DocumentListControllerClient;
+			
+			override public function init():void{
+				childNameMin = 1;
+				childNameMax = 29;
+				listCnt = new DocumentListControllerClient(server);
+				loadData(listCnt.ORIGINATORS,
+					listCnt.DOC_STATS,
+					listCnt.CUSTOMERS, 
+					listCnt.VENDORS, 
+					listCnt.REQUEST_TYPES,
+					listCnt.PERM_TEMPS,
+					listCnt.PRIORITIES
+				);
+			}
+			
+			override public function get doc_stat_id():Number{
+				return _docStatCBX.selectedItem ? _docStatCBX.selectedItem["id"] : -1;
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+		
+			<mx:Form x="0" y="0" width="100%" height="100%">
+				<mx:FormItem label="Status [0]" width="100%" >
+					<view1:AdvancedComboBox id="_docStatCBX" dataProvider="{listCnt.docStatsDP}" editable="false" labelField="name" selectedID="{selectedDocStatID}"/>
+				</mx:FormItem>
+				<mx:FormItem label="PO #" width="100%">
+					<mx:TextInput width="100%" name="1"/>
+				</mx:FormItem>
+				<mx:FormItem width="100%" label="Change Originator">
+					<mx:ComboBox name="2" editable="false" width="100%" dataProvider="{listCnt.originatorsDP}" labelField="name"></mx:ComboBox>
+				</mx:FormItem>
+				<mx:FormItem label="Customer" width="100%">
+					<mx:ComboBox name="3" editable="false" width="100%" dataProvider="{listCnt.customersDP}" labelField="name"></mx:ComboBox>
+				</mx:FormItem>
+				<mx:FormItem label="Seller" width="100%">
+					<mx:ComboBox name="4" editable="false" width="100%" dataProvider="{listCnt.vendorsDP}" labelField="name"></mx:ComboBox>
+				</mx:FormItem>
+				<mx:FormHeading label="Drawings"/>
+				<mx:FormItem label="Customer " width="100%" height="126">
+					<component:DocumentAttachements name="5" width="100%" height="100%" serverURL="{server}" popupParent="{this}" enabledButtons="{!isReadOnly}"/>				</mx:FormItem>
+				<mx:FormItem label="Sellers " width="100%" height="131">
+					<component:DocumentAttachements name="6" width="100%" height="100%" serverURL="{server}" popupParent="{this}" enabledButtons="{!isReadOnly}"/>				</mx:FormItem>
+			</mx:Form>
+			<mx:Form x="0" y="0" width="100%" height="100%">
+				<mx:FormItem label="Request Type" width="100%">
+					<s:HGroup x="65" y="4" width="100%" height="100%">
+						<mx:ComboBox name="7" editable="false" width="100%" dataProvider="{listCnt.requestTypesDP}" labelField="name"></mx:ComboBox>
+					</s:HGroup>
+				</mx:FormItem>
+				<mx:FormItem name="8" width="100%" label="Perm/Temp">
+					<s:HGroup x="65" y="4" width="100%" height="100%">
+						<mx:ComboBox name="9" editable="false" width="100%" dataProvider="{listCnt.permTempsDP}" labelField="name"></mx:ComboBox>
+					</s:HGroup>
+				</mx:FormItem>
+				<mx:FormItem label="????" width="100%">
+					<mx:ComboBox name="10" editable="false" width="100%"></mx:ComboBox>
+				</mx:FormItem>
+				<mx:FormItem label="Other" width="100%">
+					<mx:TextInput name="11" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem label="FWD MFG Effective Duration" width="100%">
+					<mx:TextInput name="12" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem label="Retrofit Effectivity" width="100%">
+					<mx:TextInput name="13" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem label="Priotity" width="100%">
+					<mx:ComboBox name="14" editable="false" width="100%"></mx:ComboBox>
+				</mx:FormItem>
+				<mx:FormItem label="Additional Attachements" width="100%" height="166">
+					<component:DocumentAttachements name="15" width="100%" height="100%" serverURL="{server}" popupParent="{this}" enabledButtons="{!isReadOnly}"/>
+				</mx:FormItem>
+				<mx:FormItem label="Additional Documents" width="100%" height="161">
+					<component:DocumentAttachements name="16" width="100%" height="100%" serverURL="{server}" popupParent="{this}" enabledButtons="{!isReadOnly}"/>
+				</mx:FormItem>
+			</mx:Form>
+		
+			<mx:Form width="100%" height="100%">
+				<mx:FormItem label="Equipment Nomenclature" width="100%">
+					<mx:TextInput name="17" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem label="Lowest Assembly Affected" width="100%">
+					<mx:TextInput name="18" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem label="Equipment Part #" width="100%">
+					<mx:TextInput name="19" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem label="Description Of Change" width="100%" height="133">
+					<s:TextArea name="20" x="202" y="14" width="100%" height="100%"/>
+				</mx:FormItem>
+				<mx:FormItem label="Reason Of Change" width="100%" height="149">
+					<s:TextArea name="21" x="202" y="14" width="100%" height="100%"/>
+				</mx:FormItem>
+				<mx:FormItem label="Effect Of Associated Equipment" width="100%">
+					<mx:TextInput name="22" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem label="Spares Affected" width="100%">
+					<mx:TextInput name="23" width="100%"/>
+				</mx:FormItem>
+			</mx:Form>
+			
+			<mx:Form x="0" y="0" width="100%" height="100%">
+				<mx:FormHeading label="Effects On Schedule"/>
+				<mx:FormItem label="On Production" width="100%">
+					<view2:EasyDateField name="24" x="223" y="1" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem label="Spares/Age (GSE) Delivery" width="100%">
+					<view2:EasyDateField name="25" x="223" y="1" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem label="Retrofit" width="100%">
+					<view2:EasyDateField name="26" x="223" y="1" width="100%"/>
+				</mx:FormItem>
+				<mx:FormHeading label="Effects On Price"/>
+				<mx:FormItem label="PO Price" width="100%">
+					<mx:TextInput name="27" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem label="Tech Publications/Tapes" width="100%">
+					<mx:TextInput name="28" width="100%"/>
+				</mx:FormItem>
+				<mx:FormHeading/>
+				<mx:FormItem label="Related Coorespondance" width="100%" height="100%">
+					<s:TextArea name="29" x="202" y="14" width="100%" height="100%"/>
+				</mx:FormItem>
+			</mx:Form>
+		
+	
+</documents:URANUSDocument>

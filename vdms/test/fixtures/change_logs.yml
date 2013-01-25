@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 
+  delegate_id: 1
+  action_code: 
+  comments: MyText
+  change_stat: 
+
+two:
+  user: 
+  delegate_id: 1
+  action_code: 
+  comments: MyText
+  change_stat: 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" version="3">
+  <includeClasses>
+    <classEntry path="wonderland.documents.view.DocumentLoader"/>
+    <classEntry path="wonderland.documents.controller.DocumentDataUploader"/>
+    <classEntry path="wonderland.documents.controller.DocumentDataControllerClient"/>
+    <classEntry path="wonderland.documents.view.DocumentDownloadBox"/>
+    <classEntry path="wonderland.documents.module.ISTDDocument"/>
+    <classEntry path="wonderland.documents.module.STDDocument"/>
+    <classEntry path="wonderland.documents.controller.DocumentControllerClient"/>
+    <classEntry path="wonderland.documents.view.IDocumentList"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

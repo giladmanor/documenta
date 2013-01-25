@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+  <title>Class: SessionController</title>
+
+  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="class">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="./app/controllers/session_controller_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="app/controllers/session_controller.rb">app/controllers/session_controller.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link"><a href="ApplicationController.html">ApplicationController</a></p>
+        
+      </div>
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-i-change_password">#change_password</a></li>
+          
+          <li><a href="#method-i-error">#error</a></li>
+          
+          <li><a href="#method-i-get_session_token">#get_session_token</a></li>
+          
+          <li><a href="#method-i-list_fav_menu">#list_fav_menu</a></li>
+          
+          <li><a href="#method-i-login">#login</a></li>
+          
+          <li><a href="#method-i-request_filter">#request_filter</a></li>
+          
+          <li><a href="#method-i-request_password">#request_password</a></li>
+          
+          <li><a href="#method-i-url_redirect_to_home">#url_redirect_to_home</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./ActionCode.html">ActionCode</a></li>
+        
+          <li><a href="./AnnounceTemplate.html">AnnounceTemplate</a></li>
+        
+          <li><a href="./ApplicationController.html">ApplicationController</a></li>
+        
+          <li><a href="./ApplicationHelper.html">ApplicationHelper</a></li>
+        
+          <li><a href="./Array.html">Array</a></li>
+        
+          <li><a href="./Attachement.html">Attachement</a></li>
+        
+          <li><a href="./Avatar.html">Avatar</a></li>
+        
+          <li><a href="./Category.html">Category</a></li>
+        
+          <li><a href="./ChangeLog.html">ChangeLog</a></li>
+        
+          <li><a href="./ChangeProcess.html">ChangeProcess</a></li>
+        
+          <li><a href="./ChangeProcessDocumentVersion.html">ChangeProcessDocumentVersion</a></li>
+        
+          <li><a href="./ChangeProcessStat.html">ChangeProcessStat</a></li>
+        
+          <li><a href="./ChangeProcessUser.html">ChangeProcessUser</a></li>
+        
+          <li><a href="./ChangeStat.html">ChangeStat</a></li>
+        
+          <li><a href="./Customer.html">Customer</a></li>
+        
+          <li><a href="./CustomerPartVersion.html">CustomerPartVersion</a></li>
+        
+          <li><a href="./DClass.html">DClass</a></li>
+        
+          <li><a href="./DataBase.html">DataBase</a></li>
+        
+          <li><a href="./Disposition.html">Disposition</a></li>
+        
+          <li><a href="./DocStat.html">DocStat</a></li>
+        
+          <li><a href="./DocType.html">DocType</a></li>
+        
+          <li><a href="./Document.html">Document</a></li>
+        
+          <li><a href="./DocumentData.html">DocumentData</a></li>
+        
+          <li><a href="./DocumentGroup.html">DocumentGroup</a></li>
+        
+          <li><a href="./DocumentManagerController.html">DocumentManagerController</a></li>
+        
+          <li><a href="./DocumentManagerHelper.html">DocumentManagerHelper</a></li>
+        
+          <li><a href="./DocumentTag.html">DocumentTag</a></li>
+        
+          <li><a href="./DocumentVersion.html">DocumentVersion</a></li>
+        
+          <li><a href="./DocumentVersionChangeLog.html">DocumentVersionChangeLog</a></li>
+        
+          <li><a href="./DocumentVersionPart.html">DocumentVersionPart</a></li>
+        
+          <li><a href="./DocumentVersionTag.html">DocumentVersionTag</a></li>
+        
+          <li><a href="./Group.html">Group</a></li>
+        
+          <li><a href="./Hash.html">Hash</a></li>
+        
+          <li><a href="./IForgotMyPassword.html">IForgotMyPassword</a></li>
+        
+          <li><a href="./LSD.html">LSD</a></li>
+        
+          <li><a href="./LsdController.html">LsdController</a></li>
+        
+          <li><a href="./LsdHelper.html">LsdHelper</a></li>
+        
+          <li><a href="./ModulePermission.html">ModulePermission</a></li>
+        
+          <li><a href="./Originator.html">Originator</a></li>
+        
+          <li><a href="./Origine.html">Origine</a></li>
+        
+          <li><a href="./Part.html">Part</a></li>
+        
+          <li><a href="./PartManagerController.html">PartManagerController</a></li>
+        
+          <li><a href="./PartManagerHelper.html">PartManagerHelper</a></li>
+        
+          <li><a href="./PartMode.html">PartMode</a></li>
+        
+          <li><a href="./PartVersion.html">PartVersion</a></li>
+        
+          <li><a href="./PartVersionAssembly.html">PartVersionAssembly</a></li>
+        
+          <li><a href="./PartVersionRma.html">PartVersionRma</a></li>
+        
+          <li><a href="./PartVersionStat.html">PartVersionStat</a></li>
+        
+          <li><a href="./PermTemp.html">PermTemp</a></li>
+        
+          <li><a href="./PermissionLevel.html">PermissionLevel</a></li>
+        
+          <li><a href="./Priority.html">Priority</a></li>
+        
+          <li><a href="./ProcessAnnouncement.html">ProcessAnnouncement</a></li>
+        
+          <li><a href="./ProcessManagerController.html">ProcessManagerController</a></li>
+        
+          <li><a href="./ProcessManagerHelper.html">ProcessManagerHelper</a></li>
+        
+          <li><a href="./Recurance.html">Recurance</a></li>
+        
+          <li><a href="./RequestType.html">RequestType</a></li>
+        
+          <li><a href="./Role.html">Role</a></li>
+        
+          <li><a href="./Seller.html">Seller</a></li>
+        
+          <li><a href="./SendMail.html">SendMail</a></li>
+        
+          <li><a href="./SessionController.html">SessionController</a></li>
+        
+          <li><a href="./SessionHelper.html">SessionHelper</a></li>
+        
+          <li><a href="./Signature.html">Signature</a></li>
+        
+          <li><a href="./SignatureType.html">SignatureType</a></li>
+        
+          <li><a href="./Tag.html">Tag</a></li>
+        
+          <li><a href="./Tokenizer.html">Tokenizer</a></li>
+        
+          <li><a href="./User.html">User</a></li>
+        
+          <li><a href="./UserGroup.html">UserGroup</a></li>
+        
+          <li><a href="./UserManagerController.html">UserManagerController</a></li>
+        
+          <li><a href="./UserManagerHelper.html">UserManagerHelper</a></li>
+        
+          <li><a href="./UserMenu.html">UserMenu</a></li>
+        
+          <li><a href="./Vendor.html">Vendor</a></li>
+        
+          <li><a href="./VendorPartVersion.html">VendorPartVersion</a></li>
+        
+          <li><a href="./Zipper.html">Zipper</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">SessionController</h1>
+
+    <div id="description" class="description">
+      
+<p>Valueshine ltd copy rights 2011 valueshine.com by Gilad Manor</p>
+
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+
+      <!-- Methods -->
+      
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="change_password-method" class="method-detail ">
+          <a name="method-i-change_password"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">change_password</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="change_password-source">
+<pre>
+<span class="ruby-comment"># File app/controllers/session_controller.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">change_password</span>
+  <span class="ruby-identifier">old_p</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:data</span>][<span class="ruby-value">:old</span>].<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">new_p</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:data</span>][<span class="ruby-value">:new</span>].<span class="ruby-identifier">to_s</span>
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">password</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">old_p</span>
+    <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">password</span> = <span class="ruby-identifier">new_p</span>
+    <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:ok=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;New password has been set successfuly&quot;</span>}
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:error=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Error: Incorrect Old Password&quot;</span>}
+  <span class="ruby-keyword">end</span>
+  
+  
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- change_password-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- change_password-method -->
+
+      
+        <div id="error-method" class="method-detail ">
+          <a name="method-i-error"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">error</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="error-source">
+<pre>
+<span class="ruby-comment"># File app/controllers/session_controller.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">error</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:nothing</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">403</span> <span class="ruby-comment"># forbidden</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- error-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- error-method -->
+
+      
+        <div id="get_session_token-method" class="method-detail ">
+          <a name="method-i-get_session_token"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_session_token</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="get_session_token-source">
+<pre>
+<span class="ruby-comment"># File app/controllers/session_controller.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_session_token</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Tokenizer</span>.<span class="ruby-identifier">get_token</span>(<span class="ruby-ivar">@user</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- get_session_token-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- get_session_token-method -->
+
+      
+        <div id="list_fav_menu-method" class="method-detail ">
+          <a name="method-i-list_fav_menu"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">list_fav_menu</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="list_fav_menu-source">
+<pre>
+<span class="ruby-comment"># File app/controllers/session_controller.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">list_fav_menu</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">fav_menu</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">mp</span><span class="ruby-operator">|</span> <span class="ruby-identifier">mp</span>.<span class="ruby-identifier">to_info</span> }
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- list_fav_menu-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- list_fav_menu-method -->
+
+      
+        <div id="login-method" class="method-detail ">
+          <a name="method-i-login"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">login</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="login-source">
+<pre>
+<span class="ruby-comment"># File app/controllers/session_controller.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">login</span>
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;login&quot;</span>
+  <span class="ruby-identifier">email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>][<span class="ruby-value">:email</span>]
+  <span class="ruby-identifier">pwd</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>][<span class="ruby-value">:password</span>]
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;login attempt by #{email}:&quot;</span>
+  <span class="ruby-identifier">users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>, <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;email = ? AND password = ?&quot;</span>, <span class="ruby-identifier">email</span>,<span class="ruby-identifier">pwd</span>])
+  
+  <span class="ruby-keyword">if</span>(<span class="ruby-identifier">users</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>)
+    <span class="ruby-identifier">user</span> = <span class="ruby-identifier">users</span>[<span class="ruby-value">0</span>]
+    <span class="ruby-identifier">g_s</span>[<span class="ruby-value">:user</span>] = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">g_s</span>[<span class="ruby-value">:timestamp</span>] = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+    
+    <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;User #{user.email} Logged in&quot;</span>
+    <span class="ruby-comment">#logger.warn &quot;[LoginController#login] session: #{g_s[:session_id]} &quot;</span>
+    <span class="ruby-comment">#logger.warn &quot;[LoginController#login] session: #{g_s.to_yaml} &quot;</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">session_data</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">warn</span> <span class="ruby-string">&quot;login failed &quot;</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:error=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;bad login&quot;</span>}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- login-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- login-method -->
+
+      
+        <div id="request_filter-method" class="method-detail ">
+          <a name="method-i-request_filter"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">request_filter</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="request_filter-source">
+<pre>
+<span class="ruby-comment"># File app/controllers/session_controller.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">request_filter</span>
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;\n\n Request Filter #{params[:action]} From[#{request.remote_ip}]&quot;</span>
+  
+  <span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">g_s</span>[<span class="ruby-value">:user</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">g_s</span>[<span class="ruby-value">:user</span>].<span class="ruby-identifier">present?</span>
+  <span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">velidate_token</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>].<span class="ruby-identifier">present?</span>
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user_id</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">warn</span> <span class="ruby-string">&quot;(!) Invalid session&quot;</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:error</span> 
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">timestamp</span> = <span class="ruby-identifier">g_s</span>[<span class="ruby-value">:timestamp</span>]
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;Session Timestamp: #{timestamp.to_s} for user: #{@user.email}&quot;</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-comment">#|| (Time.now - timestamp) &gt; 100000</span>
+    <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;(!) Fraud Alert From IP #{request.remote_ip}&quot;</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:error</span> 
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+  
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- request_filter-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- request_filter-method -->
+
+      
+        <div id="request_password-method" class="method-detail ">
+          <a name="method-i-request_password"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">request_password</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="request_password-source">
+<pre>
+<span class="ruby-comment"># File app/controllers/session_controller.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">request_password</span>
+  <span class="ruby-identifier">email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>][<span class="ruby-value">:email</span>]
+  <span class="ruby-identifier">users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>, <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;email = ?&quot;</span>, <span class="ruby-identifier">email</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">users</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">==</span><span class="ruby-value">0</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;Problem sending mail to: #{email}, Please contact your system administrator.&quot;</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+  
+  
+  <span class="ruby-identifier">host</span> = <span class="ruby-identifier">url_for</span>(<span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'session'</span>, <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'url_redirect_to_home'</span>)
+  <span class="ruby-constant">IForgotMyPassword</span>.<span class="ruby-identifier">password_reminder</span>(<span class="ruby-identifier">users</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">host</span>)
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;Password sent to: #{email}, Please check your e-mail.&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- request_password-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- request_password-method -->
+
+      
+        <div id="url_redirect_to_home-method" class="method-detail ">
+          <a name="method-i-url_redirect_to_home"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">url_redirect_to_home</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="url_redirect_to_home-source">
+<pre>
+<span class="ruby-comment"># File app/controllers/session_controller.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">url_redirect_to_home</span>
+  <span class="ruby-identifier">redirect_to</span>(<span class="ruby-string">&quot;/index.html&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- url_redirect_to_home-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- url_redirect_to_home-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+

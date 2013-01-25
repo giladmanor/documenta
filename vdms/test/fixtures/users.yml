@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  l_name: MyString
+  email: MyString
+  title: MyString
+  password: MyString
+  role: 
+  permission_level: 
+  surrogate_id: 1
+  avatar: MyText
+  signature_image: MyText
+
+two:
+  name: MyString
+  l_name: MyString
+  email: MyString
+  title: MyString
+  password: MyString
+  role: 
+  permission_level: 
+  surrogate_id: 1
+  avatar: MyText
+  signature_image: MyText

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<documents:URANUSDocument xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:view="wonderland.documents.view.*"
+				 xmlns:std="wonderland.documents.module.*"  width="100%"  xmlns:documents="wonderland.component.documents.*"
+				 implements="wonderland.documents.module.ISTDDocument" xmlns:component="wonderland.component.*" xmlns:view1="wonderland.view.*" xmlns:view2="wonderland.flow.view.*">
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			
+			import mx.controls.Alert;
+			import mx.core.UIComponent;
+			import mx.rpc.Fault;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.controller.DocumentListControllerClient;
+			import wonderland.documents.controller.DocumentControllerClient;
+			
+			
+			
+			override public function init():void{
+				childNameMin = 1;
+				childNameMax = 35;
+				listCnt = new DocumentListControllerClient(server);
+				loadData(listCnt.D_CLASSES, 
+					listCnt.DOC_STATS, 
+					listCnt.ORIGINATORS,
+					listCnt.PRIORITIES,
+					listCnt.RECURANCES,
+					listCnt.DISPOSITIONS,
+					listCnt.SIGNATURE_TYPES);
+			}
+			
+			override public function get doc_stat_id():Number{
+				return _docStatCBX.selectedItem ? _docStatCBX.selectedItem["id"] : -1;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	
+	<s:VGroup width="100%">
+			
+		
+		<s:HGroup width="100%">
+			<mx:FormItem label="Status [1]" width="100%" >
+				<view1:AdvancedComboBox id="_docStatCBX" dataProvider="{listCnt.docStatsDP}" editable="false" labelField="name" selectedID="{selectedDocStatID}"/>
+			</mx:FormItem>
+			<mx:FormItem width="100%" label="Originator [2]">
+				<mx:HBox width="100%">
+					<mx:ComboBox name="2" editable="false" dataProvider="{listCnt.originatorsDP}" labelField="name" enabled="{!otherOriginator.selected}"></mx:ComboBox>
+					<mx:CheckBox  name="3" label="Other" id="otherOriginator"/>
+					<s:TextInput name="4" width="100%" enabled="{otherOriginator.selected}"/>
+				</mx:HBox>
+			</mx:FormItem>
+		</s:HGroup>
+				
+		<s:HGroup width="100%" height="201">
+			<mx:Form width="100%" height="100%">
+				<mx:FormItem width="100%" label="Cage Code [3]">
+					<s:TextInput name="5" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem width="100%" label="Security [4]">
+					<mx:TextInput name="6" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem width="100%" label="Priority [5]">
+					<mx:ComboBox name="7" editable="false" dataProvider="{listCnt.prioritiesDP}" labelField="name"></mx:ComboBox>
+				</mx:FormItem>
+				<mx:FormItem width="100%" label="Recuring [6]">
+					<mx:ComboBox name="8" editable="false" dataProvider="{listCnt.recurancesDP}" labelField="name"></mx:ComboBox>
+				</mx:FormItem>
+				<mx:FormItem width="100%" label="Related CR No. [7]">
+					<mx:TextInput name="9" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem width="100%" label="Part [8]">
+					<component:PartSelector name="10" server="{server}"  width="100%"/>
+				</mx:FormItem>
+			</mx:Form>
+			<mx:Form width="100%" height="100%">
+				<mx:FormItem width="100%" label="Baselines Affected [9]">
+					<mx:TextInput name="11" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem width="100%" label="Contracts Affected [10]">
+					<mx:TextInput name="12" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem width="100%" label="Documents Affected [11]" height="100%" >
+					<component:DocumentAttachements name="13" width="100%" height="100%" serverURL="{server}" popupParent="{this}" enabledButtons="{!isReadOnly}"/>
+				</mx:FormItem>
+			</mx:Form>
+		</s:HGroup>
+		
+	</s:VGroup>
+	<s:VGroup width="100%">
+		<s:HGroup width="100%">
+			<mx:Form width="100%" height="100%">
+				<mx:FormItem width="100%" label="Description [12]">
+					<mx:TextArea name="14" x="255" y="8" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem width="100%" label="Need/Justification [13]">
+					<mx:TextArea name="15" x="255" y="8" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem width="100%" label="Effect on Delivery Schedule [14]">
+					<mx:TextArea name="16" x="255" y="8" width="100%"/>
+				</mx:FormItem>
+			</mx:Form>
+			<mx:Form width="100%" height="100%">
+				<mx:FormItem width="100%" label="Effect on Cost/Price (Consideations, if applicable) [15]" height="100%">
+					<mx:TextArea name="17" x="255" y="8" width="100%" height="100%"/>
+				</mx:FormItem>
+				<mx:FormItem width="100%" label="Corrective Action and Eliminatin [16]" height="100%">
+					<mx:TextArea name="18" x="255" y="8" width="100%" height="100%"/>
+				</mx:FormItem>
+			</mx:Form>
+		</s:HGroup>
+		
+			<s:HGroup  width="100%">
+				<s:Label text="Supplier" width="81"/>
+				<mx:VRule/>
+				
+				<mx:Form width="100%" height="100%">
+					<mx:FormItem width="100%" label="Supplier Activity [17]">
+						<s:TextInput name="19" width="100%"/>
+					</mx:FormItem>
+					<mx:FormItem width="100%" label="Var Number [18]">
+						<s:TextInput name="20" width="100%"/>
+					</mx:FormItem>
+					<mx:FormItem width="100%" label="Cage Code [19]">
+						<s:TextInput name="21" width="100%"/>
+					</mx:FormItem>
+				</mx:Form>
+				<mx:Form x="229" y="40" width="100%" height="100%">
+					<mx:FormItem width="100%" label="Name [20]">
+						<s:TextInput name="22" width="100%"/>
+					</mx:FormItem>
+					<mx:FormItem width="100%" label="Title [21]">
+						<s:TextInput name="23" width="100%"/>
+					</mx:FormItem>
+					<mx:FormItem width="100%" label="Date [22]">
+						<view2:EasyDateField  name="24"/>
+					</mx:FormItem>
+				</mx:Form>
+			</s:HGroup>
+			
+		
+			<s:HGroup  width="100%">
+				<s:Label text="Contractor" width="81"/>
+				<mx:VRule/>
+				<mx:Form width="100%" height="100%">
+					<mx:FormItem width="100%" label=" Activity [23]">
+						<s:TextInput name="25" width="100%"/>
+					</mx:FormItem>
+					<mx:FormItem width="100%" label="Select Signature [24]">
+						<mx:ComboBox name="26" editable="false" dataProvider="{listCnt.signature_typesDP}" labelField="name"></mx:ComboBox>
+					</mx:FormItem>
+				</mx:Form>
+				<mx:Form x="229" y="40" width="100%" height="100%">
+					<mx:FormItem width="100%" label="Contractor Approver [25]">
+						<s:TextInput name="27" width="100%"/>
+					</mx:FormItem>
+					<mx:FormItem width="100%" label="Title [26]">
+						<s:TextInput name="28" width="100%"/>
+					</mx:FormItem>
+					<mx:FormItem width="100%" label="Disposition [27]">
+						<mx:ComboBox name="29" editable="false" dataProvider="{listCnt.dispositionsDP}" labelField="name"></mx:ComboBox>
+					</mx:FormItem>
+					<mx:FormItem width="100%" label="Date [28]">
+						<view2:EasyDateField name="30"/>
+					</mx:FormItem>
+				</mx:Form>
+			</s:HGroup>
+		
+			<s:HGroup  width="100%">
+				<s:Label text="Customer" width="81"/>
+				<mx:VRule/>
+				<mx:Form width="100%" height="100%">
+					<mx:FormItem width="100%" label=" Activity [29]">
+						<s:TextInput name="31" width="100%"/>
+					</mx:FormItem>
+				</mx:Form>
+				<mx:Form x="229" y="40" width="100%" height="100%">
+					<mx:FormItem width="100%" label="Contractor Approver [30]">
+						<s:TextInput name="32" width="100%"/>
+					</mx:FormItem>
+					<mx:FormItem width="100%" label="Title [31]">
+						<s:TextInput name="33" width="100%"/>
+					</mx:FormItem>
+					<mx:FormItem width="100%" label="Disposition [32]">
+						<mx:ComboBox name="34" editable="false" dataProvider="{listCnt.dispositionsDP}" labelField="name"></mx:ComboBox>
+					</mx:FormItem>
+					<mx:FormItem width="100%" label="Date [33]">
+						<view2:EasyDateField name="35"/>
+					</mx:FormItem>
+				</mx:Form>
+			</s:HGroup>
+	</s:VGroup>
+		
+	
+</documents:URANUSDocument>

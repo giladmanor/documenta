@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<documents:URANUSDocument xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%"  xmlns:view="wonderland.documents.view.*"
+			xmlns:std="wonderland.documents.module.*" xmlns:documents="wonderland.component.documents.*"
+			implements="wonderland.documents.module.ISTDDocument" xmlns:view1="wonderland.view.*">
+	<fx:Script>
+		<![CDATA[
+			import wonderland.controller.DocumentListControllerClient;
+			import wonderland.documents.module.ISTDDocument;
+			
+			override public function init():void{
+				loadBlobWithVersion = false;
+				if(loader!=null){
+					loader.serverURL = server;
+					loader.documentData = doc;
+					loader.documentVersionData = version;	
+					loader.fileFilters = fileSystemFilters;
+					loader.availableDocStatsDP = availableDocStatsDP;
+				}
+				listCnt = new DocumentListControllerClient(server);
+				loadData(listCnt.DOC_STATS);
+			}
+			
+			override public function get data():Object{
+				return null;
+			}
+			
+			override public function get doc_stat_id():Number{
+				return _docStatCBX.selectedItem["id"];
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:VGroup>
+		<s:HGroup width="100%" verticalAlign="middle">
+			<s:Label text="Status:"/>
+			<view1:AdvancedComboBox id="_docStatCBX" dataProvider="{listCnt.docStatsDP}" editable="false" labelField="name" selectedID="{selectedDocStatID}"/>
+		</s:HGroup>
+		<view:DocumentLoader id="loader" />	
+	</s:VGroup>
+	
+</documents:URANUSDocument>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<documents:URANUSDocument xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:view="wonderland.documents.view.*"
+				 xmlns:std="wonderland.documents.module.*"  width="100%" height="100%" xmlns:documents="wonderland.component.documents.*"
+				 implements="wonderland.documents.module.ISTDDocument" xmlns:component="wonderland.component.*" xmlns:view1="wonderland.view.*" xmlns:view2="wonderland.flow.view.*">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.Request;
+			
+			import wonderland.controller.DocumentListControllerClient;
+			
+			override public function init():void{
+				childNameMin = 1;
+				childNameMax = 25;
+				listCnt = new DocumentListControllerClient(server);
+				loadData(listCnt.ORIGINES,
+					listCnt.DOC_STATS,
+					listCnt.CATEGORIES
+				);
+			}
+			
+			override public function get doc_stat_id():Number{
+				return _docStatCBX.selectedItem ? _docStatCBX.selectedItem["id"] : -1;
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<mx:Form x="0" y="0" width="100%" height="100%">
+		<mx:FormItem label="Status [1]" width="100%" >
+			<view1:AdvancedComboBox id="_docStatCBX" dataProvider="{listCnt.docStatsDP}" editable="false" labelField="name" selectedID="{selectedDocStatID}"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%">
+			<s:HGroup width="100%">
+				<mx:FormItem width="100%" label="Contract Line Item Number [2]">
+					<s:TextInput name="2" width="100%"/>
+				</mx:FormItem>
+				<mx:FormItem width="100%" label="Disposition [3]">
+					<s:TextInput name="3" width="100%"/>
+				</mx:FormItem>
+			</s:HGroup>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Origine [4]">
+			<mx:HBox width="100%">
+				<mx:ComboBox name="4" editable="false" dataProvider="{listCnt.originesDP}" labelField="name"></mx:ComboBox>
+				<mx:CheckBox name="5" label="Other" id="otherOrigineTick"/>
+				<s:TextInput name="6" width="100%" enabled="{otherOrigineTick.selected}"/>
+			</mx:HBox>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Exhibit [5]">
+			<s:TextInput name="7" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Category [6]">
+			<mx:HBox width="100%">
+				<mx:ComboBox name="8" editable="false" dataProvider="{listCnt.categoriesDP}" labelField="name"></mx:ComboBox>
+				<mx:CheckBox name="9" label="Other" id="otherCategoryTick"/>
+				<s:TextInput name="10" width="100%" enabled="{otherCategoryTick.selected}"/>
+			</mx:HBox>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="System/Item [7]">
+			<mx:TextInput name="11" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Title of Item [8]">
+			<mx:TextInput name="12" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Authority [9]">
+			<mx:TextInput name="13" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Sub Title [10]">
+			<mx:TextInput name="14" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Contract Ref [11]">
+			<mx:TextInput name="15" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Requiring Office [12]">
+			<mx:TextInput name="16" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Do 250 REQ [13]">
+			<mx:TextInput name="17" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="App Code [14]">
+			<mx:TextInput name="18" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Dist Statements Required [15]">
+			<mx:TextInput name="19" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Frequency [16]">
+			<mx:TextInput name="20" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Date of First Submission [17]">
+			<view2:EasyDateField name="21"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Date of Subsiquent Submission [18]">
+			<view2:EasyDateField name="22"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Price Group [19]">
+			<mx:TextInput name="23" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Estimated Totla Price [20]">
+			<mx:TextInput name="24" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="Drawings and Attachements [21]" height="100%">
+			<component:DocumentAttachements name="25" width="100%" height="100%" serverURL="{server}" popupParent="{this}" enabledButtons="{!isReadOnly}"/>
+		</mx:FormItem>
+	</mx:Form>
+</documents:URANUSDocument>

@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%" creationComplete="init()" 
+		 xmlns:view="wonderland.flow.view.*" xmlns:component="wonderland.component.*" xmlns:documents="wonderland.component.documents.*" xmlns:view1="wonderland.view.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			
+			import mx.controls.Alert;
+			import mx.core.UIComponent;
+			import mx.effects.easing.Elastic;
+			import mx.effects.easing.Sine;
+			import mx.events.ListEvent;
+			import mx.events.ModuleEvent;
+			import mx.managers.PopUpManager;
+			import mx.printing.FlexPrintJob;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.utils.OnDemandEventDispatcher;
+			
+			import org.alivepdf.display.Display;
+			import org.alivepdf.layout.Layout;
+			import org.alivepdf.layout.Mode;
+			import org.alivepdf.layout.Orientation;
+			import org.alivepdf.layout.Size;
+			import org.alivepdf.layout.Unit;
+			import org.alivepdf.pdf.PDF;
+			import org.alivepdf.saving.Download;
+			import org.alivepdf.saving.Method;
+			
+			import spark.components.ResizeMode;
+			
+			import wonderland.documents.controller.DocumentControllerClient;
+			import wonderland.documents.module.ISTDDocument;
+			import wonderland.documents.module.STDDocument;
+			import wonderland.flow.view.SaveErrorAlert;
+
+			/////////////////////////////////////////////////////////////////////////////////////////
+			
+			[Bindable]public var serverURL:String;
+			
+			private var cnt:DocumentControllerClient;
+			
+			[Bindable]public var readOnly:Boolean;
+			[Bindable]public var enableChangeProcessInitiation:Boolean = true;
+			
+			[Bindable]public var documentData:Object = new Object();
+			[Bindable]public var documentVersionData:Object = new Object();
+			[Bindable]public var documentVersionsDP:Array;
+			
+			[Bindable]public var changeLog:Object;
+			
+			[Bindable]public var enableDocTypeChange:Boolean = false;
+			[Bindable]public var forceDocumentTypeId:Object;
+			
+			[Bindable]public var permissionLevelsDP:Array;
+			[Bindable]public var availableTagsDP:Array;
+			[Bindable]public var availableGroupsDP:Array;
+			[Bindable]public var availableDocStatsDP:Array;
+			
+			[Bindable]private var initChangeProcess:Boolean = false;
+			[Bindable]public var docTypesDP:Array;
+			
+			[Bindable] private var isLoading:Boolean = false;
+			
+			//////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			private function chooseDocumentType(id:Object):void{
+				if(id==null){
+					return;
+				}
+				for each (var dt:Object in docTypesDP){
+					if(dt["id"]==id){
+						_docType.selectedItem = dt
+						dataView.implementor(_docType.selectedItem["implementor"]);
+						
+					}
+				}
+			}
+			
+			//////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			private function init():void{
+				cnt = new DocumentControllerClient(serverURL);
+				if(documentData==null){
+					documentData = new Object();
+					enableDocTypeChange = true;
+					chooseDocumentType(forceDocumentTypeId);
+					documentDataName.text = "Untitled";
+					if(forceDocumentTypeId){
+						save();
+					}
+				}else{
+					chooseDocumentType(documentData["doc_type_id"]);
+					cnt.listDocumentVersions(documentData["id"],listDocumentVersionsResult,fault);	
+					isLoading = true;
+				}
+			}
+			
+			private function save(initCP:Boolean = false):void{
+				chooseDocumentType(forceDocumentTypeId);
+				setPropertyView(null);
+				initChangeProcess = initCP;
+				
+				if (_permissionBox==null && !documentData.hasOwnProperty("change_permission_level_id")){
+					permissionBTN.errorString = "Document Permissions must be set";
+					setPropertyView(permissionLevels);
+					return;
+				}
+				
+				if (dataView.child.doc_stat_id==-1){
+					//return;
+				}
+				
+				var doc:Object = new Object();
+				doc["id"] = documentData["id"] ;
+				doc["name"] = documentDataName.text ;
+				doc["doc_type_id"] = _docType.selectedItem["id"];
+				doc["change_permission_level_id"] = _permissionBox ? _permissionBox.writePermission : documentData["change_permission_level_id"];
+				doc["read_permission_level_id"] = _permissionBox ? _permissionBox.readPermission : documentData["read_permission_level_id"];
+				
+				var docv:Object = null;
+				if(documentVersionData!=null && documentVersionData.hasOwnProperty("id")){
+					docv = new Object();
+					docv["id"] = documentVersionData["id"];
+					
+					if (dataView.child.doc_stat_id!=-1){
+						docv["doc_stat_id"] = dataView.child.doc_stat_id;
+					}
+					//docv["doc_stat_id"] = dataView.child.doc_stat_id;
+					
+				}
+				
+				var groups:Array = _groupList ? _groupList.selectedItems : null;
+				var tags:Array = _tags ? _tags.selectedTags :null;
+				isLoading = true;
+				cnt.setDocument(doc,docv,dataView.child.data,groups,tags,setDocumentResult,fault);	
+				
+			}
+			
+			
+			private function setDocumentResult(e:ResultEvent):void{
+				var res:Object = JSON.decode(String(e.result));
+				if(res.hasOwnProperty("ok")){
+					enableDocTypeChange = false;
+					if(documentVersionData==null){
+						documentVersionData = new Object();
+					}
+					
+					documentData["id"] = res["document_id"];
+					documentVersionData = res["document_version"];
+					//documentVersionData["doc_stat_id"] = res[""]["stat"];
+					
+					cnt.listDocumentVersions(documentData["id"],listDocumentVersionsResult,fault);
+					
+					if(initChangeProcess && Boolean(documentVersionData["can_initiate_process"])){
+						openChangeProcessBox();	
+					}
+					this.dispatchEvent(new Event("save"));
+					
+				}else{
+					SaveErrorAlert.show(res["error"],"Server Error while SET:");
+					(dataView.child as STDDocument).showLoader = false;
+				}
+				
+				//setDocumentData();
+			}
+			
+			
+			
+			private function listDocumentVersionsResult(e:ResultEvent):void{
+				documentVersionsDP = JSON.decode(String(e.result));
+				isLoading = false;
+				if(documentVersionsDP!=null && documentVersionsDP.length>0){
+					enableDocTypeChange = false;
+					
+					//dataView.implementor(_docType.selectedItem["implementor"]);
+					
+					_documentVersion.selectedIndex = documentVersionsDP.length -1;
+					for each(var dv:Object in documentVersionsDP){
+						if(dv!=null && documentVersionData!=null){
+							if(dv["id"] == documentVersionData["id"]){
+								_documentVersion.selectedItem = dv;
+							}	
+						}else{
+							documentVersionData = new Object();
+						}
+						
+					}
+					if(_documentVersion.selectedItem){
+						documentVersionData = _documentVersion.selectedItem;
+						//documentVersionData["doc_stat_id"] = _documentVersion.selectedItem["stat"];
+					}
+					
+					setDocumentData();
+				}
+			}
+			
+			private function fault(e:FaultEvent):void{
+				Alert.show(e.fault.message,"Server Error");
+			}
+			
+			private function openChangeProcessBox():void{
+				var win:ChangeProcessInitiationBox = ChangeProcessInitiationBox(PopUpManager.createPopUp(this,ChangeProcessInitiationBox,true));
+				win.server = serverURL;
+				win.documentVersionInfo = documentVersionData;
+				win.documentInfo = documentData;
+				win.documentType = _docType.selectedItem["name"];
+				win.addEventListener("complete",changeProcessCompletionHandler);
+				PopUpManager.centerPopUp(win);
+			}
+			
+			private function changeProcessCompletionHandler(e:Event):void{
+				this.dispatchEvent(new Event("complete"));
+			}
+			
+			/////////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			protected function setDocumentData():void
+			{
+				chooseDocumentType(documentData["doc_type_id"]);
+				var view:ISTDDocument = dataView.child as ISTDDocument;
+				if(view!=null){
+					view.serverURL = serverURL;
+					view.documentData = this.documentData;
+					view.readOnly = this.readOnly;
+					view.changeLog = this.changeLog;
+					view.fileFilters = _docType.selectedItem["file_filter"];
+					view.availableDocStats = availableDocStatsDP;
+					view.documentVersionData = documentVersionData;
+					//documentVersionData = _documentVersion.selectedItem;
+					view.init();
+					
+				}else{
+					Alert.show("");
+				}
+				
+			}
+
+			protected function createNewVersion(event:MouseEvent):void
+			{
+				documentVersionData = new Object();
+				save();
+				 
+			}
+			
+			
+			
+			
+			//////////////////////////////////////////////////////////////////////////////////////////////////
+
+			protected function printDocument(event:MouseEvent):void
+			{
+				var pj:FlexPrintJob = new FlexPrintJob();
+				var view:ISTDDocument = dataView.child as ISTDDocument;
+				
+				pj.addObject(documentTitle);
+				for each(var i:UIComponent in view.printableObjects){
+					pj.addObject(i);	
+				}
+				if (pj.start()){
+					pj.send();
+				}
+				
+			}
+			
+			protected function saveAsPDF(event:MouseEvent):void
+			{
+				var fileName:String = _documentVersion.selectedItem["name"];
+				
+				var objList:Array = dataView.child.printableObjects;
+				var printPDF:PDF = new PDF( Orientation.LANDSCAPE, Unit.POINT, Size.A3 );
+				//printPDF.setDisplayMode( Display.FULL_PAGE, Layout.SINGLE_PAGE );
+				for each (var o:UIComponent in objList){
+					printPDF.addPage();
+					printPDF.addText("File: " + fileName +" Page "+ printPDF.getPages().length +" out of "+ objList.length +" pages",10,10);
+					printPDF.addImage( o );	
+					
+				}
+				var file:FileReference = new FileReference();
+				var bytes:ByteArray = printPDF.save( Method.LOCAL );
+				file.save( bytes,fileName+".pdf" );
+			}
+			
+			//////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			private function setPropertyView(v:NavigatorContent):void{
+				if (v==null || documentPropertiesVS.selectedChild == v){
+					documentPropertiesVS.selectedIndex = 0;
+					dataView.alpha = 1;
+				}else if(documentPropertiesVS.selectedChild==0){
+					dataView.alpha = 0.2;
+					documentPropertiesVS.selectedChild = v;
+				}else {
+					documentPropertiesVS.selectedChild = v;
+					dataView.alpha = 0.2;
+				}
+			}
+			
+
+			protected function askForSave(event:MouseEvent):void
+			{
+				if(readOnly){
+					Alert.show("You have Read Permissions, Save cannot be performed","Info");
+					return;
+				}
+				if(enableChangeProcessInitiation && Boolean(documentVersionData["can_initiate_process"])){
+					setPropertyView(saveOptions);	
+				}else{
+					save();
+				}
+				
+			}
+
+
+			
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<mx:Move id="moveIn" yFrom="-250" yTo="0" duration="200" easingFunction="{Sine.easeInOut}"/>
+		<mx:Move id="moveOut" yFrom="0" yTo="-250" duration="200" easingFunction="{Sine.easeOut}"/>
+		
+		
+	</fx:Declarations>
+	<fx:Metadata>
+		[Event(name="save", type="flash.events.Event")]
+		[Event(name="complete", type="flash.events.Event")]
+	</fx:Metadata>
+	<s:VGroup width="100%" height="100%">
+		<mx:ApplicationControlBar width="100%" enabled="{!readOnly}">
+			<mx:Form id="documentTitle" width="100%"  paddingLeft="1" paddingTop="1" paddingRight="1" paddingBottom="1">
+				<mx:FormItem label="" width="100%">
+					<s:TextInput id="documentDataName" width="100%" text="{documentData['name']}"/>
+					
+				</mx:FormItem>
+				<mx:FormItem label="" width="100%">
+					<s:HGroup width="100%">
+						
+						<mx:ComboBox id="_docType" editable="false" width="174" 
+									 dataProvider="{docTypesDP}" 
+									 labelField="name" 
+									 enabled="{enableDocTypeChange}" 
+									 visible="{forceDocumentTypeId==null}"/>
+						
+						<mx:Label text="Rev"/>
+						
+						<mx:ComboBox id="_documentVersion" editable="false" width="124" 
+									 dataProvider="{documentVersionsDP}" 
+									 labelField="short_name" 
+									 change="setDocumentData()"/>
+						
+						<mx:Button icon="@Embed(source='../../assets/images/png/new_16x16.png')" label="New Rev" 
+								   click="createNewVersion(event)" enabled="{!readOnly}"/>
+						
+					</s:HGroup>
+				</mx:FormItem>
+			</mx:Form>
+			
+			<mx:Label text="Read Only" fontSize="11" fontWeight="bold" color="#CA0202" visible="{readOnly}"/>
+			
+			<mx:Button icon="@Embed(source='../../assets/images/png/print_48x48.png')" 
+					   width="58" height="58" click="setPropertyView(printOptions)"
+					   toolTip="Print"/>
+			<mx:Button icon="@Embed(source='../../assets/images/png/shield4_48x48.png')" 
+					   width="58" height="58" click="setPropertyView(permissionLevels)"
+					   toolTip="Permissions" id="permissionBTN"/>
+			<mx:Button icon="@Embed(source='../../assets/images/png/label_48x48.png')" width="58" height="58"
+					   toolTip="Tags" click="setPropertyView(tags)" enabled="true"/>
+			<mx:Button icon="@Embed(source='../../assets/images/png/users group_48x48.png')" width="58" height="58"
+					   toolTip="Programs" click="setPropertyView(programs)"/>
+			<mx:Spacer/>
+			<mx:VRule height="30"/>
+			<mx:Spacer/>
+			<mx:Button icon="@Embed(source='../../assets/images/png/save 2_48x48.png')" width="58" height="58"
+					   click="askForSave(event)" enabled="{!isLoading}"/>
+		</mx:ApplicationControlBar>
+		
+		<s:Group width="100%" height="100%">
+			
+			
+			<!-- ##################################################################################################### -->
+			<documents:DocumentImplementorFactory width="100%" height="100%" id="dataView" editable="{documentVersionData}"/>	
+			<!-- ##################################################################################################### -->
+			
+			
+			<mx:ViewStack id="documentPropertiesVS" width="100%" height="250">
+				<s:NavigatorContent  height="0">
+					
+				</s:NavigatorContent>
+				<s:NavigatorContent id="permissionLevels" width="100%"  showEffect="{moveIn}"  hideEffect="{moveOut}" >
+					<s:HGroup  width="100%" verticalAlign="top" horizontalAlign="right" >
+						<component:ReadWritePermissionsBox  width="385" id="_permissionBox" backgroundColor="#EBEBEB" permissionLevels="{permissionLevelsDP}"/>
+						<mx:Spacer width="97" />
+					</s:HGroup>
+				</s:NavigatorContent>
+				<s:NavigatorContent id="tags" width="100%"  showEffect="{moveIn}"  hideEffect="{moveOut}">
+					<s:HGroup  width="100%"  verticalAlign="top" horizontalAlign="right" >
+						<mx:Spacer/>
+						<mx:Form width="385" dropShadowVisible="true"   backgroundColor="#EBEBEB">
+							<mx:FormItem label="Tags" dropShadowVisible="false" width="100%">
+								<view:TagSelector width="100%" height="100%" id="_tags" availableTags="{availableTagsDP}" />
+							</mx:FormItem>
+						</mx:Form>
+						<mx:Spacer width="97" />
+					</s:HGroup>
+				</s:NavigatorContent>
+				<s:NavigatorContent id="documentStatus" width="100%"  showEffect="{moveIn}"  hideEffect="{moveOut}">
+					<s:HGroup  width="100%"  verticalAlign="top" horizontalAlign="right" >
+						<mx:Spacer/>
+						<mx:Form width="385" dropShadowVisible="true"   backgroundColor="#EBEBEB">
+							<mx:FormItem label="Document Status" dropShadowVisible="false" width="100%">
+								<mx:ComboBox id="_docStatCBX" dataProvider="{availableDocStatsDP}" editable="false" labelField="name"/>
+							</mx:FormItem>
+						</mx:Form>
+						<mx:Spacer width="97" />
+					</s:HGroup>
+				</s:NavigatorContent>
+				<s:NavigatorContent id="programs" width="100%" showEffect="{moveIn}"  hideEffect="{moveOut}" >
+					<s:HGroup  width="100%"  verticalAlign="top" horizontalAlign="right" >
+						<mx:Spacer/>
+						<mx:Form width="385" x="728" dropShadowVisible="true"  backgroundColor="#EBEBEB">
+							<mx:FormItem label="Programs" width="100%">
+								<view:GroupSelector id="_groupList" width="100%"  height="100%" dataProvider="{availableGroupsDP}" allowMultipleSelection="false"/>
+							</mx:FormItem>
+						</mx:Form>
+						<mx:Spacer width="97" />
+					</s:HGroup>
+				</s:NavigatorContent>
+				<s:NavigatorContent id="saveOptions" width="100%" showEffect="{moveIn}"  hideEffect="{moveOut}" >
+					<s:HGroup  width="100%"  verticalAlign="top" horizontalAlign="right" >
+						<mx:Spacer/>
+						<mx:Form width="251" x="808" dropShadowVisible="true"  backgroundColor="#EBEBEB" height="120">
+							<mx:FormHeading label="Save Options"/>
+							<mx:FormItem label="Change Process" width="100%">
+								<mx:Button x="181" y="4" label="Initiate" width="100%" click="save(true)"/>
+							</mx:FormItem>
+							<mx:FormItem label="Save as" width="100%">
+								<mx:Button label="Draft" width="100%" click="save()"/>
+							</mx:FormItem>
+						</mx:Form>
+						
+					</s:HGroup>
+				</s:NavigatorContent>
+				<s:NavigatorContent id="printOptions" width="100%" showEffect="{moveIn}"  hideEffect="{moveOut}" >
+					<s:HGroup  width="100%"  verticalAlign="top" horizontalAlign="right" >
+						<mx:Spacer/>
+						<mx:Form width="194" x="579" dropShadowVisible="true"  backgroundColor="#EBEBEB" height="120">
+							<mx:FormHeading label="Print Options"/>
+							<mx:FormItem label="Send To" width="100%">
+								<mx:LinkButton x="181" y="4" label="Printer" click="printDocument(event)"/>
+							</mx:FormItem>
+							<mx:FormItem label="Save as" width="100%">
+								<mx:LinkButton label="PDF" click="saveAsPDF(event)"/>
+							</mx:FormItem>
+						</mx:Form>
+						<mx:Spacer width="280" />
+					</s:HGroup>
+				</s:NavigatorContent>
+			</mx:ViewStack>
+			
+				
+				
+		</s:Group>	
+		
+	</s:VGroup>
+	<s:VGroup width="100%" height="100%" visible="{isLoading}" horizontalAlign="right" verticalAlign="top">
+		<view1:Gear id="gear" width="100" height="100" doRunRun="{isLoading}" speed="0.5" alpha="0.5"/>
+	</s:VGroup>
+	
+</s:Group>

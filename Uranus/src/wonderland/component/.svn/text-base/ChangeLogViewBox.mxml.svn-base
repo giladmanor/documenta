@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view:RestrictedTitileWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="526" height="508" title="Change Log"
+			   xmlns:view="wonderland.flow.view.*"
+			   close="PopUpManager.removePopUp(this)" >
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			[Bindable]public var changeLogsDP:Array;	
+			
+			private function getUserName(item:Object,column:AdvancedDataGridColumn):String{
+				return item["user"]["name"];
+			}
+			
+			private function getStatus(item:Object,column:AdvancedDataGridColumn):String{
+				return item["change_stat"] ? item["change_stat"]["name"] : "Pending";
+			}
+			
+			private function getActionCode(item:Object,column:AdvancedDataGridColumn):String{
+				return item["action_code"] ? item["action_code"]["name"] : "N/A";
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<mx:AdvancedDataGrid dataProvider="{changeLogsDP}" width="100%" height="100%">
+		<mx:columns>
+			<mx:AdvancedDataGridColumn labelFunction="getUserName" headerText="User"/>
+			<mx:AdvancedDataGridColumn labelFunction="getStatus" headerText="Status"/>
+			<mx:AdvancedDataGridColumn labelFunction="getActionCode" headerText="Action"/>
+			<mx:AdvancedDataGridColumn dataField="updated_at" headerText="Update"/>
+			<mx:AdvancedDataGridColumn dataField="created_at" headerText="Creation"/>
+				
+			
+		</mx:columns>
+	</mx:AdvancedDataGrid>
+</view:RestrictedTitileWindow>

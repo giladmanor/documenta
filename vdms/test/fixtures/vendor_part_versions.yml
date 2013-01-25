@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  vendor: 
+  part_version: 
+  part_number: MyString
+  cage_code: MyString
+  is_serialized: false
+  is_dropship: false
+  reciept_location: MyString
+  ship_location: MyString
+  uid_desc: MyString
+
+two:
+  vendor: 
+  part_version: 
+  part_number: MyString
+  cage_code: MyString
+  is_serialized: false
+  is_dropship: false
+  reciept_location: MyString
+  ship_location: MyString
+  uid_desc: MyString

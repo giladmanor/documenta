@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  customer: 
+  part_version: 
+  part_number: MyString
+  nomenclature: MyString
+
+two:
+  customer: 
+  part_version: 
+  part_number: MyString
+  nomenclature: MyString

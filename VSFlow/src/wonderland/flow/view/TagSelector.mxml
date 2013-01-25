@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300"
+		 creationComplete="init()">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			
+			[Bindable] private var suggestedTagsDP:ArrayCollection = new ArrayCollection();
+			[Bindable] private var selectedTagsDP:Array = new Array();
+			
+			public function set selectedTags(a:Array):void{
+				selectedTagsDP = a;
+			}
+			
+			public function get selectedTags():Array{
+				var a:Array = selectedTagsDP;
+				if(a.length==1){
+					a.push("");
+				}
+				return a;
+			}
+			
+			private function init():void{
+				suggestedTagsDP.filterFunction = filterSuggersions;
+				suggestedTagsDP.refresh();
+			}
+			
+			private function filterSuggersions(item:Object):Boolean{
+				if(String(item['name']).toLowerCase().indexOf(_newTag.text.toLowerCase())>=0){
+					return true;
+				}else{
+					return false
+				}
+			}
+			
+			public function set availableTags(a:Array):void{
+				suggestedTagsDP.source = a;	
+			}
+			
+			protected function addTag(event:MouseEvent):void
+			{
+				var o:Object = new Object();
+				o["name"] = _newTag.text;
+				for each (var i:Object in suggestedTagsDP){
+					if (o["name"]==i["name"]){
+						o = i;
+					}
+				}
+				
+				for each(var j:Object in selectedTagsDP){
+					if (o["name"]==j["name"]){
+						return;
+					}
+				}
+				
+				var a:Array = selectedTagsDP;
+				a.push(o);
+				_selectedList.dataProvider = a;
+			}
+			
+			protected function removeTag(event:MouseEvent):void
+			{
+				var a:Array = new Array();
+				for each (var i:Object in selectedTagsDP){
+					if(i!=_selectedList.selectedItem){
+						a.push(i);
+					}
+				}
+				selectedTagsDP = a;
+			}
+
+			protected function changeFilter(event:TextOperationEvent):void
+			{
+				suggestedTagsDP.refresh();
+			}
+
+
+			protected function selectSuggestion(event:MouseEvent):void
+			{
+				if(_suggestionList.selectedItem==null){
+					return;
+				}
+				_newTag.text = _suggestionList.selectedItem["name"];
+			}
+			
+			private function addSuggestion(event:MouseEvent):void
+			{
+				selectSuggestion(null);
+				addTag(null);
+			}
+			
+
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:HGroup x="0" y="0" width="100%" height="100%">
+		<s:VGroup width="100%" height="100%">
+			<s:HGroup width="100%" height="22" verticalAlign="middle">
+				<fx:Script>
+					<![CDATA[
+						import spark.events.TextOperationEvent;
+					]]>
+				</fx:Script>
+				<mx:Spacer/>
+				<s:TextInput id="_newTag" width="100%" change="changeFilter(event)"/>
+				<mx:Button icon="@Embed(source='../../../assets/images/png/add_16x16.png')" width="16" height="16" click="addTag(event)"/>
+			</s:HGroup>
+			<mx:List id="_suggestionList" dataProvider="{suggestedTagsDP}" width="100%" height="100%" labelField="name" doubleClickEnabled="true" 
+					 click="selectSuggestion(event)"
+					 doubleClick="addSuggestion(event)"></mx:List>
+		</s:VGroup>
+		<mx:Spacer/>
+		<s:VGroup width="100%" height="100%">
+			<s:HGroup width="100%" height="22" verticalAlign="middle">
+				<mx:Spacer/>
+				<s:Label text="Tags:"/>
+				<mx:Spacer width="100%"/>
+				<mx:Button icon="@Embed(source='../../../assets/images/png/delete_16x16.png')" width="16" height="16" click="removeTag(event)"/>
+				<mx:Spacer/>
+			</s:HGroup>
+			<mx:List id="_selectedList" dataProvider="{selectedTagsDP}" width="100%" height="100%" labelField="name"></mx:List>
+		</s:VGroup>
+	</s:HGroup>
+</s:Group>

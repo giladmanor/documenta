@@ -1,0 +1,43 @@
+rails generate model user 		name:string l_name:string email:string title:string password:string role:references permission_level:references surrogate_id:integer avatar:text signature_image:text
+rails generate model role 		name:string 
+rails generate model module_permission 	name:string role:references implementor:string change_permission_level_id:integer read_permission_level_id:integer params:text
+rails generate model permission_level 	name:string value:integer  
+rails generate model group 		name:string 
+rails generate model user_group 	user:references group:references 
+
+rails generate model document 		name:string parent_id:integer change_permission_level_id:integer read_permission_level_id:integer doc_type:references doc_stat:references
+rails generate model document_version	document:references file_name:string content:binary
+rails generate model document_tag 	document:references tag:references 
+rails generate model document_version_tag 	document_version:references tag:references 
+rails generate model document_group 	document:references group:references 
+rails generate model document_version_part 	document_version:references part_version:references 
+rails generate model document_version_change_log 	document_version:references change_log:references 
+
+rails generate model tag name:string
+rails generate model doc_type name:string implementor:string
+rails generate model doc_stat name:string 
+rails generate model attachment owner:integer owned:integer 
+
+rails generate model change_log user:references delegate_id:integer action_code:references comments:text change_stat:references
+rails generate model action_code name:string permission_level:references announce_template:references
+rails generate model announce_template name:string template:text
+rails generate model change_stat name:string 
+
+rails generate model part name:string number:string 
+rails generate model part_version part:references change_log:references group:references nomenclature:string cage_code:string configuration_item:string natl_stock_number:string part_status:references vendor:references customer:references next_higher_assembly:text
+rails generate model part_version_assembly parent_id:integer part_version:references change_log:references
+rails generate model part_version_rma part_version:references nomenclature:string uid_desc:string source_of_repair:string repair_ship_to:string configuration_note:text
+rails generate model customer_part_version customer:references part_version:references part_number:string nomenclature:string
+rails generate model vendor_part_version vendor:references part_version:references part_number:string cage_code:string is_serialized:boolean is_dropship:boolean reciept_location:string ship_location:string uid_desc:string
+
+rails generate model part_status name:string
+rails generate model customer name:string
+rails generate model vendor name:string
+rails generate model seller name:string
+
+rails generate model flow_type name:string description:string doc_type:references
+rails generate model flow_step name:string flow_type:references role:references implementor:string parent:integer role:references permission_level:references announce_template:references params:text
+  
+rails generate model change_process title:string desc:text group:references flow_step:references document_version:references
+rails generate model change_process_users change_process:references user:references ord:integer change_log:references 
+rails generate model change_process_document_version change_process:references document_version:references

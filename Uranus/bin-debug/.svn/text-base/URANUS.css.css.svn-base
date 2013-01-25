@@ -1,0 +1,17 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+
+mx|ApplicationControlBar
+{
+	cornerRadius: 7;
+	dropShadowVisible: false;
+	paddingBottom: 0;
+	paddingTop: 0;
+}
+mx|Button
+{
+	cornerRadius: 7;
+}
+	

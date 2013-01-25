@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%"
+		 creationComplete="init()" xmlns:view="wonderland.view.*">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.documents.controller.DocumentDataControllerClient;
+			import wonderland.documents.controller.DocumentDataUploader;
+			import wonderland.flow.controller.FileUploader;
+			
+			
+			[Bindable] public var serverURL:String;
+			[Bindable] public var documentData:Object;
+			[Bindable] public var fileFilters:String;
+			
+			[Bindable] private  var _documentVersionData:Object;
+			[Bindable] private var documentImageSource:String = "assets/images/png/new_256x256.png";
+			
+			[Bindable]public var availableDocStatsDP:Array;
+			
+			public function set documentVersionData(o:Object):void{
+				_documentVersionData = o;
+				if(_documentVersionData!=null && _documentVersionData.hasOwnProperty("file_name") && _documentVersionData["file_name"]!=null){
+					documentImageSource = "assets/images/png/documents_256x256.png";
+				}else{
+					documentImageSource = "assets/images/png/new_256x256.png";
+					fileNameTXT.text = "No File Loaded";
+				}
+			}
+			
+			private function init():void{
+				
+				
+			}
+			
+			
+			
+			protected function upload(event:MouseEvent):void
+			{
+				gear.doRunRun = true;
+				var diu:DocumentDataUploader = new DocumentDataUploader(serverURL);
+				var dvd:Object = _documentVersionData;
+				diu.uploadDocumentData(dvd["id"], fileFilters);
+				diu.addEventListener(Event.COMPLETE,imageLoadComplete);
+			}
+
+			private function imageLoadComplete(e:Event):void{
+				gear.doRunRun = false;
+				_documentVersionData["file_name"] = (e.target as DocumentDataUploader).uploadedFileName;
+				fileNameTXT.text = _documentVersionData["file_name"];
+				documentImageSource = "assets/images/png/documents_256x256.png";
+			}
+			
+			
+			private function download(e:MouseEvent):void{
+				var win:DocumentDownloadBox = DocumentDownloadBox(PopUpManager.createPopUp(this,DocumentDownloadBox,true));
+				win.serverURL = serverURL;
+				win.documentVersionID = _documentVersionData["id"];
+				win.fileName = _documentVersionData["file_name"];
+				PopUpManager.centerPopUp(win);
+				win.download();
+			}
+			
+			private function fault(e:FaultEvent):void{
+				gear.doRunRun = false;
+				Alert.show(e.fault.message,"Server Error");
+			}
+
+
+			protected function send(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+			}
+
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<view:Gear id="gear" x="170" y="170" height="100" width="100" alpha="0.25"/>
+	<s:VGroup width="100%" height="100%">
+		
+		<s:HGroup x="0" y="0" width="100%" height="100%" verticalAlign="top" horizontalAlign="left">
+			<s:VGroup>
+				<mx:Image id="documentIMG" width="250" height="250" source="{documentImageSource}"/>
+				
+				
+				
+			</s:VGroup>
+			
+			<mx:Form width="100%" dropShadowVisible="true" backgroundColor="#F2F2F2">
+				<mx:Button label="Upload" icon="@Embed(source='../../../assets/images/png/up_32x32.png')" width="110" textAlign="left"
+						   click="upload(event)"/>
+				<mx:Button label="Download" icon="@Embed(source='../../../assets/images/png/down_32x32.png')" width="110"
+						   click="download(event)"/>
+				<mx:Button enabled="false" label="Send" icon="@Embed(source='../../../assets/images/png/email_32x32.png')" width="110" textAlign="left"
+						   click="send(event)"/>
+				<mx:FormHeading label="Info"/>
+				<mx:FormItem label="Revision ID">
+					<mx:Label text="{_documentVersionData['id']}"/>
+				</mx:FormItem>
+				<mx:FormItem label="File Name">
+					<mx:Label id="fileNameTXT" text="{_documentVersionData['file_name']}"/>
+				</mx:FormItem>
+				<mx:FormItem label="File Types">
+					<mx:Label text="{fileFilters}"/>
+				</mx:FormItem>
+			</mx:Form>
+			
+		</s:HGroup>	
+	</s:VGroup>
+	
+</s:Group>

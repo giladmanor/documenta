@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"  xmlns:components="wonderland.components.*" xmlns:admin="wonderland.view.admin.*"
+			   preloaderChromeColor="#777777" pageTitle="Uranus VDMS"
+			   preinitialize="preInit()" xmlns:view="wonderland.flow.view.*"
+			   implements="wonderland.application.IWonderlandApplication" backgroundColor="#EEEEEE">
+	<fx:Style source="URANUS.css.css"/>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			
+			import flash.net.navigateToURL;
+			
+			import mx.controls.Alert;
+			import mx.core.FlexGlobals;
+			import mx.effects.easing.Elastic;
+			import mx.effects.easing.Sine;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.application.IWonderlandApplication;
+			import wonderland.flow.view.AboutBox;
+			import wonderland.flow.view.ChangePasswordBox;
+			
+			
+			[Bindable]public var serverURL:String = "http://localhost:3000/";
+			[Bindable]public var configuration:Object ;
+			
+			private function preInit():void{
+				var p:Object = FlexGlobals.topLevelApplication.parameters;
+				if(p.hasOwnProperty("server")){
+					serverURL = p["server"];	
+				}
+				
+			
+			}
+			
+			protected function login(event:Event):void
+			{
+				configuration = stdLogin.configuration;
+				viewstack1.selectedChild = consul;
+			}
+			
+			protected function openAboutBox(event:MouseEvent):void
+			{
+				PopUpManager.centerPopUp(PopUpManager.createPopUp(this,wonderland.flow.view.AboutBox,false));
+			}
+			
+			public function logout(event:MouseEvent):void
+			{
+				var url:String = FlexGlobals.topLevelApplication.loaderInfo.url
+				var urlRequest:URLRequest = new URLRequest(url.substr(0,url.length -3)+"html");
+				navigateToURL(urlRequest,"_self");
+				
+			}
+			
+			protected function openPasswordChanger(event:MouseEvent):void
+			{
+				var pc:ChangePasswordBox = ChangePasswordBox(PopUpManager.createPopUp(this,ChangePasswordBox,true));
+				pc.serverURL = serverURL;
+				PopUpManager.centerPopUp(pc);
+			}
+			
+
+			public function get popupParent():*{
+				return dem;
+			}
+
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<mx:Move id="moveOut" duration="400" xFrom="0" xTo="2000" easingFunction="{Sine.easeInOut}"/>
+		<mx:Move id="moveIn"  duration="900" xFrom="2000" xTo="0" easingFunction="{Sine.easeInOut}"/>
+		
+		
+		
+	</fx:Declarations>
+	<mx:ViewStack x="0" y="0" id="viewstack1" width="100%" height="100%">
+		<s:NavigatorContent width="100%" height="100%" showEffect="{moveIn}" hideEffect="{moveOut}">
+			<s:VGroup width="100%" height="100%" verticalAlign="top">
+				<mx:Image source="assets/images/splash.png"/>	
+			</s:VGroup>
+			
+			<mx:VBox verticalAlign="middle" horizontalAlign="center" width="100%" height="100%" depth="2">
+				
+				<view:STDLogin id="stdLogin" serverURL="{serverURL}" complete="login(event)">
+				</view:STDLogin>
+				<mx:LinkButton label="Powered by Valueshine" click="openAboutBox(event)" fontSize="10" visible="false"/>
+				
+			</mx:VBox>
+		</s:NavigatorContent>
+		
+		
+		
+		<s:NavigatorContent id="consul" width="100%" height="100%" showEffect="{moveIn}" hideEffect="{moveOut}">
+			<mx:VBox width="100%" height="100%">
+				<mx:ApplicationControlBar width="100%" height="40" contentBackgroundColor="#000000" contentBackgroundAlpha="1.0" chromeColor="#731212" dropShadowVisible="false">
+					<mx:Spacer width="16" height="17" y="15"/>
+					<mx:Image source="assets/images/sideLogo.png" scaleContent="false" click="dem.openSplash()"/>
+					<mx:Spacer height="17" width="15" y="12"/>
+					<mx:VRule height="80%"/>
+					<mx:Label text="{dem.viewLabel}" fontWeight="bold" fontSize="23" color="#132C75"/>
+					<mx:Spacer width="100%" height="12"/>
+					<mx:VRule height="80%" visible="false"/>
+					
+					<mx:VRule height="80%" visible="false"/>
+					<mx:LinkButton label="Help"  click="dem.openHelpURL()" visible="false"/>
+					<mx:VRule height="80%" visible="false"/>
+					<mx:LinkButton label="About" click="openAboutBox(event)" visible="false"/>
+					<mx:LinkButton label="Change Password"  click="openPasswordChanger(event)"/>
+					<mx:VRule height="80%"/>
+					<mx:LinkButton label="Logout" click="logout(event)"/>
+					<mx:Spacer/>
+					
+				</mx:ApplicationControlBar>
+				<view:STDDashboard id="dem" loginData="{configuration}" showEffect="{moveIn}" server="{serverURL}"/>	
+				<mx:Spacer/>
+			</mx:VBox>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+	<!-- http://srv.thewhiterabbit.me -->
+	
+	
+	
+	
+	
+</s:Application>

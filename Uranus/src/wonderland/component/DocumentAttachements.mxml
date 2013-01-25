@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300"
+		 implements="wonderland.documents.view.IDocumentList">
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.core.FlexGlobals;
+			import mx.core.UIComponent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.application.IWonderlandApplication;
+			import wonderland.documents.controller.DocumentControllerClient;
+			import wonderland.documents.view.IDocumentList;
+			
+			
+			[Bindable] private var attachementsDP:ArrayCollection = new ArrayCollection();
+			private var cnt:DocumentControllerClient;
+			
+			[Bindable] public var serverURL:String;
+			[Bindable]public var popupParent:* = this;
+			
+			[Bindable]private var _enabled:Boolean = false;
+			
+			public function set enabledButtons(value:Boolean):void{
+				_enabled = value;
+			}
+			
+			
+			public function set documents(a:Array):void{
+				cnt = new DocumentControllerClient(serverURL);
+				if(a!=null && a.length>0){
+					a.push("");
+					cnt.listDocumentVersionsByArray(a,documentVersionsByArrayResult,fault);	
+				}else{
+					attachementsDP = new ArrayCollection();
+				}
+			}
+			
+			[Bindable(event="propertyChange")]
+			public function get numberOfDocuments():Number{
+				return attachementsDP.length;
+			}
+			
+			private function documentVersionsByArrayResult(e:ResultEvent):void{
+				attachementsDP.source = JSON.decode(String(e.result));
+			}
+			
+			private function fault(e:FaultEvent):void{
+				Alert.show(e.fault.message,"Server Error");
+			}
+			
+			public function get documents():Array{
+				var res:Array = new Array();
+				for each(var i:Object in attachementsDP){ 
+					if(i!=null && i.hasOwnProperty("name")){
+						res.push(i["id"]);	
+					}
+				}
+				res.push("");
+				return res;
+			}
+			
+			
+
+			protected function addDocumentVersion(event:MouseEvent):void
+			{
+				var win:DocumentSearchBox = DocumentSearchBox(PopUpManager.createPopUp(popupParent,DocumentSearchBox, true));
+				win.serverURL = serverURL;
+				win.addEventListener(Event.SELECT,addAttachement);
+				PopUpManager.centerPopUp(win);
+			}
+			
+			private function addAttachement(e:Event):void{
+				var o:Object = (e.currentTarget as DocumentSearchBox).selected;
+				if (o!=null){
+					attachementsDP.addItem(o);	
+					dispatchEvent (new Event ("propertyChange"));
+
+				}
+				
+			}
+
+
+			protected function viewDocumentVersion(event:MouseEvent):void
+			{
+				if (list.selectedItem!=null){
+					var win:DocumentViewerBox = DocumentViewerBox(PopUpManager.createPopUp(popupParent,DocumentViewerBox));
+					win.documentData = list.selectedItem["document"];
+					win.documentVersionData = list.selectedItem["document_version"];
+					win.serverURL = serverURL;
+					PopUpManager.centerPopUp(win);	
+				}
+				
+			}
+
+
+			protected function deleteDocumentVersion(event:MouseEvent):void
+			{
+				if(list.selectedItem!=null){
+					attachementsDP.removeItemAt(list.selectedIndex);
+					dispatchEvent (new Event ("propertyChange"));
+
+				}
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:VGroup width="100%" height="100%">
+		<mx:List id="list" width="100%" height="100%" labelField="name" dataProvider="{attachementsDP}"></mx:List>
+		<mx:HBox width="100%" horizontalAlign="right">
+			<mx:Button label="Add" icon="@Embed(source='../../assets/images/png/add_16x16.png')" width="88"
+					   click="addDocumentVersion(event)" enabled="{_enabled}"/>
+			<mx:Button label="View" icon="@Embed(source='../../assets/images/png/documents_16x16.png')" width="88"
+					   click="viewDocumentVersion(event)" enabled="{_enabled}"/>
+			<mx:Button label="Remove" icon="@Embed(source='../../assets/images/png/delete_16x16.png')" width="88"
+						click="deleteDocumentVersion(event)" enabled="{_enabled}"/>
+		</mx:HBox>
+		
+	</s:VGroup>
+</s:Group>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view:RestrictedTitileWindow  xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="822" height="538" xmlns:view="wonderland.flow.view.*" 
+			   title="Initiate Change Process" xmlns:component="wonderland.component.*"
+			   close="closeWindow(event)" creationComplete="init(event)">
+	<fx:Metadata>
+		[Event(name="complete", type="flash.events.Event")]
+		
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.effects.easing.Elastic;
+			import mx.effects.easing.Sine;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.controller.ChangeProcessControllerClient;
+			
+			private var cnt:ChangeProcessControllerClient;
+			
+			[Bindable] public var server:String;
+			
+			[Bindable] private var changeProcessInfo:Object = new Object();
+			[Bindable] public var documentVersionInfo:Object;
+			[Bindable] public var documentInfo:Object;
+			
+			protected function init(event:FlexEvent):void{
+				cnt = new ChangeProcessControllerClient(server);
+			}
+			
+			public function set documentType(s:String):void{
+				this.title = "Initiate "+s+" Change Process" ;
+			}
+			
+			protected function closeWindow(event:CloseEvent):void
+			{
+				PopUpManager.removePopUp(this);
+			}
+
+
+			protected function save(initiate:Boolean = false):void{
+				if(_subject.text.length==0){
+					_subject.errorString = "Please Enter Title";
+					return;
+				}
+				if(_desc.text.length==0){
+					_desc.errorString = "Please Enter Desription";
+					return;
+				}
+				if(recipients.dataList.length==0){
+					recipients.errorString = "Please Enter Recipients";
+					return;
+				}
+				
+				
+				cnt.setProcess(changeProcessInfo["id"],_subject.text,_desc.text,recipients.dataList,documentAttachements.documents,documentVersionInfo["id"],saveResult,fault);
+			}
+			
+			private function saveResult(e:ResultEvent):void{
+				this.dispatchEvent(new Event("complete"));
+				closeWindow(null);
+			}
+			
+			private function fault(e:FaultEvent):void{
+				Alert.show(e.fault.message,"Server Error");
+			}
+			
+			protected function addUser(event:Event):void
+			{
+				var user:Object = userSelector.selected;
+				recipients.addItem(user);
+			}
+
+
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<mx:Move id="moveIn" duration="300" xFrom="500" xTo="0" easingFunction="{Sine.easeInOut}"/>
+		<mx:Move id="moveOut" duration="300" xFrom="0" xTo="500" easingFunction="{Sine.easeInOut}"/>
+	</fx:Declarations>
+	<mx:Form x="0" y="0" width="100%" height="100%">
+		<mx:FormItem label="Title" width="100%">
+			<mx:TextInput id="_subject" width="100%" text="{documentVersionInfo['name']}"/>
+		</mx:FormItem>
+		<mx:FormItem label="Description" width="100%">
+			<mx:TextArea id="_desc" width="100%" height="73" text="{changeProcessInfo['desc']}"/>
+		</mx:FormItem>
+		<mx:FormItem label="Documents" width="100%">
+			
+			<mx:LinkButton icon="@Embed(source='../../assets/images/png/add to basket_24x24.png')" width="100%" height="32"
+						   click="vs.selectedIndex = 1" 
+						   label="{documentAttachements.numberOfDocuments} Documents Attached" textAlign="left"/>
+		</mx:FormItem>
+		<mx:HRule width="100%"/>
+		<mx:FormItem label="Users" width="100%" height="100%">
+			<mx:HBox x="158" y="219" width="100%" height="100%">
+				<view:SearchUser id="userSelector" width="100%" height="100%" select="addUser(event)" server="{server}">
+					
+				</view:SearchUser>
+				
+				<mx:VBox height="100%" width="100%" horizontalAlign="center">
+					<mx:ApplicationControlBar width="100%">
+						<mx:VBox height="100%" verticalAlign="middle" width="101">
+							<mx:Label text="Recipients"/>
+							<mx:CheckBox label="Force Order"/>
+						</mx:VBox>
+						<mx:Spacer width="100%"/>
+						<mx:Button icon="@Embed(source='../../assets/images/png/users group_48x48.png')" width="58" height="58" click="recipients.addBunch((recipients.bunchCounter+1) + '')"/>
+						<mx:Button icon="@Embed(source='../../assets/images/png/delete user_48x48.png')" width="58" height="58" click="recipients.removeSelected()"/>
+					</mx:ApplicationControlBar>
+					
+					<view:BunchingTree id="recipients" width="100%" height="100%">
+						
+					</view:BunchingTree>
+					
+					
+				</mx:VBox>
+				
+			</mx:HBox>
+		</mx:FormItem>
+		<mx:FormItem width="100%">
+			<mx:HBox x="263" y="9" width="100%" height="100%" horizontalAlign="right" verticalAlign="middle">
+				<mx:LinkButton label="Cancel" click="closeWindow(null)"/>
+				<mx:Spacer width="20"/>
+				<mx:Button label="Submit" height="37" width="96" click="save(true)"/>
+			</mx:HBox>
+		</mx:FormItem>
+	</mx:Form>
+	
+	<mx:ViewStack id="vs" width="100%" height="100%" creationPolicy="all">
+		<s:NavigatorContent label="General" width="100%" height="100%">
+			
+		</s:NavigatorContent>
+		<s:NavigatorContent label="Append Documents" width="100%" height="100%" showEffect="{moveIn}" hideEffect="{moveOut}">
+			<mx:Form x="0" y="0" width="100%" height="100%" backgroundColor="#FDFDFD" borderAlpha="1.0" backgroundAlpha="0.76">
+				<mx:FormItem width="100%">
+					<mx:Button label="Done" click="vs.selectedIndex = 0" height="37" width="99" icon="@Embed(source='../../assets/images/png/back_32x32.png')"/>
+				</mx:FormItem>
+				<mx:HRule width="100%"/>
+				<mx:FormHeading label="Attache Documents to this Signature Process" width="100%" color="#FAF7F7"/>
+				<mx:FormItem width="100%" height="100%">
+					<component:DocumentAttachements id="documentAttachements" width="100%" height="100%" serverURL="{server}" enabledButtons="true" contentBackgroundColor="#FCFCFC" contentBackgroundAlpha="0.95">
+					</component:DocumentAttachements>
+				</mx:FormItem>
+			</mx:Form>
+		</s:NavigatorContent>
+		
+	</mx:ViewStack>
+	
+	
+</view:RestrictedTitileWindow >

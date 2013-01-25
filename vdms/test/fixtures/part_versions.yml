@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  part: 
+  change_log: 
+  group: 
+  nomenclature: MyString
+  cage_code: MyString
+  configuration_item: MyString
+  natl_stock_number: MyString
+  part_status: 
+  vendor: 
+  customer: 
+  next_higher_assembly: MyText
+
+two:
+  part: 
+  change_log: 
+  group: 
+  nomenclature: MyString
+  cage_code: MyString
+  configuration_item: MyString
+  natl_stock_number: MyString
+  part_status: 
+  vendor: 
+  customer: 
+  next_higher_assembly: MyText

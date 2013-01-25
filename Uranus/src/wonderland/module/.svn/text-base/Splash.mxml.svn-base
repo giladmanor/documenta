@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<std:STDModule xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" layout="absolute" width="100%" height="100%"
+			   implements="wonderland.flow.module.ISTDModule" xmlns:std="wonderland.flow.module.*"
+			   creationComplete="init()">
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.flow.controller.LoginControllerClient;
+			import wonderland.flow.controller.UserManagementControllerClient;
+			
+			[Bindable] private var deploymentStamp:String;
+			
+			
+			private function init():void{
+				var cnt:LoginControllerClient = new LoginControllerClient(server);
+				cnt.getDeploymentStamp(depStampResult,fault);
+					
+			}
+			
+			private function avatarResult(e:Event):void{
+				var loader:URLLoader = e.target as URLLoader;
+				if(loader.bytesLoaded>0){
+					_avatarIMG.source=loader.data;	
+				}
+				
+				
+			}
+			
+			private function depStampResult(e:ResultEvent):void{
+				deploymentStamp = String(e.result);
+				var scnt:UserManagementControllerClient = new UserManagementControllerClient(server);
+				scnt.getAvatar(loggedUserID,avatarResult,fault);
+			}
+			
+			private function fault(e:FaultEvent):void{
+				Alert.show(e.fault.message,"Server Error");
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:VGroup x="0" y="0" width="100%" height="100%" horizontalAlign="right" verticalAlign="bottom">
+		<s:Label text="Powered By Valueshine" fontSize="11" color="#7C7C7C" width="125" x="1051" visible="false"/>
+	</s:VGroup>
+	<s:VGroup x="0" y="0" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+		<s:Label text="[VDMS]" fontSize="148" color="#A4A4A4" backgroundAlpha="1.0" alpha="0.3"/>
+		<s:Label text="URANUS" fontSize="30" color="#7C7C7C" alpha="0.2"/>
+	</s:VGroup>
+	
+	<mx:HBox width="100%" x="0" y="0" horizontalAlign="right">
+		
+		
+	</mx:HBox>
+	<s:VGroup x="0" y="0" width="100%" height="100%" horizontalAlign="right" verticalAlign="bottom" paddingRight="8" paddingBottom="4">
+		<mx:Canvas width="100%" height="86" x="576" y="618"  dropShadowVisible="false" backgroundColor="#000000" borderAlpha="1.0" backgroundAlpha="0.5">
+			<mx:Form x="82" y="10" width="100%" height="64" backgroundColor="#FFFFFF" alpha="0.7" dropShadowVisible="false" backgroundAlpha="0.0" paddingTop="5" paddingBottom="5">
+				<mx:FormItem label="Logged in as" width="100%">
+					<mx:Label text="{loggedUserName}" width="100%" fontWeight="bold"/>
+				</mx:FormItem>
+				<mx:FormItem width="100%" horizontalAlign="right">
+					<mx:Label text="{deploymentStamp}" color="#FEFEFF" alpha="0.4" fontWeight="bold"/>
+				</mx:FormItem>
+			</mx:Form>
+			<mx:Image id="_avatarIMG" x="10" y="10" width="64" height="64" />
+		</mx:Canvas>
+		
+		
+	</s:VGroup>
+	
+</std:STDModule>

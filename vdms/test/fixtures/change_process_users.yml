@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  change_process: 
+  user: 
+  ord: 1
+  change_log: 
+
+two:
+  change_process: 
+  user: 
+  ord: 1
+  change_log: 

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h3><%= @user.name %> <%= @user.l_name %> has sent you <%= @change_process.title %> to e-Sign</h3>
+    <p>
+	<%= @user.name %> <%= @user.l_name %> says: <%= @change_process.desc%><br>
+	With just one simple step, you can electronicly sign this document. After you e-sign the <%= @change_process.title %>, all parties will recieve aan emailed signed copy(PDF).
+    </p>
+    
+    <p>This is an Automated mail message, Please Do not relply to this mail</p>
+  </body>
+</html>

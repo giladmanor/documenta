@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<documents:URANUSDocument xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:view="wonderland.documents.view.*"
+				 xmlns:std="wonderland.documents.module.*"  width="100%" height="100%" xmlns:documents="wonderland.component.documents.*"
+				 implements="wonderland.documents.module.ISTDDocument" xmlns:component="wonderland.component.*" xmlns:view1="wonderland.view.*">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.Request;
+			
+			import wonderland.controller.DocumentListControllerClient;
+			
+			override public function init():void{
+				childNameMin = 1;
+				childNameMax = 19;
+				listCnt = new DocumentListControllerClient(server);
+				loadData(listCnt.D_CLASSES,
+					listCnt.DOC_STATS,
+					listCnt.PRIORITIES
+				);
+			}
+			
+			override public function get doc_stat_id():Number{
+				return _docStatCBX.selectedItem ? _docStatCBX.selectedItem["id"] : -1;
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<mx:Form x="0" y="0" width="100%" height="100%">
+		<mx:FormItem label="Status [1]" width="100%" >
+			<view1:AdvancedComboBox id="_docStatCBX" dataProvider="{listCnt.docStatsDP}" editable="false" labelField="name" selectedID="{selectedDocStatID}"/>
+		</mx:FormItem>
+		<mx:FormItem label="Class [2]" width="100%">
+			<mx:ComboBox name="2" editable="false" dataProvider="{listCnt.dClassesDP}" labelField="name"></mx:ComboBox>
+		</mx:FormItem>
+		<mx:FormItem label="Product [3]" width="100%">
+			<component:PartSelector name="3"  width="100%" server="{server}" parentContainer="{this}"/>
+		</mx:FormItem>
+		<mx:FormItem label="Current Configuraiton [4]" width="100%">
+			<component:PartSelector name="4"  width="100%" server="{server}" parentContainer="{this}"/>
+		</mx:FormItem>
+		<mx:FormItem label="New Configuraiton [5]" width="100%">
+			<component:PartSelector name="5"  width="100%" server="{server}" parentContainer="{this}"/>
+		</mx:FormItem>
+		<mx:FormItem label="Justification [6]" width="100%">
+			<mx:TextArea name="6" text="" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="Priority [7]" width="100%">
+			<mx:ComboBox name="7" editable="false" dataProvider="{listCnt.prioritiesDP}" labelField="name"></mx:ComboBox>
+		</mx:FormItem>
+		<mx:FormItem label="Contract # [8]" width="100%">
+			<s:TextInput name="8" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="Charge # [9]" width="100%">
+			<s:TextInput name="9" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem width="100%" label="[10]">
+			<mx:HBox x="221" y="102" width="100%">
+				<mx:VBox height="100%">
+					<mx:CheckBox name="10" label="Retrofit required"/>
+					<mx:CheckBox name="11" label="Publications"/>
+					<mx:CheckBox name="12" label="Equipment Psecification"/>
+					<mx:CheckBox name="13" label="Spare Maintenance"/>
+					<mx:CheckBox name="14" label="Safty"/>
+					<mx:CheckBox name="15" label="Installation/Interface"/>
+					<mx:CheckBox name="16" label="Test Equipment"/>
+				</mx:VBox>
+				<mx:VRule height="100%"/>
+				<mx:CheckBox name="17" label="Other" id="otherTick"/>
+				<mx:TextArea name="18" width="100%" enabled="{otherTick.selected}"/>
+			</mx:HBox>
+		</mx:FormItem>
+		<mx:FormItem label="Drawings and Attachements [11]" width="100%" height="148">
+			<component:DocumentAttachements name="19" width="100%" height="100%" serverURL="{server}" popupParent="{this}" enabledButtons="{!isReadOnly}"/>
+		</mx:FormItem>
+	</mx:Form>
+	
+</documents:URANUSDocument>

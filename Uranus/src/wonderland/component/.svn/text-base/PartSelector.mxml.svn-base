@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx" verticalAlign="middle"
+		  implements="wonderland.flow.view.ISTDSingleSelector">
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			
+			import mx.controls.Alert;
+			import mx.core.UIComponent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.controller.PartManagementControllerClient;
+			import wonderland.flow.view.ISTDSingleSelector;
+			
+			private const NONE:String = "None Selected";
+			
+			public var parentContainer:UIComponent;
+			[Bindable]public var server:String;
+			
+			[Bindable] private var currentPartVersion:Object;
+			private var cnt:PartManagementControllerClient;
+			
+			protected function findPartVersion(event:MouseEvent):void{
+				
+				var win:PartVersionSearchBox = PartVersionSearchBox(PopUpManager.createPopUp(parentContainer,PartVersionSearchBox,true));
+				win.server = server;
+				win.addEventListener(Event.SELECT,setPartVersion);
+				PopUpManager.centerPopUp(win);
+			}
+			
+			private function setPartVersion(e:Event):void{
+				var win:PartVersionSearchBox = e.target as PartVersionSearchBox;
+				currentPartVersion = win.selected;
+				
+				selector.label = currentPartVersion["part_label"] +" "+currentPartVersion["label"];
+			}
+			
+			public function get selected():Object{
+				if(currentPartVersion!=null && currentPartVersion.hasOwnProperty("id")){
+					return currentPartVersion["id"];
+				}else{
+					return null;
+				}
+			}
+			
+			public function set selected(id:Object):void{
+				if(id!=null && id!="" && !isNaN(Number(id))){
+					cnt = new PartManagementControllerClient(server);
+					cnt.getPartVersionInfo(Number(id),partVersionInfoResult,fault);	
+				}else{
+					selector.label = NONE;
+				}
+				
+			}
+			
+			private function partVersionInfoResult(e:ResultEvent):void{
+				var o:Object = JSON.decode(String(e.result));
+				currentPartVersion = o;
+				selector.label = o["label"];
+			}
+			
+			private function fault(e:FaultEvent):void{
+				Alert.show(e.fault.message,"Server Error");
+			}
+			
+			protected function clearPart(event:MouseEvent):void
+			{
+				currentPartVersion = null;
+				selector.label = NONE;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<mx:LinkButton id="selector" label="{NONE}" width="100%" click="findPartVersion(event)" textAlign="left"/>
+	<mx:Button icon="@Embed(source='../../assets/images/png/close_16x16.png')" width="16" height="16" click="clearPart(event)"/>
+	
+</s:HGroup>

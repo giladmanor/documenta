@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view1:RestrictedTitileWindow xmlns:view1="wonderland.flow.view.*"  xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="550" height="384" xmlns:view="wonderland.view.*"
+			   creationComplete="init(event)" close="cancel(null)" title="Reject">
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.controller.ChangeProcessControllerClient;
+			import wonderland.flow.view.SaveErrorAlert;
+
+			public var server:String;
+			public var changeProcessId:Number;			
+			
+			[Bindable] private var initiatorName:String;
+			[Bindable] private var documentTitle:String;
+			
+			
+			private var cnt:ChangeProcessControllerClient;
+			
+			protected function init(event:FlexEvent):void
+			{
+				cnt = new ChangeProcessControllerClient(server);
+				
+			}
+			
+			
+
+
+			protected function submitRejection(event:MouseEvent):void
+			{
+				
+				if(commentTXT.text.length < 1){
+					commentTXT.errorString = "Please enter Rejection Reason";
+					return;
+				}
+				vs.selectedIndex =1;
+				cnt.rejectChangeProcesses(changeProcessId,commentTXT.text,rejectResult,fault);
+				
+			}
+
+			private function rejectResult(e:ResultEvent):void{
+				var res:Object = JSON.decode(String(e.result));
+				if(res.hasOwnProperty("ok")){
+					vs.selectedIndex = 2;
+					documentTitle = res["title"];
+					initiatorName = res["user_name"];
+				}else{
+					SaveErrorAlert.show(res["error"],"Server Error");
+				}
+				
+			}
+
+			private function fault(e:FaultEvent):void{
+				vs.selectedIndex=0;
+				Alert.show(e.fault.message,"Server Error");
+			}
+			
+			protected function cancel(event:MouseEvent):void
+			{
+				if(vs.selectedIndex!=1){
+					PopUpManager.removePopUp(this);
+				}
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<mx:HBox x="0" y="0" width="100%" height="100%">
+		<mx:Image source="assets/images/png/stop sign_128x128.png"/>
+		<mx:ViewStack id="vs" width="100%" height="100%">
+			<s:NavigatorContent label="" width="100%" height="100%">
+				<mx:Form width="100%" height="100%">
+					<mx:FormItem width="100%">
+						<mx:Label text="I will not e-sign this document" color="#FD0303" fontWeight="bold" width="100%" fontSize="15"/>
+					</mx:FormItem>
+					<mx:FormHeading label="Please enter the reason for declining bolow:"/>
+					<mx:FormItem label="Reason" width="100%" height="100%">
+						<mx:TextArea id="commentTXT" width="100%" height="100%"/>
+					</mx:FormItem>
+					<mx:FormItem width="100%" horizontalAlign="right">
+						
+						<mx:HBox x="263" y="9" width="100%" height="100%" horizontalAlign="right" verticalAlign="middle">
+							<mx:LinkButton label="Cancel" click="cancel(event)"/>
+							<mx:Spacer width="20"/>
+							<mx:Button label="Submit" height="37" width="96" click="submitRejection(event)"/>
+						</mx:HBox>
+					</mx:FormItem>
+				</mx:Form>
+			</s:NavigatorContent>
+			<s:NavigatorContent label="" width="100%" height="100%" show="gear.doRunRun=true" hide="gear.doRunRun=false">
+				<mx:HBox width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+					<view:Gear id="gear" x="70" y="41" width="50" height="50"/>
+					<mx:Spacer width="20"/>
+					<mx:Label text="Processing" fontSize="23"/>
+				</mx:HBox>
+				
+			</s:NavigatorContent>
+			<s:NavigatorContent label="" width="100%" height="100%">
+				<mx:Form x="0" y="0" width="100%" height="100%">
+					<mx:FormHeading label="You have refused to e-sign {documentTitle}" width="100%"/>
+					<mx:FormHeading label="{initiatorName} will recieve an email informing of your refusal" width="100%"/>
+					<mx:FormItem width="100%" height="100%">
+						<mx:Canvas width="100%" height="100%">
+						</mx:Canvas>
+					</mx:FormItem>
+					<mx:FormItem width="100%" horizontalAlign="right">
+						<mx:Button label="Close" height="37" width="96" click="cancel(event)"/>
+					</mx:FormItem>
+				</mx:Form>
+			</s:NavigatorContent>
+			
+			
+		</mx:ViewStack>
+	</mx:HBox>
+</view1:RestrictedTitileWindow >

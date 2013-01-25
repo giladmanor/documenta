@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/vs/!svn/ver/27/GUI/VSLib/src/textEditBar
+END
+FileServices.mxml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/vs/!svn/ver/27/GUI/VSLib/src/textEditBar/FileServices.mxml
+END
+SpriteWithIME.as
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/vs/!svn/ver/27/GUI/VSLib/src/textEditBar/SpriteWithIME.as
+END
+FeatureSetChangeEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/vs/!svn/ver/27/GUI/VSLib/src/textEditBar/FeatureSetChangeEvent.as
+END
+FileEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/vs/!svn/ver/27/GUI/VSLib/src/textEditBar/FileEvent.as
+END
+StatusPopup.mxml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/vs/!svn/ver/27/GUI/VSLib/src/textEditBar/StatusPopup.mxml
+END
+GraphicChangeEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/vs/!svn/ver/27/GUI/VSLib/src/textEditBar/GraphicChangeEvent.as
+END
+LinkChangeEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/vs/!svn/ver/27/GUI/VSLib/src/textEditBar/LinkChangeEvent.as
+END
+FileIOHelper.as
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/vs/!svn/ver/27/GUI/VSLib/src/textEditBar/FileIOHelper.as
+END
+StyleChangeEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/vs/!svn/ver/27/GUI/VSLib/src/textEditBar/StyleChangeEvent.as
+END
+SingleContainerView.mxml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/vs/!svn/ver/27/GUI/VSLib/src/textEditBar/SingleContainerView.mxml
+END
+GraphicBar.mxml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/vs/!svn/ver/27/GUI/VSLib/src/textEditBar/GraphicBar.mxml
+END
+LinkBar.mxml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/vs/!svn/ver/27/GUI/VSLib/src/textEditBar/LinkBar.mxml
+END

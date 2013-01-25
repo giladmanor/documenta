@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			 xmlns:s="library://ns.adobe.com/flex/spark" 
+			 xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Metadata>
+		[Event(name="select", type="flash.events.Event")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.ListEvent;
+			
+			private var _selectedID:Number;
+			private var _selectedCODE:String;
+			
+			private function setSelectedItem(o:Object):void{
+				this.selectedItem = o;
+				this.invalidateDisplayList();
+				this.dispatchEvent(new Event("select"));
+			}
+			
+			
+			public function set selectedID(i:Number):void{
+				var dp:ArrayCollection = this.dataProvider as ArrayCollection;
+				_selectedID = i;
+				if(dp==null){
+					return;
+				}
+				for each (var e:Object in dp){
+					if(e["id"]==i){
+						setSelectedItem(e);
+					}
+				}
+			}
+			
+			public function set selectedCode(s:String):void{
+				var dp:ArrayCollection = this.dataProvider as ArrayCollection;
+				_selectedCODE = s;
+				if(dp==null){
+					return;
+				}
+				for each (var e:Object in dp){
+					if(e["code"]==s){
+						setSelectedItem(e);
+					}
+				}
+			}
+			
+			public function get selectedID():Number{
+				if(this.selectedItem){
+					return this.selectedItem['id'];	
+				}else{
+					return -1; 
+				}
+				
+			}
+			
+			public function get selectedCode():String{
+				if(this.selectedItem){
+					return this.selectedItem['code'];	
+				}else{
+					return null; 
+				}
+			}
+			
+			override public function set dataProvider(value:Object):void{
+				super.dataProvider = value;
+				if(!isNaN(_selectedID)){
+					this.selectedID = _selectedID;
+				}else if(_selectedCODE!=null){
+					this.selectedCode = _selectedCODE;
+				}
+				if(value!=null){
+					this.dispatchEvent(new ListEvent(ListEvent.CHANGE));
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	
+	
+</mx:ComboBox>

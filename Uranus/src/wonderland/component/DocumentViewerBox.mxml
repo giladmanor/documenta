@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view:RestrictedTitileWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%" xmlns:component="wonderland.component.*"
+			   xmlns:view="wonderland.flow.view.*"
+			   close="PopUpManager.removePopUp(this)"  >
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			import wonderland.controller.DocumentListControllerClient;
+			
+			[Bindable]public var documentData:Object;
+			[Bindable]public var documentVersionData:Object;
+			
+			[Bindable]public var readOnly:Boolean = true;
+			
+			[Bindable]private var listCnt:DocumentListControllerClient;
+			[Bindable]private var _serverURL:String;
+			
+			[Bindable] public var docTypesDP:Array;
+			
+			public function set serverURL(s:String):void{
+				_serverURL = s;
+				listCnt = new DocumentListControllerClient(_serverURL);
+				listCnt.loadList(listCnt.TAGS,listCnt.GROUPS,listCnt.PERMISSION_LEVELS);
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<component:DocumentViewer width="100%" height="100%"
+							  id="documentView" 
+							  serverURL="{_serverURL}" readOnly="{readOnly}" 
+							  availableTagsDP="{listCnt.tagsDP}" 
+							  availableGroupsDP="{listCnt.groupDP}"
+							  permissionLevelsDP="{listCnt.permission_levelsDP}"
+							  docTypesDP="{docTypesDP}"
+							  documentData="{documentData}"
+							  documentVersionData="{documentVersionData}"
+							  enableChangeProcessInitiation="false"
+							  />
+</view:RestrictedTitileWindow>

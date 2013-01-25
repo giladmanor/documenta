@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties analytics="false" mainApplicationPath="Uranus.mxml" projectUUID="f9bd328a-2848-48fb-b4fd-b0ce4d875e8d" version="6">
+  <compiler additionalCompilerArguments="-locale en_US" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="0">
+      <libraryPathEntry kind="4" path="">
+        <excludedEntries>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flex.swc" useDefaultLinkType="false"/>
+        </excludedEntries>
+      </libraryPathEntry>
+      <libraryPathEntry kind="1" linkType="1" path="libs"/>
+      <libraryPathEntry kind="3" linkType="1" path="/VSFlow/bin/VSFlow.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="C:/mother/DevEnv/library/flexlib-2.5/flexlib.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/VSDocuments/bin/VSDocuments.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/VSLib/bin/VSLib.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="C:/mother/DevEnv/library/AlivePDF 0.1.5 RC/Sources/bin/AlivePDF.swc" sourcepath="C:/Users/gilad/DevEnv/library/AlivePDF 0.1.5 RC/Sources/src" useDefaultLinkType="false"/>
+    </libraryPath>
+    <sourceAttachmentPath>
+      <sourceAttachmentPathEntry kind="3" linkType="1" path="C:/mother/DevEnv/library/AlivePDF 0.1.5 RC/Sources/bin/AlivePDF.swc" sourcepath="C:/Users/gilad/DevEnv/library/AlivePDF 0.1.5 RC/Sources/src" useDefaultLinkType="false"/>
+    </sourceAttachmentPath>
+  </compiler>
+  <applications>
+    <application path="Uranus.mxml"/>
+  </applications>
+  <modules>
+    <module application="src/Uranus.mxml" destPath="wonderland/module/TableEditor.swf" optimize="true" sourcePath="src/wonderland/module/TableEditor.mxml"/>
+    <module application="src/Uranus.mxml" destPath="wonderland/module/UserManager.swf" optimize="true" sourcePath="src/wonderland/module/UserManager.mxml"/>
+    <module application="src/Uranus.mxml" destPath="wonderland/module/Splash.swf" optimize="true" sourcePath="src/wonderland/module/Splash.mxml"/>
+    <module application="src/Uranus.mxml" destPath="wonderland/module/DocumentManager.swf" optimize="true" sourcePath="src/wonderland/module/DocumentManager.mxml"/>
+    <module application="src/Uranus.mxml" destPath="wonderland/module/PartManager.swf" optimize="true" sourcePath="src/wonderland/module/PartManager.mxml"/>
+    <module application="src/Uranus.mxml" destPath="wonderland/module/ProcessDashboard.swf" optimize="true" sourcePath="src/wonderland/module/ProcessDashboard.mxml"/>
+    <module application="src/Uranus.mxml" destPath="wonderland/module/ProcessInit.swf" optimize="true" sourcePath="src/wonderland/module/ProcessInit.mxml"/>
+  </modules>
+  <buildCSSFiles/>
+</actionScriptProperties>

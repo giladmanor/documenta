@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:view="wonderland.flow.view.*">
+	<fx:Script>
+		<![CDATA[
+			[Bindable] public var dateFormatString:String = 'YYYY-MM-DD';
+			[Bindable] public var dateTimeDelimitter:String = 'T';
+			
+			public function set editable(b:Boolean):void{
+				dateField.enabled = b;
+				hourField.enabled = b;
+				minuteField.enabled = b;
+			}
+			
+			public function set selectedDateString(value:String):void{
+				dateField.selectedDateString = value;
+				if(value.indexOf(dateTimeDelimitter)>0){
+					var timeS:String = value.substring(value.indexOf(dateTimeDelimitter)+1);
+					var timeA:Array = timeS.split(":");
+					
+					hourField.value = timeA[0]
+					minuteField.value = timeA[1];
+				}else{
+					hourField.value = 0;
+					minuteField.value = 0;
+				}
+			}
+			
+			public function get selectedDateTime():Date{
+				var res:Date = dateField.selectedDate;
+				res.hours = hourField.value;
+				res.minutes = minuteField.value;
+				
+				return res;
+			}
+
+			protected function setAsNow(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:HGroup verticalAlign="middle">
+		<view:EasyDateField id="dateField" width="111" dateFormatString="{dateFormatString}" dateTimeDelimitter="{dateTimeDelimitter}"/>
+		<s:Label text="-"/>
+		<s:NumericStepper id="hourField" minimum="0" maximum="23" stepSize="1"/>
+		<s:Label text=":"/>
+		<s:NumericStepper id="minuteField" minimum="0" maximum="59" stepSize="1"/>
+		
+	</s:HGroup>
+	
+	
+</s:Group>

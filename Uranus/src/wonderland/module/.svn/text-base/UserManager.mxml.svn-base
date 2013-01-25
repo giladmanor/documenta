@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<std:STDModule xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" layout="absolute" width="100%" height="100%"
+			   implements="wonderland.flow.module.ISTDModule" xmlns:std="wonderland.flow.module.*" xmlns:view="wonderland.flow.view.*"
+			   creationComplete="init()"
+			   >
+	
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			
+			import flexlib.controls.Base64Image;
+			
+			import mx.controls.Alert;
+			import mx.filters.BaseDimensionFilter;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.utils.Base64Decoder;
+			
+			import wonderland.controller.UserImageUploader;
+			import wonderland.flow.controller.UserManagementControllerClient;
+			import wonderland.flow.view.SaveErrorAlert;
+			import wonderland.flow.view.SearchUserBox;
+			
+			private var cnt:UserManagementControllerClient;
+			[Bindable] private var currentUser:Object = new Object();
+			[Bindable] private var rolesDP:Array;
+			[Bindable] private var permissionLevelsDP:Array;
+			[Bindable] private var groupsDP:Array;
+			
+			private function init():void{
+				cnt = new UserManagementControllerClient(server);
+				cnt.listGroups(null,listGroupsResult,fault);
+				cnt.listPermissionLevels(null, listPermissionLevelsResult,fault);
+				cnt.listRoles(null, listRolesResult,fault);
+				reload(null);
+				
+				
+				
+			}
+			
+			private function listGroupsResult(e:ResultEvent):void{
+				groupsDP = JSON.decode(String(e.result));
+			}
+			
+			private function listPermissionLevelsResult(e:ResultEvent):void{
+				permissionLevelsDP = JSON.decode(String(e.result));
+			}
+			
+			private function listRolesResult(e:ResultEvent):void{
+				rolesDP = JSON.decode(String(e.result));
+			}
+			
+			protected function reload(event:Event):void
+			{
+				cnt.listUsers(listSelector.searchString,listUsersResult,fault);
+			}
+			
+			private function listUsersResult(e:ResultEvent):void{
+				listSelector.dataProvider = JSON.decode(String(e.result));
+			}
+			
+			private function fault(e:FaultEvent):void{
+				Alert.show(e.fault.message,"Server Error");
+			}
+			
+			protected function select(o:Object):void
+			{
+				if(o==null){
+					o = new Object();
+				}
+				currentUser = new Object();
+				currentUser = o;
+				
+				if(currentUser.hasOwnProperty("id")){
+					cnt.getAvatar(currentUser["id"],getAvatarResult,fault);
+					//cnt.getSignatureImage(currentUser["id"],getSignatureImageResult,fault);
+					var ocnt:UserManagementControllerClient = new UserManagementControllerClient(server);
+					ocnt.getSignatureImage(currentUser["id"],getSignatureImageResult,fault);
+					
+					
+					_surrogate.text = currentUser["surrogate"] ? currentUser["surrogate"]["name"] : "";
+					
+				}else{
+					_avatarIMG.source = "assets/images/png/user office_128x128.png";
+					_signatureIMG.source = "assets/images/png/padlock closed_128x128.png";
+					_surrogate.text = "";
+					listSelector.unselect();
+				}
+				
+				if(currentUser.hasOwnProperty("role_id")){
+					for each (var r:Object in rolesDP){
+						if(r["id"] == currentUser["role_id"]){
+							_role.selectedItem = r;		
+						}
+					}
+				}else{
+					_role.selectedIndex = 0;
+				}
+				
+				if(currentUser.hasOwnProperty("permission_level_id")){
+					for each (var r:Object in permissionLevelsDP){
+						if(r["id"] == currentUser["permission_level_id"]){
+							_permissionLevel.selectedItem = r;		
+						}
+					}
+				}else{
+					_permissionLevel.selectedIndex = 0;
+				}
+				
+				
+				_groupList.selectedItems =currentUser["groups"] as Array
+				
+				
+				
+				
+			}
+			
+			private function getAvatarResult(e:Event):void{
+				var loader:URLLoader = e.target as URLLoader;
+				if(loader.bytesLoaded>0){
+					_avatarIMG.source=loader.data;	
+				}
+				
+					
+			}
+			
+			private function getSignatureImageResult(e:Event):void{
+				var loader:URLLoader = e.target as URLLoader;
+				if(loader.bytesLoaded>0){
+					_signatureIMG.source=loader.data;	
+				}
+				
+			}
+
+			protected function save(event:MouseEvent):void
+			{
+				cnt.setUser(currentUser["id"],
+					_name.text,_lName.text,_email.text,_title.text,_password.text,Number(_role.selectedItem["id"]),Number(_permissionLevel.selectedItem["id"]),currentUser["surrogate_id"],null, null,_groupList.selectedItems,setUserResult,fault);
+			}
+			
+			private function setUserResult(e:ResultEvent):void{
+				var res:Object = JSON.decode(String(e.result));
+				if (res.hasOwnProperty("ok")){
+					reload(null);
+					select(new Object());
+					Alert.show("User Saved","Info:");
+				}else{
+					SaveErrorAlert.show(res["error"],"Server Error while SET:");
+				}
+			}
+
+
+			protected function deleteUser(event:MouseEvent):void
+			{
+				if(currentUser.hasOwnProperty("id")){
+					cnt.deleteUser(currentUser["id"],deleteUserResult,fault);	
+				}else{
+					Alert.show("No User Selected to Delete","Error");
+				}
+				
+			}
+			
+			private function deleteUserResult(e:ResultEvent):void{
+				reload(null);
+			}
+
+
+			protected function uploadAvatar(event:MouseEvent):void
+			{
+				var uiu:UserImageUploader = new UserImageUploader(server);
+				uiu.uploadUserAvatar(currentUser["id"]);
+				uiu.addEventListener(Event.COMPLETE,imageLoadComplete);
+			}
+			
+			protected function uploadSignatureImage(event:MouseEvent):void
+			{
+				var uiu:UserImageUploader = new UserImageUploader(server);
+				uiu.uploadUserSignature(currentUser["id"]);
+				uiu.addEventListener(Event.COMPLETE,imageLoadComplete);
+			}
+			
+			private function imageLoadComplete(e:Event):void{
+				select(listSelector.selected);
+			}
+
+
+			protected function findUser(event:MouseEvent):void
+			{
+				var win:SearchUserBox = SearchUserBox(PopUpManager.createPopUp(this,SearchUserBox,true));
+				win.server = server;
+				win.addEventListener(Event.SELECT,setSurrogate);
+				PopUpManager.centerPopUp(win);
+			}
+			
+			private function setSurrogate(e:Event):void{
+				var win:SearchUserBox = e.target as SearchUserBox;
+				var surrogate:Object = win.selected;
+				currentUser["surrogate"] = new Object();
+				currentUser["surrogate_id"] = surrogate["id"];
+				
+				_surrogate.text = surrogate["name"] + " " + surrogate["l_name"];
+			}
+
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:HGroup width="100%" height="100%">
+		<view:SimpleListSelector height="100%" width="220" id="listSelector" 
+								 change="reload(event)" select="select(listSelector.selected)" 
+								 iconString="assets/images/png/user_16x16.png"/>
+		<s:VGroup width="100%" height="100%">
+			<mx:ApplicationControlBar width="100%">
+				<mx:Spacer width="10"/>
+				<mx:Label text="Read Only" fontSize="11" fontWeight="bold" color="#CA0202" visible="{readOnly}"/>
+				<mx:Spacer width="10"/>
+				<mx:Button enabled="{!readOnly}" click="select(new Object())" icon="@Embed(source='../../assets/images/png/add user_48x48.png')" width="58" height="58"/>
+				<mx:VRule height="36"/>
+				<mx:Button enabled="{!readOnly}" click="deleteUser(event)" icon="@Embed(source='../../assets/images/png/delete user_48x48.png')" width="58" height="58"/>
+				<mx:Spacer width="100%"/>
+				<mx:Button enabled="{!readOnly}" click="select(listSelector.selected)" icon="@Embed(source='../../assets/images/png/close_48x48.png')" height="58" width="58"/>
+				<mx:Button enabled="{!readOnly}" click="save(event)" icon="@Embed(source='../../assets/images/png/save 2_48x48.png')" height="58" width="58"/>
+				
+			</mx:ApplicationControlBar>
+			<s:HGroup  width="100%" height="100%">
+				<mx:Form  width="100%" height="100%">
+					<mx:FormItem label="Name" width="100%">
+						<mx:TextInput width="100%" id="_name" text="{currentUser['name']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Last Name" width="100%">
+						<mx:TextInput width="100%" id="_lName" text="{currentUser['l_name']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Title" width="100%">
+						<mx:TextInput width="100%" id="_title" text="{currentUser['title']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="EMail" width="100%">
+						<mx:TextInput width="100%" id="_email" text="{currentUser['email']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Password" width="100%">
+						<s:HGroup x="193" y="8" width="100%" height="100%">
+							<mx:TextInput width="100%" displayAsPassword="{hidePassword.selected}" id="_password" text="{currentUser['password']}"/>
+							<s:CheckBox id="hidePassword" label="Hide" selected="true"/>
+						</s:HGroup>
+					</mx:FormItem>
+					<mx:FormItem label="Permission Level" width="100%">
+						<mx:ComboBox editable="false" width="100%" id="_permissionLevel" dataProvider="{permissionLevelsDP}" labelField="name"></mx:ComboBox>
+					</mx:FormItem>
+					<mx:FormItem label="Role" width="100%">
+						<mx:ComboBox x="175" y="2" editable="false" width="100%" id="_role" dataProvider="{rolesDP}" labelField="name"></mx:ComboBox>
+					</mx:FormItem>
+					<mx:FormItem label="Delegated Signatory" width="100%">
+						<s:HGroup x="140" y="11" width="100%">
+							<mx:TextInput width="100%" editable="false" id="_surrogate"/>
+							<mx:Button icon="@Embed(source='../../assets/images/png/search_16x16.png')" width="22" height="22" click="findUser(event)"/>
+						</s:HGroup>
+					</mx:FormItem>
+					<mx:FormItem label="Programs" width="100%">
+						<view:GroupSelector x="188" y="7" width="100%" id="_groupList" dataProvider="{groupsDP}" height="187"/>
+					</mx:FormItem>
+					
+				</mx:Form>
+				<mx:VRule height="80%"/>
+				<mx:Form  width="100%" height="100%">
+					<mx:FormItem label="Avatar" width="100%" height="160">
+						<s:VGroup x="127" y="6" width="100%" height="100%" horizontalAlign="center">
+							<mx:Image id="_avatarIMG" width="128" height="128" x="179" source="assets/images/png/user office_128x128.png"/>
+							<mx:Button label="Change" width="71" x="169" click="uploadAvatar(event)"  enabled="{currentUser.hasOwnProperty('id')}"/>
+						</s:VGroup>
+					</mx:FormItem>
+					<mx:FormItem label="Signature" width="100%" height="166">
+						<s:VGroup x="127" y="6" width="100%" height="100%" horizontalAlign="center">
+							<mx:Image id="_signatureIMG" width="128" height="128" x="86" source="assets/images/png/padlock closed_128x128.png" scaleContent="true"/>
+							<mx:Button label="Change" width="71" x="169" click="uploadSignatureImage(event)" enabled="{currentUser.hasOwnProperty('id')}"/>
+						</s:VGroup>
+					</mx:FormItem>
+				</mx:Form>
+			</s:HGroup>
+			
+		</s:VGroup>
+		
+		
+	</s:HGroup>
+</std:STDModule>

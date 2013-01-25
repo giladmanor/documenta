@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="542" height="336" xmlns:view="wonderland.flow.view.*" title="Edit" close="PopUpManager.removePopUp(this)">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			import wonderland.flow.module.TableEditor;
+			
+			[Bindable] public var fields:Array;
+			[Bindable] public var data:Object;
+			
+			public var te:TableEditor;
+			
+			protected function save(event:MouseEvent):void
+			{
+				te.setItem(dForm.data);
+				PopUpManager.removePopUp(this);
+			}
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<view:DynamicForm id="dForm" x="0" y="0" width="100%" height="248" fields="{fields}" data="{data}">
+	</view:DynamicForm>
+	<mx:Button x="445" y="256" label="Save" icon="@Embed(source='../../../assets/images/png/save 2_16x16.png')" width="85" height="37" click="save(event)"/>
+</s:TitleWindow>

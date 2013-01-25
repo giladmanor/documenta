@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<std:STDModule xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx" layout="absolute" width="100%" height="100%" xmlns:component="wonderland.component.*"
+		   xmlns:std="wonderland.flow.module.*" xmlns:view="wonderland.view.*">
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.component.NewPartBox;
+			import wonderland.controller.PartManagementControllerClient;
+			import wonderland.flow.view.SaveErrorAlert;
+			
+			private var cnt:PartManagementControllerClient;
+			
+			
+			private function save():void{
+				gear.doRunRun = true;
+				cnt = new PartManagementControllerClient(server);
+				cnt.setPartVersion(partView.data,setPartVersionResult,fault);
+				
+			}
+			
+			private function setPartVersionResult(e:ResultEvent):void{
+				gear.doRunRun = false;
+				var res:Object = JSON.decode(String(e.result));
+				if (res.hasOwnProperty("ok")){
+					partView.load(Number(res["ok"]));
+					Alert.show("Part Saved","Info:");
+				}else{
+					SaveErrorAlert.show(res["error"],"Server Error while SET:");
+				}
+			}
+			
+			private function fault(e:FaultEvent):void{
+				gear.doRunRun = false;
+				Alert.show(e.fault.message,"Server Error");
+			}
+			
+			
+			protected function createNewPart(event:MouseEvent):void
+			{
+				var win:NewPartBox = NewPartBox(PopUpManager.createPopUp(this,NewPartBox,true));
+				win.addEventListener(CloseEvent.CLOSE,newPartCloseHandler);
+				PopUpManager.centerPopUp(win);
+			}
+			
+			private function newPartCloseHandler(e:CloseEvent):void{
+				var win: NewPartBox = e.currentTarget as NewPartBox;
+				if (win.data!=null){
+					partView.createNew(win.data);
+				}
+				PopUpManager.removePopUp(win);
+			}
+			
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:VGroup width="100%" height="100%">
+		
+		<mx:HDividedBox  width="100%" height="100%">
+			<component:PartSearch id="partSearch" width="50%" height="100%" 
+								  serverURL="{server}" select="partView.load(partSearch.selected['id'])"
+								  bussy="{gear.doRunRun = true}" idle="{gear.doRunRun = false}"/>
+			<s:VGroup width="100%" height="100%">
+				<mx:ApplicationControlBar  width="100%">
+					<mx:Spacer width="100%"/>
+					<view:Gear width="30" height="30" id="gear" alpha="0.4" hasShadow="true"/>
+					<mx:Spacer width="30"/>
+					<mx:LinkButton icon="@Embed(source='../../assets/images/png/add box_48x48.png')" height="58"
+								   click="createNewPart(event)" label="New Part"/>
+					<mx:LinkButton icon="@Embed(source='../../assets/images/png/save 2_48x48.png')"  height="58"
+								   click="save()" label="Save"/>
+					
+				</mx:ApplicationControlBar>
+				<component:PartView id="partView" width="100%" height="100%" serverURL="{server}" 
+									bussy="{gear.doRunRun = true}" idle="{gear.doRunRun = false}"/>	
+			</s:VGroup>
+			
+			
+		</mx:HDividedBox>
+	</s:VGroup>
+	
+	
+	
+	
+	
+</std:STDModule>

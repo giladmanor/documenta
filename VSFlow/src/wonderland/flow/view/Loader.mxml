@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:view="wonderland.view.*" width="100%">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			[Bindable] public var run:Boolean = true;
+		]]>
+	</fx:Script>
+	
+	<s:HGroup width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+		<mx:Canvas>
+			
+			<view:Gear id="gear" x="0" y="0" width="260" height="260" doRunRun="{run}" hasShadow="true" alpha="0.3" speed="-0.4"/>
+			<s:VGroup width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+				<mx:Label x="17" y="9" text="Loading..." fontSize="40" color="#8F8C8C"/>	
+			</s:VGroup>
+				
+		</mx:Canvas>
+	</s:HGroup>
+	
+		
+	
+	
+</s:Group>

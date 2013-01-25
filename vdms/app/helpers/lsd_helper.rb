@@ -1,0 +1,2 @@
+module LsdHelper
+end

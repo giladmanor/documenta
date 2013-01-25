@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" xmlns="*"
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%" xmlns:components="wonderland.components.*"
+		 xmlns:admin="wonderland.view.admin.*" xmlns:code="http://code.google.com/p/flexlib/" xmlns:view="wonderland.flow.view.*"
+		 creationComplete="init()">
+	<fx:Declarations>
+		<mx:Move id="wable" duration="400" yFrom="-85" yTo="0" easingFunction="{Elastic.easeOut}"/>
+		<mx:Move id="tremmor" duration="400" xFrom="10" xTo="0" easingFunction="{Exponential.easeOut}"/>
+		
+	</fx:Declarations>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace  "*";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace components "wonderland.components.*";
+		@namespace admin "wonderland.view.admin.*";
+		@namespace code "http://code.google.com/p/flexlib/";
+		
+		.gradientHeader {
+			upSkin:ClassReference('flexlib.skins.EnhancedButtonSkin');
+			overSkin:ClassReference('flexlib.skins.EnhancedButtonSkin');
+			downSkin:ClassReference('flexlib.skins.EnhancedButtonSkin');
+			disabledSkin:ClassReference('flexlib.skins.EnhancedButtonSkin');
+			selectedUpSkin:ClassReference('flexlib.skins.EnhancedButtonSkin');
+			selectedOverSkin:ClassReference('flexlib.skins.EnhancedButtonSkin');
+			selectedDownSkin:ClassReference('flexlib.skins.EnhancedButtonSkin');
+			selectedDisabledSkin:ClassReference('flexlib.skins.EnhancedButtonSkin');
+			font-family:Arial;
+			cornerRadii: 0, 5, 5, 5;
+			borderColors: #666666, #444444;
+			overBorderColors: #444444, #666666;
+			selectedBorderColors: #333333, #111111;
+			borderThickness: 1;
+			borderAlpha: 0.1;
+			fillColors:  #EEEEEE,#CCCCCC;
+			fillAlphas: 0.8, 0.3;
+			fillColorRatios:  0, 150;
+			overFillColors: #AAAAAA, #999999;
+			overFillAlphas: 1, 1;
+			overFillColorRatios: 0, 150;
+			selectedFillColors: #CCCCCC, #EEEEEE;
+			selectedFillAlphas: 1,1;
+			selectedFillColorRatios: 0, 150;
+		}
+		
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.List;
+			import mx.effects.easing.*;
+			import mx.events.FlexEvent;
+			import mx.events.ListEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.utils.OnDemandEventDispatcher;
+			
+			import spark.components.NavigatorContent;
+			import spark.events.IndexChangeEvent;
+			
+			import wonderland.flow.module.ISTDModule;
+			
+			[Bindable] public var viewLabel:String;
+			[Bindable] public var userLabel:String;
+			
+			[Bindable] public var server:String;
+			[Bindable] public var loginData:Object;
+			
+			[Bindable] private var permissionLevel:Number;
+			
+			
+			private function init():void{
+				userLabel = loginData["name"];
+				permissionLevel = loginData["permission_level"];
+				populateMenu(loginData["modules"]);
+			}
+			
+			private function fault(e:FaultEvent):void{
+				Alert.show(String(e.message),"Server Error");
+			}
+			
+			private function populateMenu(modules:Object):void{
+				if((modules as Array)==null){
+					return;
+				}
+				
+				for each (var item:Object in modules){
+					getMenuForName(item["menu"] || "Admin").addMenuItem(item);
+				}
+				
+			}
+			
+			private function getMenuForName(s:String):MenuCategoryList{
+				if(mainMenuContainer.getChildByName(s)!=null){
+					return mainMenuContainer.getChildByName(s) as MenuCategoryList;
+					
+				}else{
+					var nc:MenuCategoryList = new MenuCategoryList();
+					nc.name = s;
+					nc.label = s
+					nc.addEventListener(MenuEvent.OPEN,openView);
+					
+					mainMenuContainer.addChild(nc);
+					return nc;
+				}
+			}
+			
+			
+			
+			
+			[Bindable] private var isLoading:Boolean = false;
+			private var selectedMenuItem:Object;
+			
+			protected function openView(event:MenuEvent):void
+			{
+				selectedMenuItem = event.data;
+				if(dataView.url != selectedMenuItem.view || viewLabel != selectedMenuItem["name"]){
+					setView(selectedMenuItem["name"],selectedMenuItem.implementor);
+				}
+			}
+			
+			private function setView(label:String,url:String):void{
+				isLoading = true;
+				dataView.url = "";
+				dataView.url = url;
+				viewLabel = label;
+				if(dataView.child!=null){
+					getModuleData(null);
+				}
+			}
+			
+			private function getModuleData(e:Event):void{
+				var view:ISTDModule = dataView.child as ISTDModule;
+				view.serverURL = server;
+				view.userName = loginData["name"];
+				view.userID = Number(loginData["id"]);
+				isLoading = false;
+				
+				if(selectedMenuItem!=null){
+					view.params = selectedMenuItem["params"];
+					view.can_change = (permissionLevel >= Number(selectedMenuItem["change_level"]));
+					
+				}
+				
+			}
+			
+			public function openHelpURL():void{
+				
+			}
+			
+			public function openSplash():void{
+				setView("","wonderland/module/Splash.swf");
+			}
+			
+			
+		]]>
+	</fx:Script>
+	
+	<mx:HBox x="0" y="0" width="100%" height="100%">
+		<mx:Spacer/>
+		<mx:VBox height="100%" width="170">
+			<mx:Spacer/>
+			<mx:Accordion id="mainMenuContainer" width="100%" height="100%" headerHeight="40" 
+						  openDuration="600" openEasingFunction="Exponential.easeOut" headerStyleName="gradientHeader" backgroundAlpha="0.0">
+				
+				
+			</mx:Accordion>
+			<mx:Spacer/>
+			
+		</mx:VBox>
+		<mx:ModuleLoader id="dataView" url="wonderland/module/Splash.swf" width="100%" height="100%" ready="getModuleData(event)" showEffect="{wable}"/>
+		
+		
+		
+	</mx:HBox>
+	<view:Loader run="{isLoading}" width="100%" height="100%" visible="{isLoading}" />
+	
+	
+</s:Group>

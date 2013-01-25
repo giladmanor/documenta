@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<std:STDModule xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" layout="absolute" width="100%" height="100%"
+			   implements="wonderland.flow.module.ISTDModule" xmlns:std="wonderland.flow.module.*" xmlns:view="wonderland.documents.view.*" xmlns:component="wonderland.component.*"
+			   creationComplete="init()"
+			   >
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			
+			import mx.collections.ListCollectionView;
+			import mx.controls.Alert;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.controller.DocumentListControllerClient;
+			import wonderland.documents.controller.DocumentControllerClient;
+			
+			private var cnt:DocumentControllerClient;
+			
+			[Bindable] public var selectedDocument:Object;
+			[Bindable]private var listCnt:DocumentListControllerClient;
+			
+			private function init():void{
+				listCnt = new DocumentListControllerClient(server);
+				listCnt.loadList(listCnt.TAGS,listCnt.GROUPS,listCnt.PERMISSION_LEVELS,listCnt.DOC_TYPES,listCnt.DOC_STATS);
+			}
+			
+			protected function selectDocument(event:Event):void
+			{
+				selectedDocument= documentSearch.selectedDocument;
+				viewstack1.selectedChild = documentTab;
+				
+			}
+
+
+			protected function changeProcessComplete(event:Event):void
+			{
+				Alert.show("Change Process Initiated Successfuly","Info");
+				viewstack1.selectedChild = searchTab;
+				documentSearch.search();
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<mx:ViewStack x="0" y="0" id="viewstack1" width="100%" height="100%">
+		<s:NavigatorContent id="searchTab" label="View 1" width="100%" height="100%">
+			<component:DocumentSearch id="documentSearch" 
+				doc_statusDP="{listCnt.docStatsDP}" 
+				doc_typeDP="{listCnt.doc_typesDP}" 
+				groupDP="{listCnt.groupDP}"
+				serverURL="{server}"
+				select="selectDocument(event)"/>
+		</s:NavigatorContent>
+		<s:NavigatorContent id="documentTab" label="View 1" width="100%" height="100%">
+			<component:DocumentViewer id="documentView" 
+				serverURL="{server}" readOnly="{readOnly}" 
+				availableTagsDP="{listCnt.tagsDP}" 
+				availableGroupsDP="{listCnt.groupDP}"
+				permissionLevelsDP="{listCnt.permission_levelsDP}"
+				docTypesDP="{listCnt.doc_typesDP}"
+				documentData="{selectedDocument}"
+				complete="changeProcessComplete(event)"/>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+	
+	
+</std:STDModule>

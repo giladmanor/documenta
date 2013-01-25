@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  .gitignorename: MyString
+  role: 
+  implementor: MyString
+  change_permission_level_id: 1
+  read_permission_level_id: 1
+  params: MyText
+
+two:
+  .gitignorename: MyString
+  role: 
+  implementor: MyString
+  change_permission_level_id: 1
+  read_permission_level_id: 1
+  params: MyText

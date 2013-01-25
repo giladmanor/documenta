@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%" xmlns:component="wonderland.component.*" xmlns:view="wonderland.flow.view.*"
+		 creationComplete="init()" xmlns:view1="wonderland.view.*">
+	<fx:Metadata>
+		[Event(name="bussy", type="flash.events.Event")]
+		[Event(name="idle", type="flash.events.Event")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			
+			import mx.controls.Alert;
+			import mx.effects.Resize;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import wonderland.controller.PartListControllerClient;
+			import wonderland.controller.PartManagementControllerClient;
+			
+			[Bindable]public var serverURL:String;
+			private var cnt:PartManagementControllerClient;
+			[Bindable] private var listCnt:PartListControllerClient;
+			
+			[Bindable]private var part_info:Object;
+			[Bindable]private var part_zero_change_log_info:Object;
+			[Bindable]private var part_version_info:Object;
+			[Bindable]private var customer_part_version_info:Object;
+			[Bindable]private var vendor_part_version_info:Object;
+			[Bindable]private var part_version_rma_info:Object;
+			[Bindable]private var change_log_info:Object;
+			[Bindable]private var parent_part_version_id:Object;
+			[Bindable]private var children_part_versions_info:Array;
+			
+			[Bindable]private var engineering_docs:Array;
+			[Bindable]private var process_docs:Array;
+			[Bindable]private var drawing_docs:Array;
+			[Bindable]private var other_docs:Array;
+			
+			[Bindable] public var isReadOnly:Boolean = false;
+			
+			
+			private function init():void{
+				cnt = new PartManagementControllerClient(serverURL);
+				listCnt = new PartListControllerClient(serverURL);
+			}
+			
+			public function load(id:Object):void{
+				if (id == null){
+					return;
+				}
+				createNew(null);
+				this.dispatchEvent(new Event("bussy"));
+				cnt.getPartVersionInfo(Number(id),partVersionInfoResult,fault);
+				cnt.listAssemblies(Number(id),partVersionAssembliesResult,fault);
+			}
+			
+			public function createNew(data:Object):void{
+				part_info = data;
+				part_version_info = new Object();
+				customer_part_version_info = new Object();
+				vendor_part_version_info = new Object();
+				part_version_rma_info = new Object();
+				change_log_info = new Object();
+				parent_part_version_id = null;
+				children_part_versions_info = new Array();
+				engineering_docs = new Array();
+				process_docs = new Array();
+				drawing_docs = new Array();
+				other_docs = new Array();
+			}
+			
+			public function get data():Object{
+				var res:Object = new Object();
+				res["part"] = part_info;
+				res["part_version"] = part_version;
+				res["customer_part_version"] = customer_part_version;
+				res["vendor_part_version"] = vendor_part_version;
+				res["part_version_rma"] = part_version_rma;
+				res["change_log"] = change_log;
+				res["parent_part_version_id"] = parent_part_version.selected;
+				
+				res["engineering_docs"] = pv_eng_docs.documents;
+				res["process_docs"] = pv_prs_docs.documents;
+				res["drawing_docs"] = pv_drawings.documents;
+				res["other_docs"] = pv_docs.documents;
+				
+				return res;
+			}
+			
+			private function get part_version():Object{
+				var res:Object = part_version_info;
+				res["cage_code"] 				= pv_cage_code.text;
+				res["configuration_item"] 		= pv_configuration_item.text;
+				res["nomenclature"] 			= pv_nomenclature.text;
+				res["natl_stock_number"] 		= pv_natl_stock_number.text;
+				res["next_higher_assembly"] 	= pv_next_higher_assembly.text;
+				res["group_id"] 				= pv_program.selectedItem["id"];
+				res["part_version_stat_id"]		= pv_modes.selectedItem["id"];
+				res["customer_id"] 				= c_customer.selectedItem["id"];
+				res["vendor_id"] 				= v_vendor.selectedItem["id"];
+				
+				return res;
+			}
+			
+			private function get customer_part_version():Object{
+				var res:Object = customer_part_version_info;
+				res["customer_id"]				=  c_customer.selectedItem["id"];
+				res["nomenclature"]				= c_nomenclature.text;
+				res["part_number"] 				= c_part_numer.text;
+				
+				return res;
+			}
+			
+			private function get vendor_part_version():Object{
+				var res:Object = vendor_part_version_info;
+				res["cage_code"] 				= v_cage_code.text;
+				res["is_dropship"] 				= v_is_dropship.selected;
+				res["is_serialized"] 			= v_is_serialized.selected;
+				res["part_number"] 				= v_part_number.text;
+				res["reciept_location"]			= v_reciept_location.text;
+				res["ship_location"] 			= v_ship_location.text;
+				res["uid_desc"] 				= v_uid_desc.text;
+				
+				return res;
+			}
+			
+			private function get part_version_rma():Object{
+				var res:Object = part_version_rma_info;
+				res["configuration_note"]		= r_configuration_note.text;
+				res["nomenclature"] 			= r_nomenclature.text;
+				res["repair_ship_to"]			= r_repair_ship_to.text;
+				res["source_of_repair"]			= r_source_of_repair.text;
+				res["uid_desc"] 				= r_uid_desc.text;
+				
+				
+				return res;
+			}
+			
+			private function get change_log():Object{
+				var res:Object = change_log_info;
+				
+				
+				return res;
+			}
+			
+			
+			private function partVersionAssembliesResult(e:ResultEvent):void{
+				children_part_versions_info = JSON.decode(String(e.result));
+			}
+			
+			
+			private function partVersionInfoResult(e:ResultEvent):void{
+				this.dispatchEvent(new Event("idle"));
+				var res:Object = JSON.decode(String(e.result));
+				part_info = res["part"];
+				part_zero_change_log_info = res["part_zero_change_log"] 
+				part_version_info = res["part_version"];
+				customer_part_version_info = res["customer_part_version"];
+				vendor_part_version_info = res["vendor_part_version"];
+				part_version_rma_info = res["part_version_rma"];
+				change_log_info = res["change_log"];
+				parent_part_version_id = res["parent_part_version_id"];
+				
+				engineering_docs = res["engineering_docs"];
+				process_docs = res["process_docs"];
+				drawing_docs = res["drawing_docs"];
+				other_docs = res["other_docs"];
+			}
+			
+			private function fault(e:FaultEvent):void{
+				Alert.show(e.fault.message,"Server Error");
+			}
+			
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:VGroup x="0" y="0" width="100%" height="100%">
+		<s:HGroup width="100%" horizontalAlign="right">
+			<mx:TabBar width="100%" dataProvider="{viewstack1}" height="100%" dropShadowVisible="false">
+			</mx:TabBar>
+			<mx:Spacer/>
+		</s:HGroup>
+		
+		<mx:ViewStack id="viewstack1" width="100%" height="100%" creationPolicy="all">
+			<s:NavigatorContent label="General" width="100%" height="100%">
+				<mx:Form width="100%" height="100%">
+					<s:HGroup width="100%">
+						<mx:Form x="115" y="99" width="100%" paddingTop="0" height="100%" borderColor="#010101">
+							<mx:FormHeading label="Part Information" width="100%"/>
+							<mx:FormItem label="Part Name" width="100%">
+								<mx:Label text="{part_info['name']}" width="100%"/>
+							</mx:FormItem>
+							<mx:FormItem label="Part Number" width="100%">
+								<mx:Label text="{part_info['number']}" width="100%"/>
+							</mx:FormItem>
+							
+							<mx:FormItem label="Part Version ID" width="100%">
+								<mx:Label width="100%" text="{part_version_info['id']}"/>
+							</mx:FormItem>
+							
+						</mx:Form>
+						<mx:VRule height="139"/>
+						<mx:Form x="115" y="99" width="100%" paddingTop="0" borderColor="#010101">
+							<mx:FormHeading label="Revision Information" width="100%"/>
+							<mx:FormItem label="Creation Date" width="100%">
+								<view:EasyDateLabel width="100%" selectedDateString="{part_zero_change_log_info['created_at']}"/>
+							</mx:FormItem>
+							<mx:FormItem label="Created By" width="100%">
+								<mx:Label width="100%" text="{part_zero_change_log_info['user']['name']}"/>
+							</mx:FormItem>
+							<mx:FormItem label="Last Updated at" width="100%">
+								<view:EasyDateLabel width="100%" selectedDateString="{change_log_info['updated_at']}"/>
+							</mx:FormItem>
+							<mx:FormItem label="Last Updated By" width="100%">
+								<mx:Label width="100%" text="{change_log_info['user']['name']}"/>
+							</mx:FormItem>
+						</mx:Form>
+					</s:HGroup>
+					
+					<mx:HRule width="100%"/>
+					<mx:Form width="100%" height="100%" paddingTop="0">
+						
+						<mx:FormHeading label="Assembly Information"/>
+						<mx:FormItem label="Parent Part" width="100%" horizontalAlign="center">
+							<component:PartSelector id="parent_part_version" x="242" y="8" width="100%" parentContainer="{this}" server="{serverURL}" selected="{parent_part_version_id}"/>
+							<mx:LinkButton label="View Parent" click="load(parent_part_version.selected)" enabled="{parent_part_version_id}"/>
+						</mx:FormItem>
+						<mx:FormItem label="Associated Parts" width="100%" height="100%">
+							<mx:List id="associatedParts" width="100%" height="100%" dataProvider="{children_part_versions_info}"
+									 doubleClickEnabled="{associatedParts.selectedItem!=null}" doubleClick="load(associatedParts.selectedItem['id'])"></mx:List>
+						</mx:FormItem>
+					</mx:Form>
+					<mx:HRule width="100%"/>
+					
+					<mx:FormItem label="Customer">
+						<view1:AdvancedComboBox id="c_customer" editable="false" labelField="name" dataProvider="{listCnt.customersDP}" selectedID="{customer_part_version_info['customer_id']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Part #" width="100%">
+						<mx:TextInput id="c_part_numer" width="100%"  text="{customer_part_version_info['part_number']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Nomenclature" width="100%">
+						<mx:TextInput id="c_nomenclature" text="{customer_part_version_info['nomenclature']}" width="100%"/>
+					</mx:FormItem>
+				</mx:Form>
+			</s:NavigatorContent>
+			<s:NavigatorContent label="Engineering" width="100%" height="100%">
+				<mx:Form width="100%" height="100%">
+					<mx:FormItem label="Status" width="100%">
+						<view1:AdvancedComboBox id="pv_modes" editable="false"  labelField="name" dataProvider="{listCnt.part_modesDP}" selectedID="{part_version_info['part_version_stat_id']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Program" width="100%">
+						<view1:AdvancedComboBox id="pv_program" x="189" y="182" editable="false" labelField="name" dataProvider="{listCnt.groupDP}" selectedID="{part_version_info['group_id']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Nomenclature" width="100%">
+						<mx:TextInput id="pv_nomenclature" text="{part_version_info['nomenclature']}" width="100%"/>
+					</mx:FormItem>
+					<mx:FormItem label="Cage Code" width="100%">
+						<mx:TextInput id="pv_cage_code" width="100%"  text="{part_version_info['cage_code']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Configuration Item" width="100%">
+						<mx:TextInput id="pv_configuration_item" width="100%" text="{part_version_info['configuration_item']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="National Stock Number" width="100%">
+						<mx:TextInput id="pv_natl_stock_number" width="100%" text="{part_version_info['natl_stock_number']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Next Higher Assy" width="100%">
+						<mx:TextInput id="pv_next_higher_assembly" width="100%"  text="{part_version_info['next_higher_assembly']}"/>
+					</mx:FormItem>
+					<mx:HRule width="100%"/>
+					<mx:FormItem label="Drawings" width="100%" height="100%">
+						<component:DocumentAttachements id="pv_eng_docs" width="100%" height="100%"  serverURL="{serverURL}"
+														popupParent="{this}" enabledButtons="{!isReadOnly}"
+														documents="{engineering_docs}">
+						</component:DocumentAttachements>
+					</mx:FormItem>
+					
+				</mx:Form>
+			</s:NavigatorContent>
+			<s:NavigatorContent label="Contract" width="100%" height="100%">
+				<mx:Form width="100%" height="100%">
+					<mx:FormItem label="Vendor">
+						<view1:AdvancedComboBox id="v_vendor" editable="false" labelField="name" dataProvider="{listCnt.vendorsDP}" selectedID="{part_version_info['vendor_id']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Part #" width="100%">
+						<mx:TextInput id="v_part_number" width="100%" text="{vendor_part_version_info['part_number']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Cage Code" width="100%">
+						<mx:TextInput id="v_cage_code" width="100%" text="{vendor_part_version_info['cage_code']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Receipt Location" width="100%">
+						<mx:TextInput id="v_reciept_location" width="100%" text="{vendor_part_version_info['reciept_location']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Ship Location" width="100%">
+						<mx:TextInput id="v_ship_location" width="100%" text="{vendor_part_version_info['ship_location']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Serialized Flag" width="100%">
+						<mx:CheckBox id="v_is_serialized" x="478" y="2" selected="{vendor_part_version_info['is_serialized']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Dropship Flag" width="100%">
+						<mx:CheckBox id="v_is_dropship" x="452" y="3" selected="{vendor_part_version_info['is_dropship']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="UID Description" width="100%" height="100%">
+						<mx:TextArea id="v_uid_desc" width="100%" height="100%" text="{vendor_part_version_info['uid_desc']}"/>
+					</mx:FormItem>
+					
+					
+					
+					
+				</mx:Form>
+			</s:NavigatorContent>
+			<s:NavigatorContent label="RMA" width="100%" height="100%">
+				<mx:Form width="100%" height="100%">
+					<mx:FormItem label="RMA Nomenclature" width="100%">
+						<mx:TextInput id="r_nomenclature" width="100%" text="{part_version_rma_info['nomenclature']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="UID Desc" width="100%">
+						<mx:TextInput id="r_uid_desc" width="100%" text="{part_version_rma_info['uid_desc']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Source Of Repair" width="100%">
+						<mx:TextInput id="r_source_of_repair" width="100%" text="{part_version_rma_info['source_of_repair']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Repair ShipTo ID" width="100%">
+						<mx:TextInput id="r_repair_ship_to" width="100%" text="{part_version_rma_info['repair_ship_to']}"/>
+					</mx:FormItem>
+					<mx:FormItem label="Configuration Note" width="100%" height="100%">
+						<mx:TextArea id="r_configuration_note" width="100%" height="100%" text="{part_version_rma_info['configuration_note']}"/>
+					</mx:FormItem>
+					
+				</mx:Form>
+			</s:NavigatorContent>
+			<s:NavigatorContent label="Documents" width="100%" height="100%">
+				<mx:Form width="100%" height="100%">
+					<mx:FormItem label="ECO/ECP/CCP" width="100%" height="100%">
+						<component:DocumentAttachements id="pv_prs_docs" width="100%" height="100%" 
+														serverURL="{serverURL}" popupParent="{this}" enabledButtons="{!isReadOnly}"
+														documents="{process_docs}">
+						</component:DocumentAttachements>
+					</mx:FormItem>
+					<mx:FormItem label="Drawings" width="100%" height="100%">
+						<component:DocumentAttachements id="pv_drawings" width="100%" height="100%" 
+														serverURL="{serverURL}" popupParent="{this}" enabledButtons="{!isReadOnly}"
+														documents="{drawing_docs}">
+						</component:DocumentAttachements>
+					</mx:FormItem>
+					<mx:FormItem label="Other" width="100%" height="100%">
+						<component:DocumentAttachements id="pv_docs" width="100%" height="100%" 
+														serverURL="{serverURL}" popupParent="{this}" enabledButtons="{!isReadOnly}"
+														documents="{other_docs}">
+						</component:DocumentAttachements>
+					</mx:FormItem>
+					
+				</mx:Form>
+			</s:NavigatorContent>
+		</mx:ViewStack>
+	</s:VGroup>
+</s:Group>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300" 
+		 creationComplete="init()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			
+			[Bindable] private var permissionLevelsDP:Array;
+			[Bindable] private var readPermissionID:Number = 0;
+			[Bindable] private var writePermissionID:Number = 0;
+			
+			public function set permissionLevels(a:Array):void{
+				permissionLevelsDP = a;
+			} 
+			
+			public function set backgroundColor(n:uint):void{
+				theForm.setStyle("backgroundColor",n);
+			}
+			
+			public function set readPermissoin(i:Number):void{
+				readPermissionID = i;
+				if(this.initialized){
+					init();
+				}
+			}
+			
+			public function get readPermission():Number{
+				return readCBX.selectedItem["id"];
+			}
+			
+			public function get writePermission():Number{
+				return writeCBX.selectedItem["id"];
+			}
+			public function set writePermissoin(i:Number):void{
+				writePermissionID = i;
+				if(this.initialized){
+					init();
+				}
+			}
+			
+			private function init():void{
+				for each (var i:Object in permissionLevelsDP){
+					if(i["id"]==readPermissionID){
+						readCBX.selectedItem=i;
+					}
+					if(i["id"]==writePermissionID){
+						writeCBX.selectedItem=i;
+					}
+					
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<mx:Form id="theForm"  width="255"  dropShadowVisible="true"  backgroundColor="#EBEBEB">
+		<mx:FormItem label="Read" width="100%">
+			<s:HGroup width="100%">
+				<mx:ComboBox id="readCBX" editable="false" width="100%" dataProvider="{permissionLevelsDP}" labelField="name"></mx:ComboBox>
+			</s:HGroup>
+		</mx:FormItem>
+		<mx:FormItem label="Write" width="100%">
+			<s:HGroup width="100%">
+				<mx:ComboBox id="writeCBX" editable="false" width="100%" dataProvider="{permissionLevelsDP}" labelField="name"></mx:ComboBox>
+			</s:HGroup>
+		</mx:FormItem>
+	</mx:Form>
+</s:Group>

@@ -1,0 +1,2 @@
+module DocumentManagerHelper
+end

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:List xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 creationComplete="init()">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.CollectionEvent;
+			import mx.events.ScrollEvent;
+			
+			public var pageSize:Number=30;
+			[Bindable]public var index:Number=0;
+			
+			private function init():void{
+				this.addEventListener(ScrollEvent.SCROLL,scrolleee);
+				
+			}
+			
+			private function scrolleee(e:ScrollEvent):void{
+				
+				if(this.itemToItemRenderer(dataProvider[(dataProvider as ArrayCollection).length -1])!=null){
+					dispatchLoadRequest();
+				}
+			}
+			
+			private var isSent:Boolean = false;
+			
+			private function dispatchLoadRequest():void{
+				if(!isSent){
+					isSent=true;
+					//this.enabled = false;
+					index = (dataProvider as ArrayCollection).length -1;
+					this.dispatchEvent(new Event("RELOAD"));
+					(dataProvider as ArrayCollection).addEventListener(CollectionEvent.COLLECTION_CHANGE,dataChange);
+				}
+			}
+			
+			private function dataChange(e:CollectionEvent):void{
+				if((dataProvider as ArrayCollection).length>(index+1)){
+					isSent = false;
+				}
+				//this.enabled=true;
+			}
+			
+			
+			
+			
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	
+	
+</mx:List>
